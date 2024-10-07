@@ -624,29 +624,33 @@ include"sidebar.php"
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label class="text-label form-label" for="dlab-password">Email</label>
-                                    <div class="input-group transparent-append">
-                                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                                        <input type="password" class="form-control" id="dlab-password" placeholder="derah@gmail.com" required>
-                                        <span class="input-group-text show-pass"> 
-                                            <i class="fa fa-eye-slash"></i>
-                                            <i class="fa fa-eye"></i>
-                                        </span>
-                                        
+								<div class="mb-3">
+                                    <label class="text-label form-label" for="validationCustomUsername">State</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"> <i class="fa fa-location-arrow"></i> </span>
+                                        <input type="text" class="form-control" id="validationCustomUsername" placeholder="FCT" required>
+                                        <div class="invalid-feedback">   
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="text-label form-label" for="dlab-password">Address</label>
                                     <div class="input-group transparent-append">
-                                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                        <span class="input-group-text"> <i class="fa fa-map"></i> </span>
                                         <input type="password" class="form-control" id="dlab-password" placeholder="33, Gaduwa Estate, Gudu" required>
-                                        <span class="input-group-text show-pass"> 
-                                            <i class="fa fa-eye-slash"></i>
-                                            <i class="fa fa-eye"></i>
-                                        </span>
-                                        
+										<div class="invalid-feedback">    
+                                        </div>
                                     </div>
+                                </div>
+								<div class="mb-3">
+                                    <label class="text-label form-label" for="dlab-password">Phone Number</label>
+                                    <div class="input-group transparent-append">
+										<span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+										<input type="text" class="form-control" id="dlab-phone" placeholder="09022248072" value="09022248072" readonly required>
+										<span class="input-group-text show-pass">
+											<i class="fa fa-lock"></i>
+										</span>
+									</div>
                                 </div>
                                 <div class="mb-3">
                                     <div class="form-check">
