@@ -29,8 +29,25 @@
         <link href="public/assets/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet" type="text/css"/>		
 	
         <link href="public/assets/css/style.css" rel="stylesheet" type="text/css"/>		
+		  
+<Style>
+	.concierge-bx:hover .profile-img {
+    transform: scale(1.3);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+}
 
+
+.concierge-bx:hover .hover-text {
+        transform: scale(1.2) !important; 
+        color: #007bff !important; 
+
+.concierge-bx:hover {
+    background-color: #f8f9fa;
+}
+
+</Style>
 </head>
+
 <body>
 
 	<!--*******************
@@ -653,16 +670,23 @@ include"sidebar.php"
 													</div>
 												</td>
 												<td>
-													<div class="concierge-bx d-flex align-items-center">
-													     <a href="user-details.php">
-															<img class="me-3 rounded" src="public/assets/images/avatar/2.jpg" alt="Guest Avatar" />
-															</a>														
-													<div>
-															<h5 class="fs-16 mb-0 text-nowrap"><a class="text-black" href="javascript:void(0);">Derah Derah</a></h5>
+													<div class="concierge-bx d-flex align-items-center" style="cursor: pointer; transition: background-color 0.3s ease-in-out;">
+														<a href="user-details.php">
+															<img class="me-3 rounded profile-img" src="public/assets/images/avatar/2.jpg" alt="Guest Avatar" 
+																style="transition: transform 0.6s ease-in-out, box-shadow 0.3s ease-in-out;" />
+														</a>
+														<div>
+															<h5 class="fs-16 mb-0 text-nowrap">
+																<a class="text-black hover-text" href="javascript:void(0);" 
+																style="transition: transform 0.3s ease-in-out; color: inherit;">
+																	Derah Derah
+																</a>
+															</h5>
 															<span class="text-primary fs-14">#ABJ-00005</span>
 														</div>
 													</div>
 												</td>
+
 												<td class="text-nowrap">
 													<span>derahlilian@gmail.com</span>
 												</td>
@@ -678,7 +702,7 @@ include"sidebar.php"
 													</div>
 												</td>
 												<td class="request">
-													<a href="javascript:void(0);" class="btn  btn-sm">Edit</a>
+													<a href="edit-user.php" class="btn  btn-sm">Edit</a>
 												</td>
 											
 												<td>

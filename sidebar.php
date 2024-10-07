@@ -10,11 +10,67 @@
                     <!-- <li><a href="index-2.html">Dashboard Dark</a></li> -->
                     <li><a href="user.php">All Users</a></li>
                     <li><a href="user-details.php">User Detail</a></li>
+                    <!-- <li><a href="downlines.php">User Downlines</a></li> -->
                     <li><a href="concierge-list.html">Concierge List</a></li>
                     <li><a href="room-list.html">Room List</a></li>
                     <li><a href="reviews.html">Reviews</a></li>	
                 </ul>
 
+            </li>
+            <li><a href="sga.php" class="" aria-expanded="false">
+                    <i class="flaticon-013-checkmark"></i>
+                    <span class="nav-text">SGA</span>
+                </a>
+            </li>
+            <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-045-heart"></i>
+                    <span class="nav-text">Packages</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="uc-select2.html">Package</a></li>
+                    <li><a href="uc-nestable.html">Subscription</a></li>
+                    <li><a href="uc-noui-slider.html">Noui Slider</a></li>
+                    <li><a href="uc-sweetalert.html">Sweet Alert</a></li>
+                    <li><a href="uc-toastr.html">Toastr</a></li>
+                    <li><a href="map-jqvmap.html">Jqv Map</a></li>
+                    <li><a href="uc-lightgallery.html">Light Gallery</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-041-graph"></i>
+                    <span class="nav-text">Financial</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="app-profile.html">Payment</a></li>
+                    <li><a href="payout.php">Payouts</a></li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Transactions</a>
+                        <ul aria-expanded="false">
+                            <li><a href="email-compose.html">Compose</a></li>
+                            <li><a href="email-inbox.html">Inbox</a></li>
+                            <li><a href="email-read.html">Read</a></li>
+                        </ul>
+                    </li>
+                    <!-- <li><a href="app-profile.html">Profile</a></li>
+                    <li><a href="post-details.html">Post Details</a></li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
+                        <ul aria-expanded="false">
+                            <li><a href="email-compose.html">Compose</a></li>
+                            <li><a href="email-inbox.html">Inbox</a></li>
+                            <li><a href="email-read.html">Read</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="app-calender.html">Calendar</a></li> -->
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Shop</a>
+                        <ul aria-expanded="false">
+                            <!-- <li><a href="ecom-product-grid.html">Product Grid</a></li>
+                            <li><a href="ecom-product-list.html">Product List</a></li>
+                            <li><a href="ecom-product-detail.html">Product Details</a></li> -->
+                            <li><a href="ecom-product-order.html">Order</a></li>
+                            <li><a href="ecom-invoice.html">Invoice</a></li>
+                            <li><a href="ecom-customers.html">Customers</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </li>
             <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                 <i class="flaticon-050-info"></i>

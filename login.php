@@ -2,8 +2,7 @@
 <html lang="en" class="h-100">
 
 
-<!-- Mirrored from travl.dexignlab.com/codeigniter/demo/page-login by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2024 16:05:40 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +16,7 @@
 	<meta name="format-detection" content="telephone=no">
 	
 	<!-- PAGE TITLE HERE -->
-	<title>Travl - CodeIgniter Hotel Admin Dashboard Bootstrap Template</title>
+	<title>Ownlanding Admin</title>
 
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,36 +38,36 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
 									<div class="text-center mb-3">
-										<a href="index.html"><img src="public/assets/images/logo-full.png" alt=""></a>
+										<a href="index.html"><img src="public/assets/images/ownlogo.png" width="100%" height="60%" alt=""></a>
 									</div>
-                                    <h4 class="text-center mb-4">Sign in your account</h4>
+                                    <!-- <h4 class="text-center mb-4">Dear Admin, Sign in your account</h4> -->
                                     <form action="https://travl.dexignlab.com/codeigniter/demo/index">
                                         <div class="mb-3">
                                             <label class="mb-1"><strong>Email</strong></label>
-                                            <input type="email" class="form-control" value="hello@example.com">
+                                            <input type="email" class="form-control" value="admin@ownlanding.com">
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-1"><strong>Password</strong></label>
                                             <input type="password" class="form-control" value="Password">
                                         </div>
                                         <div class="row d-flex justify-content-between mt-4 mb-2">
-                                            <div class="mb-3">
+                                            <!-- <div class="mb-3">
                                                <div class="form-check custom-checkbox ms-1">
 													<input type="checkbox" class="form-check-input" id="basic_checkbox_1">
 													<label class="form-check-label" for="basic_checkbox_1">Remember my preference</label>
 												</div>
-                                            </div>
-                                            <div class="mb-3">
+                                            </div> -->
+                                            <!-- <div class="mb-3">
                                                 <a href="page-forgot-password.html">Forgot Password?</a>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary btn-block">Sign Me In</button>
+                                            <button type="submit" class="btn btn-primary btn-block" style="background-color:#800080; border:#fff;">Sign Me In</button>
                                         </div>
                                     </form>
-                                    <div class="new-account mt-3">
+                                    <!-- <div class="new-account mt-3">
                                         <p>Don't have an account? <a class="text-primary" href="page-register.html">Sign up</a></p>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

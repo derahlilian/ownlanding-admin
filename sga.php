@@ -684,8 +684,63 @@ include"sidebar.php"
 													</div>
 												</td>
 												<td class="request">
-													<a href="javascript:void(0);" class="btn  btn-sm">View</a>
-												</td>
+                                                    <!-- Trigger Button for "Manage Documents" -->
+                                                    <button type="button" class="btn btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#documentModal">View</button>
+                                                    
+                                                    <!-- Manage Documents Modal -->
+                                                    <div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="documentModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <!-- Modal Header -->
+                                                            <div class="modal-header">
+                                                            <h5 class="modal-title" id="documentModalLabel">Manage Documents</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            
+                                                            <!-- Modal Body -->
+                                                            <div class="modal-body">
+                                                            <form id="documentForm">
+                                                                <!-- Document Upload Section -->
+                                                                <!-- <div class="mb-3">
+                                                                    <label for="fileUpload" class="form-label">Upload Documents</label>
+                                                                    <input class="form-control" type="file" id="fileUpload" multiple>
+                                                                    <div class="form-text">You can upload multiple documents at once.</div>
+                                                                </div> -->
+
+                                                                <!-- Uploaded Documents Section -->
+                                                                <div class="uploaded-documents">
+                                                                <h6>Uploaded Documents</h6>
+                                                                <ul class="list-group" id="documentList">
+                                                                    <!-- Example document -->
+                                                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                    <span>Document1.pdf</span>
+                                                                    <div>
+                                                                        <button type="button" class="btn btn-sm btn-secondary me-2" style="color: #000;" onclick="viewDocument('Document1.pdf')">View</button>
+                                                                        <button type="button" class="btn btn-sm btn-primary" style="color: #E23428;"onclick="editDocument('Document1.pdf')">Edit</button>
+                                                                    </div>
+                                                                    </li>
+                                                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                    <span>Document2.pdf</span>
+                                                                    <div>
+                                                                        <button type="button" class="btn btn-sm btn-secondary me-2" style="color: #000;" onclick="viewDocument('Document1.pdf')">View</button>
+                                                                        <button type="button" class="btn btn-sm btn-primary" style="color: #E23428;"onclick="editDocument('Document1.pdf')">Edit</button>
+                                                                    </div>
+                                                                    </li>
+                                                                    <!-- Add more uploaded documents dynamically here -->
+                                                                </ul>
+                                                                </div>
+                                                            </form>
+                                                            </div>
+
+                                                            <!-- Modal Footer -->
+                                                            <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary" onclick="saveDocuments()">Save changes</button>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
 											
 												<td>
 													<div class="request">
@@ -737,25 +792,64 @@ include"sidebar.php"
 												</td>
 												
 												<td class="request">
-													<!-- <a href="javascript:void(0);" class="btn  btn-sm">Edit</a> -->
-                                                    <button type="button" class="btn btn-sm mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">Edit</button>
-                                                        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                                                            <div class="modal-dialog modal-lg">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title">Modall title</h5>
-                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal">
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">Modal body text goes here.</div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                                                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                                                    </div>
-                                                                </div>
+                                                    <!-- Trigger Button for "Manage Documents" -->
+                                                    <button type="button" class="btn btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#documentModal">View</button>
+                                                    
+                                                    <!-- Manage Documents Modal -->
+                                                    <div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="documentModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <!-- Modal Header -->
+                                                            <div class="modal-header">
+                                                            <h5 class="modal-title" id="documentModalLabel">Manage Documents</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
-                                                          
-												</td>
+                                                            
+                                                            <!-- Modal Body -->
+                                                            <div class="modal-body">
+                                                            <form id="documentForm">
+                                                                <!-- Document Upload Section -->
+                                                                <!-- <div class="mb-3">
+                                                                    <label for="fileUpload" class="form-label">Upload Documents</label>
+                                                                    <input class="form-control" type="file" id="fileUpload" multiple>
+                                                                    <div class="form-text">You can upload multiple documents at once.</div>
+                                                                </div> -->
+
+                                                                <!-- Uploaded Documents Section -->
+                                                                <div class="uploaded-documents">
+                                                                <h6>Uploaded Documents</h6>
+                                                                <ul class="list-group" id="documentList">
+                                                                    <!-- Example document -->
+                                                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                    <span>Document1.pdf</span>
+                                                                    <div>
+                                                                        <button type="button" class="btn btn-sm btn-secondary me-2" style="color: #000;" onclick="viewDocument('Document1.pdf')">View</button>
+                                                                        <button type="button" class="btn btn-sm btn-primary" style="color: #E23428;"onclick="editDocument('Document1.pdf')">Edit</button>
+                                                                    </div>
+                                                                    </li>
+                                                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                    <span>Document2.pdf</span>
+                                                                    <div>
+                                                                        <button type="button" class="btn btn-sm btn-secondary me-2" style="color: #000;" onclick="viewDocument('Document1.pdf')">View</button>
+                                                                        <button type="button" class="btn btn-sm btn-primary" style="color: #E23428;"onclick="editDocument('Document1.pdf')">Edit</button>
+                                                                    </div>
+                                                                    </li>
+                                                                    <!-- Add more uploaded documents dynamically here -->
+                                                                </ul>
+                                                                </div>
+                                                            </form>
+                                                            </div>
+
+                                                            <!-- Modal Footer -->
+                                                            <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary" onclick="saveDocuments()">Save changes</button>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+
 												
 												<td>
 													<div class="request">
@@ -791,8 +885,63 @@ include"sidebar.php"
 													</div>
 												</td>
 												<td class="request">
-													<a href="javascript:void(0);" class="btn  btn-sm">View</a>
-												</td>
+                                                    <!-- Trigger Button for "Manage Documents" -->
+                                                    <button type="button" class="btn btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#documentModal">View</button>
+                                                    
+                                                    <!-- Manage Documents Modal -->
+                                                    <div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="documentModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <!-- Modal Header -->
+                                                            <div class="modal-header">
+                                                            <h5 class="modal-title" id="documentModalLabel">Manage Documents</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            
+                                                            <!-- Modal Body -->
+                                                            <div class="modal-body">
+                                                            <form id="documentForm">
+                                                                <!-- Document Upload Section -->
+                                                                <!-- <div class="mb-3">
+                                                                    <label for="fileUpload" class="form-label">Upload Documents</label>
+                                                                    <input class="form-control" type="file" id="fileUpload" multiple>
+                                                                    <div class="form-text">You can upload multiple documents at once.</div>
+                                                                </div> -->
+
+                                                                <!-- Uploaded Documents Section -->
+                                                                <div class="uploaded-documents">
+                                                                <h6>Uploaded Documents</h6>
+                                                                <ul class="list-group" id="documentList">
+                                                                    <!-- Example document -->
+                                                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                    <span>Document1.pdf</span>
+                                                                    <div>
+                                                                        <button type="button" class="btn btn-sm btn-secondary me-2" style="color: #000;" onclick="viewDocument('Document1.pdf')">View</button>
+                                                                        <button type="button" class="btn btn-sm btn-primary" style="color: #E23428;"onclick="editDocument('Document1.pdf')">Edit</button>
+                                                                    </div>
+                                                                    </li>
+                                                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                    <span>Document2.pdf</span>
+                                                                    <div>
+                                                                        <button type="button" class="btn btn-sm btn-secondary me-2" style="color: #000;" onclick="viewDocument('Document1.pdf')">View</button>
+                                                                        <button type="button" class="btn btn-sm btn-primary" style="color: #E23428;"onclick="editDocument('Document1.pdf')">Edit</button>
+                                                                    </div>
+                                                                    </li>
+                                                                    <!-- Add more uploaded documents dynamically here -->
+                                                                </ul>
+                                                                </div>
+                                                            </form>
+                                                            </div>
+
+                                                            <!-- Modal Footer -->
+                                                            <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary" onclick="saveDocuments()">Save changes</button>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
 											
 												<td>
 													<div class="request">
@@ -1658,6 +1807,26 @@ $('#reportrange').daterangepicker({
 cb(start, end);
 
 });
+
+<!-- JavaScript for Modal Functions -->
+
+  function viewDocument(documentName) {
+    alert('Opening document: ' + documentName);
+    // Add logic to view the document, e.g., open in a new tab or iframe
+  }
+
+  function editDocument(documentName) {
+    alert('Editing document: ' + documentName);
+    // Add logic to edit the document
+  }
+
+  function saveDocuments() {
+    // Add logic to handle saving the uploaded documents
+    alert('Documents saved successfully');
+  }
+
+  // You can add more dynamic functionality like adding uploaded files to the list here
+
 </script>
 
 
