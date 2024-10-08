@@ -73,6 +73,17 @@ class Admin extends Database {
         return $stmt->fetchAll(self::FETCH_ASSOC);
     }
 
+    /*
+     * Fetch Customer Down line
+     */
+    function getDownlineByUserId(int $user_id): false|array
+    {
+        $sql = "SELECT id, name, last_name FROM users WHERE referred_by = ?";
+        $stmt = $this->prepare($sql);
+        $stmt->execute([$user_id]);
+        return $stmt->fetchAll(self::FETCH_ASSOC);
+    }
+
     function getUserTransactions(int $user_id): false|array
     {
         $sql = "SELECT * FROM transactions LEFT JOIN payments ON transactions.payment_id = payments.id WHERE transactions.user_id = ?";

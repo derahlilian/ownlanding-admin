@@ -2,6 +2,7 @@
 require_once "config/init.php";
 $user = $_SESSION["editUser"];
 $packages = $_SESSION['userPackages'];
+$Downlines = $_SESSION["userDownlines"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -954,40 +955,24 @@ include"sidebar.php"
 															<div class="nestable">
 																<div class="dd" id="nestable2">
 																<ol class="dd-list">
-																		<li class="dd-item" data-id="1">
-																			<div class="dd-handle">Direct Downline</div>
+                                                                    <?php foreach ($Downlines as $key => $firstGen): ?>
+                                                                    <?php if ($firstGen["downline"]): ?>
+                                                                    <li class="dd-item" data-id="">
+                                                                        <div class="dd-handle"><?php echo $firstGen["name"] . " " . $firstGen["last_name"]?></div>
+                                                                        <ol class="dd-list">
+                                                                        <?php foreach ($firstGen["downline"] as $secondGen): ?>
+                                                                            <li class="dd-item" data-id="3">
+                                                                                <div class="dd-handle"><?php echo $secondGen["name"] . " " . $secondGen["last_name"]?></div>
+                                                                            </li>
+                                                                        <?php endforeach; ?>
+                                                                        </ol>
+                                                                    </li>
+                                                                    <?php else: ?>
+																		<li class="dd-item" data-id="">
+																			<div class="dd-handle"><?php echo $firstGen["name"] . " " . $firstGen["last_name"]?></div>
 																		</li>
-																		<li class="dd-item" data-id="2">
-																			<div class="dd-handle">Direct Downline</div>
-																			<ol class="dd-list">
-																				<li class="dd-item" data-id="3">
-																					<div class="dd-handle">First Generation Downline</div>
-																				</li>
-																				<li class="dd-item" data-id="4">
-																					<div class="dd-handle">First Generation Downline</div>
-																				</li>
-																				<li class="dd-item" data-id="5">
-																					<div class="dd-handle">First Generation Downline</div>
-																					<ol class="dd-list">
-																						<li class="dd-item" data-id="6">
-																							<div class="dd-handle">Second Generation Downline</div>
-																						</li>
-																						<li class="dd-item" data-id="7">
-																							<div class="dd-handle">Second Gereation Downline</div>
-																						</li>
-																						<li class="dd-item" data-id="8">
-																							<div class="dd-handle">Second Generation Downline</div>
-																						</li>
-																					</ol>
-																				</li>
-																				<li class="dd-item" data-id="9">
-																					<div class="dd-handle">First Generation Downline</div>
-																				</li>
-																				<li class="dd-item" data-id="10">
-																					<div class="dd-handle">First Generation Downline</div>
-																				</li>
-																			</ol>
-																		</li>
+                                                                    <?php endif; ?>
+                                                                    <?php endforeach; ?>
 																	</ol>
 																</div>
 															</div>

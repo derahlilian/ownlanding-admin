@@ -39,6 +39,23 @@ class Administrator extends Admin
         $_SESSION["userPackages"] = $Packages;
     }
 
+    /*
+     * Fetch Customer Down line to second generation
+     * @user_id: id of user
+     */
+    function getUserDownlines(int $id): void
+    {
+        $downline = $this->getDownlineByUserId($id);
+        if ($downline) {
+            for ($i = 0; $i < count($downline); $i++) {
+                $downline[$i]["downline"] = $this->getDownlineByUserId($downline[$i]["id"]);
+            }
+            $_SESSION["userDownlines"] = $downline;
+        }
+        else {
+            $_SESSION["userDownlines"] = [];
+        }
+    }
 
 
     /*
@@ -68,6 +85,7 @@ elseif (isset($_GET['userDetails'])) {
     $user_id = (int)htmlspecialchars($_GET["userId"]);
     $admin->getUser($user_id);
     $admin->getUserPackages($user_id);
+    $admin->getUserDownlines($user_id);
     header("location: ../user-details.php");
 }
 elseif (isset($_GET['editUser'])) {
