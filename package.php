@@ -23,7 +23,9 @@
 
 	
         <link href="public/assets/vendor/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css"/>	
-	
+		<link href="public/assets/vendor/jquery-asColorPicker/css/asColorPicker.min.css" rel="stylesheet" type="text/css"/>	
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css"/>	
+
         <link href="public/assets/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>	
 	
         <link href="public/assets/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet" type="text/css"/>		
@@ -607,11 +609,11 @@ include"sidebar.php"
 			<div class="card-action coin-tabs mb-2">
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="nav-item">
-						<a class="nav-link active" data-bs-toggle="tab" href="#AllGuest">All User</a>
+						<a class="nav-link active" data-bs-toggle="tab" href="#AllGuest">All Packages</a>
 					</li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<a class="nav-link" data-bs-toggle="tab" href="#Pending">Activated</a>
-					</li>
+					</li> -->
 					<!-- <li class="nav-item">
 						<a class="nav-link" data-bs-toggle="tab" href="#Booked">Booked</a>
 					</li>
@@ -637,39 +639,89 @@ include"sidebar.php"
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<div class="modal-header">
-											<h5 class="modal-title">Modal title</h5>
+											<h5 class="modal-title">Create New Package</h5>
 											<button type="button" class="btn-close" data-bs-dismiss="modal">
 											</button>
 										</div>
-										<!-- <div class="modal-body">
-											<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-											<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-											<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-											</p>
-											<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-											<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-											<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-											</p>
-											<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-											<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-											<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-											</p>
-											<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-											<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-											<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-											</p>
-											<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-											<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-											<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-											</p>
-											<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-											<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-											<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-											</p>
-										</div> -->
+										<div class="modal-body">
+											<div class="col-lg-12">
+												<div class="card">
+													<div class="card-header">
+														<h4 class="card-title">Please Fill All Field!</h4>
+													</div>
+													<div class="card-body">
+														<div class="basic-form">
+															<form class="form-valide-with-icon needs-validation" novalidate>
+																<div class="mb-3">
+																	<label class="text-label form-label" for="validationCustomUsername">Package Code</label>
+																	<div class="input-group">
+																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
+																		<input type="number" class="form-control" id="validationCustomUsername" placeholder="Enter a package code" required>
+																	</div>
+																</div>
+																<div class="mb-3">
+																	<label class="text-label form-label" for="validationCustomUsername">Package Size</label>
+																	<div class="input-group">
+																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
+																		<input type="text" class="form-control" id="validationCustomUsername" placeholder="Enter a package size" required>
+																	</div>
+																</div>
+																<div class="mb-3">
+																	<label class="text-label form-label" for="validationCustomUsername">Package Amount</label>
+																	<div class="input-group">
+																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
+																		<input type="number" class="form-control" id="validationCustomUsername" placeholder="Enter the package price" required>
+																	</div>
+																</div>
+																<div class="mb-3">
+																	<label class="text-label form-label" for="validationCustomUsername">Estate Name</label>
+																	<div class="input-group">
+																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
+																		<input type="number" class="form-control" id="validationCustomUsername" placeholder="Enter estate name" required>
+																	</div>
+																</div>
+																<div class="mb-3">
+																	<label class="text-label form-label" for="validationCustomUsername">Location</label>
+																	<div class="input-group">
+																	<button class="btn btn-secondary" type="button">Location</button>
+																	<select class="default-select form-control wide">
+																		<option selected>Choose...</option>
+																		<option value="1">Lagos</option>
+																		<option value="2">Abuja</option>
+																		<option value="3">Command</option>
+																	</select>
+																	</div>
+																</div>
+																
+																<div class="mb-3">
+																	<label class="text-label form-label" for="dlab-password">Color Code*</label>
+																	<div class="input-group transparent-append">
+																	<div class="example">
+																		<input type="text" class="complex-colorpicker form-control" value="#364e29">
+																	</div>
+																	</div>
+																</div>
+												
+																<div class="mb-3">
+																	<div class="form-check">
+																		<input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+																		<label class="form-check-label" for="invalidCheck2">
+																		I Agree to Create New Package
+																		</label>
+																	</div>
+																</div>
+																<button type="submit" class="btn me-2 btn-secondary">Submit</button>
+																<button type="submit" class="btn btn-light">cancel</button>
+															</form>
+														</div>
+													</div>
+												</div>
+											</div>
+					
+										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-											<button type="button" class="btn btn-primary">Save changes</button>
+											<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
 										</div>
 									</div>
 								</div>
@@ -858,7 +910,12 @@ include"sidebar.php"
             <script src="public/assets/vendor/bootstrap-daterangepicker/daterangepicker.js"></script>
             <script src="public/assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
             <script src="public/assets/js/plugins-init/datatables.init.js"></script>
-    	
+    	    <script src="public/assets/vendor/clockpicker/js/bootstrap-clockpicker.min.js"></script>
+            <script src="public/assets/vendor/jquery-asColor/jquery-asColor.min.js"></script>
+            <script src="public/assets/vendor/jquery-asGradient/jquery-asGradient.min.js"></script>
+            <script src="public/assets/vendor/jquery-asColorPicker/js/jquery-asColorPicker.min.js"></script>
+			<script src="public/assets/js/plugins-init/jquery-asColorPicker.init.js"></script>
+
 			<script src="public/assets/js/custom.min.js"></script>
 			<script src="public/assets/js/dlabnav-init.js"></script>
 			<script src="public/assets/js/demo.js"></script>
