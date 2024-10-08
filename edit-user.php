@@ -1,3 +1,4 @@
+<?php include "config/init.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -109,12 +110,13 @@ include"sidebar.php"
                     </div>
                     <div class="card-body">
                         <div class="basic-form">
-                            <form class="form-valide-with-icon needs-validation" novalidate>
+                            <form class="form-valide-with-icon needs-validation" method="post" action="/ownlanding-admin/controllers/Administrator.php">
+                                <?php $user = $_SESSION["editUser"]; ?>
                                 <div class="mb-3">
                                     <label class="text-label form-label" for="validationCustomUsername">Firstname</label>
                                     <div class="input-group">
                                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                                        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Derah" required>
+                                        <input type="text" class="form-control" id="validationCustomUsername" value="<?php echo $user["name"] ?>" name="first" required>
                                         <div class="invalid-feedback">
                                             Please Enter a firstname.
                                         </div>
@@ -124,51 +126,48 @@ include"sidebar.php"
                                     <label class="text-label form-label" for="validationCustomUsername">Lastname</label>
                                     <div class="input-group">
                                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                                        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Derah" required>
+                                        <input type="text" class="form-control" id="validationCustomUsername" value="<?php echo $user["last_name"] ?>" name="last" required>
                                         <div class="invalid-feedback">
                                             Please Enter a lastname.
                                         </div>
                                     </div>
                                 </div>
-								<div class="mb-3">
-                                    <label class="text-label form-label" for="validationCustomUsername">State</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"> <i class="fa fa-location-arrow"></i> </span>
-                                        <input type="text" class="form-control" id="validationCustomUsername" placeholder="FCT" required>
-                                        <div class="invalid-feedback">   
-                                        </div>
+                                <div class="mb-3">
+                                    <label class="text-label form-label" for="dlab-password">Email</label>
+                                    <div class="input-group transparent-append">
+                                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                        <input type="password" class="form-control" id="dlab-password" value="<?php echo $user["email"] ?>" disabled>
+                                        <span class="input-group-text show-pass">
+                                            <i class="fa fa-eye-slash"></i>
+                                            <i class="fa fa-eye"></i>
+                                        </span>
+
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="text-label form-label" for="dlab-password">Address</label>
                                     <div class="input-group transparent-append">
-                                        <span class="input-group-text"> <i class="fa fa-map"></i> </span>
-                                        <input type="password" class="form-control" id="dlab-password" placeholder="33, Gaduwa Estate, Gudu" required>
-										<div class="invalid-feedback">    
-                                        </div>
+                                        <span class="input-group-text"> <i class="fa fa-location-arrow"></i> </span>
+                                        <input type="text" class="form-control" id="dlab-password" value="<?php echo $user["address"] ?>" disabled>
+                                        <span class="input-group-text ">
+                                            <i class="fa fa-lock"></i>
+                                        </span>
+
                                     </div>
-                                </div>
-								<div class="mb-3">
-                                    <label class="text-label form-label" for="dlab-password">Phone Number</label>
-                                    <div class="input-group transparent-append">
-										<span class="input-group-text"> <i class="fa fa-phone"></i> </span>
-										<input type="text" class="form-control" id="dlab-phone" placeholder="09022248072" value="09022248072" readonly required>
-										<span class="input-group-text show-pass">
-											<i class="fa fa-lock"></i>
-										</span>
-									</div>
                                 </div>
                                 <div class="mb-3">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
                                         <label class="form-check-label" for="invalidCheck2">
-                                        I agree to change this details
+                                            I agree to change this details
                                         </label>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn me-2 btn-primary">Submit</button>
-                                <button type="submit" class="btn btn-light">Cancel</button>
+                                <input type="hidden" name="user_id" value="<?php echo $user["id"] ?>">
+                                <button type="submit" name="editUserSubmit" class="btn me-2 btn-primary">Submit</button>
+                                <button class="btn btn-light" onclick="history.back(); return false;">Cancel</button>
                             </form>
+
                         </div>
                     </div>
                 </div>
