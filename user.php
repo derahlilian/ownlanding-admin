@@ -726,7 +726,7 @@ include"sidebar.php"
 													</div>
 												</td>
 											</tr>
-											<tr>
+											<!-- <tr>
 												<td>
 													<div class="form-check style-1">
 														<input class="form-check-input" type="checkbox" value="">
@@ -780,7 +780,7 @@ include"sidebar.php"
 														</div>
 													</div>
 												</td>
-											</tr>
+											</tr> -->
 										</tbody>
 									</table>
 								</div>	
