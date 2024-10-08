@@ -27,9 +27,23 @@
                     <span class="nav-text">Packages</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="uc-select2.html">Package</a></li>
+                    <li><a href="package.php">Package</a></li>
                     <li><a href="uc-nestable.html">Subscription</a></li>
                     <li><a href="uc-noui-slider.html">Noui Slider</a></li>
+                    <li><a href="uc-sweetalert.html">Sweet Alert</a></li>
+                    <li><a href="uc-toastr.html">Toastr</a></li>
+                    <li><a href="map-jqvmap.html">Jqv Map</a></li>
+                    <li><a href="uc-lightgallery.html">Light Gallery</a></li>
+                </ul>
+            </li>
+            <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-045-heart"></i>
+                    <span class="nav-text">Master</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="country.php">Country</a></li>
+                    <li><a href="state.php">State</a></li>
+                    <li><a href="location.php">Location</a></li>
                     <li><a href="uc-sweetalert.html">Sweet Alert</a></li>
                     <li><a href="uc-toastr.html">Toastr</a></li>
                     <li><a href="map-jqvmap.html">Jqv Map</a></li>
