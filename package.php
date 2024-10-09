@@ -633,7 +633,7 @@ include"sidebar.php"
 					</div>
 				</div> -->
 				
-				<button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Add Package</button>
+				    <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Add Package</button>
 							<!-- Modal -->
 							<div class="modal fade" id="exampleModalLong">
 								<div class="modal-dialog">
@@ -894,7 +894,7 @@ include"sidebar.php"
 ***********************************-->
 <div class="footer">
     <div class="copyright">
-        <p>Copyright © Designed &amp; Developed by <a href="https://dexignlab.com/" target="_blank">DexignLab</a> 2024</p>
+        <p>Copyright © Designed &amp; Developed by <a href="https://jamaconcept.com/" target="_blank">Jamasoft</a> 2024</p>
     </div>
 </div>
 <!--**********************************

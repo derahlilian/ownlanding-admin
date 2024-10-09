@@ -31,6 +31,8 @@ $Downlines = $_SESSION["userDownlines"];
 	
         <link href="public/assets/vendor/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css"/>	
 		<link href="public/assets/vendor/nestable2/css/jquery.nestable.min.css" rel="stylesheet" type="text/css"/>	
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	
         <link href="public/assets/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>	
@@ -633,38 +635,40 @@ include"sidebar.php"
                                                             <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                                                         </svg>
 
-                                                    </a>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="edit-user.php">Edit</a>
-                                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex">
-                                                <div class="mt-4 check-status">
-                                                    <span class="d-block mb-2">Check In</span>
-                                                    <span class="font-w500 fs-16">October 30th, 2021 | 08:23 AM</span>
-                                                </div>
-                                                <div class="mt-4">
-                                                    <!-- <span class="d-block mb-2">Check Out</span>
-                                                    <span class="font-w500 fs-16">November 2th, 2021</span> -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <?php foreach ($packages as $package): ?>
-                                            <div class="d-flex flex-wrap" style="background-color: <?php echo "#" . $package['color_code']; ?>;">
-                                                <div class="mt-4 check-status">
-                                                    <span class="d-block mb-2">Package</span>
-                                                    <h4 class="font-w500 fs-24"><?php echo $package["package_code"]; ?></h4>
-                                                </div>
-                                                <div class="mt-4 ms-3">
-                                                    <span class="d-block mb-2 text-black">Price</span>
-                                                    <span class="font-w500 fs-24 text-black"><?php echo $package["package_amount"]; ?><small class="fs-14 ms-2 text-secondary"></small></span>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                        <?php endforeach; ?>
-                                    </div>
+													</a>
+													<div class="dropdown-menu">
+														<a class="dropdown-item" href="edit-user.php">Edit</a>
+														<a class="dropdown-item" href="javascript:void(0);" onclick="confirmDelete()">Delete</a>
+
+													</div>
+												</div>
+											</div>
+											<div class="d-flex">
+												<div class="mt-4 check-status">
+													<span class="d-block mb-2">Check In</span>	
+													<span class="font-w500 fs-16">October 30th, 2021 | 08:23 AM</span>
+												</div>
+												<div class="mt-4">
+													<!-- <span class="d-block mb-2">Check Out</span>	
+													<span class="font-w500 fs-16">November 2th, 2021</span> -->
+												</div>
+											</div>
+										</div>
+
+                          <?php foreach ($packages as $package): ?>
+                              <div class="d-flex flex-wrap" style="background-color: <?php echo "#" . $package['color_code']; ?>;">
+                                  <div class="mt-4 check-status">
+                                      <span class="d-block mb-2">Package</span>
+                                      <h4 class="font-w500 fs-24"><?php echo $package["package_code"]; ?></h4>
+                                  </div>
+                                  <div class="mt-4 ms-3">
+                                      <span class="d-block mb-2 text-black">Price</span>
+                                      <span class="font-w500 fs-24 text-black"><?php echo $package["package_amount"]; ?><small class="fs-14 ms-2 text-secondary"></small></span>
+                                  </div>
+                              </div>
+                              <hr>
+                          <?php endforeach; ?>
+                      </div>
 								</div>
 								<div class="col-xl-6 p-0">
 								<div class="row">
@@ -1103,6 +1107,28 @@ include"sidebar.php"
 				TravlCarousel();
 			}, 1000); 
 		});
+</script>
+<script>
+    function confirmDelete() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Perform the delete action here
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                );
+            }
+        });
+    }
 </script>
 
 
