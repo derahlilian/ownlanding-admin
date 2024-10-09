@@ -754,7 +754,7 @@ include"sidebar.php"
 												<th>Amount</th>
 												<th>Estate Name</th>
 												<th>Location</th>
-												<th class="text-center">Created At</th>
+												<th class="text-center">Action</th>
 												<th class="bg-none"></th>
 											</tr>
 										</thead>
@@ -804,9 +804,7 @@ include"sidebar.php"
 											
 												<td>
 													<div class="request">
-													
-														<h5 class="text-nowrap"><?php echo $package['created_at']; ?></h5>
-<!--														<span>9.46 AM</span>-->
+														<a href="javascript:void(0);" class="btn btn-md text-secondary">View Subscription</a>
 													</div>
 												</td>
 												<td>
