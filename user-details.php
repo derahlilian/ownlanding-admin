@@ -25,6 +25,8 @@
 	
         <link href="public/assets/vendor/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css"/>	
 		<link href="public/assets/vendor/nestable2/css/jquery.nestable.min.css" rel="stylesheet" type="text/css"/>	
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	
         <link href="public/assets/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>	
@@ -630,7 +632,8 @@ include"sidebar.php"
 													</a>
 													<div class="dropdown-menu">
 														<a class="dropdown-item" href="edit-user.php">Edit</a>
-														<a class="dropdown-item" href="javascript:void(0);">Delete</a>
+														<a class="dropdown-item" href="javascript:void(0);" onclick="confirmDelete()">Delete</a>
+
 													</div>
 												</div>
 											</div>
@@ -1152,6 +1155,28 @@ include"sidebar.php"
 				TravlCarousel();
 			}, 1000); 
 		});
+</script>
+<script>
+    function confirmDelete() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Perform the delete action here
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                );
+            }
+        });
+    }
 </script>
 
 
