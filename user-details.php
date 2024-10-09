@@ -637,11 +637,15 @@ include"sidebar.php"
 
 													</a>
 													<div class="dropdown-menu">
-														<a class="dropdown-item" href="edit-user.php">Edit</a>
+														<a class="dropdown-item" href="/ownlanding-admin/controllers/Administrator.php?editUser&userId=<?php echo $user["id"];?>">Edit</a>
 														<a class="dropdown-item" href="javascript:void(0);" onclick="confirmDelete()">Delete</a>
 
 													</div>
-												</div>
+                                                    <form id="deleteForm" action="/ownlanding-admin/controllers/Administrator.php" method="POST" style="display: none;">
+                                                        <input type="hidden" name="userId" id="fileIdInput" value="<?php echo $user["id"];?>">
+                                                        <input type="hidden" name="deleteUser">
+                                                    </form>
+                                                </div>
 											</div>
 											<div class="d-flex">
 												<div class="mt-4 check-status">
@@ -1120,12 +1124,8 @@ include"sidebar.php"
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                // Perform the delete action here
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                );
+                // Submit the form to perform the delete action
+                document.getElementById('deleteForm').submit();
             }
         });
     }

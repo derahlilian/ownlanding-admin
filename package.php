@@ -1,3 +1,8 @@
+<?php
+require_once "config/init.php";
+$packages = $_SESSION['allPackages'];
+$locations = $_SESSION["allLocations"];
+?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -651,44 +656,44 @@ include"sidebar.php"
 													</div>
 													<div class="card-body">
 														<div class="basic-form">
-															<form class="form-valide-with-icon needs-validation" novalidate>
+															<form class="form-valide-with-icon needs-validation" method="post" action="/ownlanding-admin/controllers/Administrator.php">
 																<div class="mb-3">
 																	<label class="text-label form-label" for="validationCustomUsername">Package Code</label>
 																	<div class="input-group">
 																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
-																		<input type="number" class="form-control" id="validationCustomUsername" placeholder="Enter a package code" required>
+																		<input type="text" class="form-control" id="validationCustomUsername" name="package_code" placeholder="Enter a package code" required>
 																	</div>
 																</div>
 																<div class="mb-3">
 																	<label class="text-label form-label" for="validationCustomUsername">Package Size</label>
 																	<div class="input-group">
 																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
-																		<input type="text" class="form-control" id="validationCustomUsername" placeholder="Enter a package size" required>
+																		<input type="text" class="form-control" id="validationCustomUsername" name="package_size" placeholder="Enter a package size" required>
 																	</div>
 																</div>
 																<div class="mb-3">
 																	<label class="text-label form-label" for="validationCustomUsername">Package Amount</label>
 																	<div class="input-group">
 																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
-																		<input type="number" class="form-control" id="validationCustomUsername" placeholder="Enter the package price" required>
+																		<input type="number" class="form-control" id="validationCustomUsername" name="package_amount" placeholder="Enter the package price" required>
 																	</div>
 																</div>
 																<div class="mb-3">
 																	<label class="text-label form-label" for="validationCustomUsername">Estate Name</label>
 																	<div class="input-group">
 																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
-																		<input type="number" class="form-control" id="validationCustomUsername" placeholder="Enter estate name" required>
+																		<input type="text" class="form-control" id="validationCustomUsername" name="estate_name" placeholder="Enter estate name" required>
 																	</div>
 																</div>
 																<div class="mb-3">
 																	<label class="text-label form-label" for="validationCustomUsername">Location</label>
 																	<div class="input-group">
 																	<button class="btn btn-secondary" type="button">Location</button>
-																	<select class="default-select form-control wide">
-																		<option selected>Choose...</option>
-																		<option value="1">Lagos</option>
-																		<option value="2">Abuja</option>
-																		<option value="3">Command</option>
+																	<select name="location_id" class="default-select form-control wide">
+                                                                        <option value="" selected>Choose...</option>
+                                                                        <?php foreach ($locations as $location): ?>
+																		<option value="<?php echo $location["id"]; ?>"><?php echo $location["location_name"]; ?></option>
+                                                                        <?php endforeach; ?>
 																	</select>
 																	</div>
 																</div>
@@ -697,7 +702,7 @@ include"sidebar.php"
 																	<label class="text-label form-label" for="dlab-password">Color Code*</label>
 																	<div class="input-group transparent-append">
 																	<div class="example">
-																		<input type="text" class="complex-colorpicker form-control" value="#364e29">
+																		<input type="text" name="color_code" class="complex-colorpicker form-control" value="#364e29">
 																	</div>
 																	</div>
 																</div>
@@ -710,18 +715,13 @@ include"sidebar.php"
 																		</label>
 																	</div>
 																</div>
-																<button type="submit" class="btn me-2 btn-secondary">Submit</button>
-																<button type="submit" class="btn btn-light">cancel</button>
+																<button type="submit" name="createPackage" class="btn me-2 btn-secondary">Submit</button>
+																<button class="btn btn-light" data-bs-dismiss="modal">cancel</button>
 															</form>
 														</div>
 													</div>
 												</div>
 											</div>
-					
-										</div>
-										<div class="modal-footer">
-											<!-- <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button> -->
-											<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
 										</div>
 									</div>
 								</div>
@@ -735,6 +735,12 @@ include"sidebar.php"
 						<div class="tab-content">	
 							<div class="tab-pane active show" id="AllGuest">
 								<div class="table-responsive">
+                                    <?php
+                                    if (isset($_SESSION["createPackageError"])) {
+                                        echo "<p>" . htmlspecialchars($_SESSION["createPackageError"]) . "</p>";
+                                    }
+                                    unset($_SESSION["createPackageError"]);
+                                    ?>
 									<table class="table card-table display mb-4 shadow-hover table-responsive-lg" id="guestTable-all4">
 										<thead>
 											<tr>
@@ -753,6 +759,7 @@ include"sidebar.php"
 											</tr>
 										</thead>
 										<tbody>
+                                        <?php foreach ($packages as $package): ?>
 											<tr>
 												<td>
 													<div class="form-check style-1">
@@ -769,7 +776,7 @@ include"sidebar.php"
 															<h5 class="fs-16 mb-0 text-nowrap">
 																<a class="text-black hover-text" href="javascript:void(0);" 
 																style="transition: transform 0.3s ease-in-out; color: inherit;">
-																#ABJ-00002
+																<?php echo $package['package_code']; ?>
 																</a>
 															</h5>
 															<!-- <span class="text-primary fs-14">#ABJ-00002</span> -->
@@ -782,17 +789,17 @@ include"sidebar.php"
 												</td>
 												<td>
 													<div>
-														<h5 class="text-nowrap">200,000</h5>
+														<h5 class="text-nowrap"><?php echo $package["package_amount"]?></h5>
 														<!-- <span>9.46 AM</span> -->
 													</div>
 												</td>
 												<td>
 													<div>
-														<h5 class="text-nowrap">Gaduwa Estate</h5>
+														<h5 class="text-nowrap"><?php echo $package['estate_name']; ?></h5>
 													</div>
 												</td>
 												<td class="request">
-														<h5 class="text-nowrap">Gudu, Abuja</h5>
+														<h5 class="text-nowrap"><?php echo $package['location_name']; ?></h5>
 												</td>
 											
 												<td>
@@ -816,61 +823,7 @@ include"sidebar.php"
 													</div>
 												</td>
 											</tr>
-											<!-- <tr>
-												<td>
-													<div class="form-check style-1">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													<div class="concierge-bx d-flex align-items-center">
-														<img class="me-3 rounded" src="public/assets/images/avatar/2.jpg" alt="">
-														<div>
-															<h5 class="fs-16 mb-0 text-nowrap"><a class="text-black" href="javascript:void(0);">Chidera Lilian</a></h5>
-															<span class="text-primary fs-14">#ABJ-00006</span>
-														</div>
-													</div>
-												</td>
-												<td class="text-nowrap">
-													<span>derah@gmail.com</span>
-												</td>
-												<td>
-													<div>
-														<h5 class="text-nowrap">Nov 4th, 2020</h5>
-														<span>6.12 PM</span>
-													</div>
-												</td>
-												<td>
-													<div>
-														<h5 class="text-nowrap">09022248072</h5>
-													</div>
-												</td>
-												
-												<td class="request">
-													<a href="javascript:void(0);" class="btn  btn-sm">Edit</a>
-												</td>
-												
-												<td>
-													<div class="request">
-														<a href="javascript:void(0);" class="btn btn-md text-primary">Deactivate</a>
-													</div>
-												</td>
-												<td>
-													<div class="dropdown dropend">
-														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
-															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-															</svg>
-														</a>
-														<div class="dropdown-menu">
-															<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-															<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-														</div>
-													</div>
-												</td>
-											</tr> -->
+                                        <?php endforeach; ?>
 										</tbody>
 									</table>
 								</div>	
