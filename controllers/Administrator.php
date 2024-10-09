@@ -72,6 +72,16 @@ class Administrator extends Admin
             $this->listUsers();
         }
     }
+
+    /*
+     * Delete User from the database
+     * @user_id: id of the user
+     */
+    function deleteUser(int $user_id): void
+    {
+        $this->deleteUserById($user_id);
+        $this->listUsers();
+    }
 }
 
 
@@ -99,4 +109,9 @@ elseif (isset($_POST['editUser'])) {
     $last_name = $_POST['$last_name'];
     $email = $_POST['$email'];
     $admin->editUser($user_id, $name, $last_name, $email);
+}
+elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["deleteUser"])) {
+    var_dump($_POST);
+    $user_id = (int)htmlspecialchars($_POST["userId"]);
+    $admin->deleteUser($user_id);
 }

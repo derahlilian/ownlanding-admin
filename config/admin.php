@@ -44,7 +44,7 @@ class Admin extends Database {
         return $stmt->rowCount() === 1;
     }
 
-    function activateUser(int $user_id): bool
+    function activateUserById(int $user_id): bool
     {
         $sql = "UPDATE `users` SET `active` = 1 WHERE `id` = ?";
         $stmt = $this->prepare($sql);
@@ -52,7 +52,7 @@ class Admin extends Database {
         return $stmt->rowCount() === 1;
     }
 
-    function deleteUser(int $user_id): bool
+    function deleteUserById(int $user_id): bool
     {
         $sql = "DELETE FROM `users` WHERE `id` = ?";
         $stmt = $this->prepare($sql);

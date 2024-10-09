@@ -18,7 +18,7 @@ class Database extends PDO
             "host" => "localhost",
             "user" => "root",
             "pass" => "",
-            "dbname" => "ownlanding"
+            "dbname" => "forge"
         );
     }
 
