@@ -8,7 +8,7 @@
                 <ul aria-expanded="false">
                     <li><a href="index.php">Home</a></li>
                     <!-- <li><a href="index-2.html">Dashboard Dark</a></li> -->
-                    <li><a href="user.php">All Users</a></li>
+                    <li><a href="/ownlanding-admin/controllers/Administrator.php?listUsers">All Users</a></li>
                     <li><a href="user-details.php">User Detail</a></li>
                     <!-- <li><a href="downlines.php">User Downlines</a></li> -->
                     <li><a href="concierge-list.html">Concierge List</a></li>
