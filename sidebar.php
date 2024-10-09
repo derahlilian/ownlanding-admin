@@ -27,7 +27,7 @@
                     <span class="nav-text">Packages</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="package.php">Package</a></li>
+                    <li><a href="/ownlanding-admin/controllers/Administrator.php?listPackages">Package</a></li>
                     <li><a href="uc-nestable.html">Subscription</a></li>
                     <li><a href="uc-noui-slider.html">Noui Slider</a></li>
                     <li><a href="uc-sweetalert.html">Sweet Alert</a></li>
