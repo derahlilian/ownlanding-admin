@@ -609,7 +609,7 @@ include"sidebar.php"
 			<div class="card-action coin-tabs mb-2">
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="nav-item">
-						<a class="nav-link active" data-bs-toggle="tab" href="#AllGuest">All Packages</a>
+						<a class="nav-link active" data-bs-toggle="tab" href="#AllGuest">All Payments</a>
 					</li>
 					<!-- <li class="nav-item">
 						<a class="nav-link" data-bs-toggle="tab" href="#Pending">Activated</a>
@@ -633,7 +633,7 @@ include"sidebar.php"
 					</div>
 				</div> -->
 				
-				    <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Add Package</button>
+				    <!-- <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Add Package</button>
 							<!-- Modal -->
 							<div class="modal fade" id="exampleModalLong">
 								<div class="modal-dialog">
@@ -653,7 +653,7 @@ include"sidebar.php"
 														<div class="basic-form">
 															<form class="form-valide-with-icon needs-validation" novalidate>
 																<div class="mb-3">
-																	<label class="text-label form-label" for="validationCustomUsername">Package Code</label>
+																	<label class="text-label form-label" for="validationCustomUsername">Package Id</label>
 																	<div class="input-group">
 																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
 																		<input type="number" class="form-control" id="validationCustomUsername" placeholder="Enter a package code" required>
@@ -720,12 +720,12 @@ include"sidebar.php"
 					
 										</div>
 										<div class="modal-footer">
-											<!-- <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button> -->
+											<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
 											<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> 
 			</div>
 		</div>
 		<div class="row mt-4">
@@ -743,12 +743,12 @@ include"sidebar.php"
 														<input class="form-check-input" type="checkbox" value="" id="checkAll5">
 													</div>
 												</th>
-												<th>Package Code</th>
-												<th>package Size</th>
+												<th>User</th>
+												<th>Channel</th>
 												<th>Amount</th>
-												<th>Estate Name</th>
-												<th>Location</th>
-												<th class="text-center">Action</th>
+												<th>Reference</th>
+												<th>Status</th>
+												<th class="text-center">Date</th>
 												<th class="bg-none"></th>
 											</tr>
 										</thead>
@@ -778,28 +778,36 @@ include"sidebar.php"
 												</td>
 
 												<td class="text-nowrap">
-													<span>200SQM</span>
+													<h5>Paystack</h5>
 												</td>
 												<td>
 													<div>
 														<h5 class="text-nowrap">200,000</h5>
-														<!-- <span>9.46 AM</span> -->
 													</div>
 												</td>
 												<td>
 													<div>
-														<h5 class="text-nowrap">Gaduwa Estate</h5>
+														<h5 class="text-nowrap">Ref1234567</h5>
 													</div>
 												</td>
-												<td class="request">
-														<h5 class="text-nowrap">Gudu, Abuja</h5>
+												<td>
+													<div class="request">
+														<a href="javascript:void(0);" class="btn btn-md text-primary">Failed</a>
+													</div>
 												</td>
 											
 												<td>
 													<div class="request">
-														<a href="javascript:void(0);" class="btn btn-md text-secondary">View Subscription</a>
+													
+														<h5 class="text-nowrap">Oct 2th, 2020</h5>
+														<span>9.46 AM</span>
 													</div>
 												</td>
+                                                <!-- <td>
+													<div class="request">
+														<a href="javascript:void(0);" class="btn btn-md text-primary">Deactivate</a>
+													</div>
+												</td> -->
 												<td>
 													<div class="dropdown dropend">
 														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -952,5 +960,4 @@ cb(start, end);
     ***********************************-->
 </body>
 
-<!-- Mirrored from travl.dexignlab.com/codeigniter/demo/guest-list by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2024 16:05:44 GMT -->
 </html>
