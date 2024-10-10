@@ -2,18 +2,17 @@
 <html lang="en">
     
     
-<!-- Mirrored from travl.dexignlab.com/codeigniter/demo/ecom-customers by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2024 16:05:59 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
 	<meta name="robots" content="" />
-	<meta name="description" content="Travl - CodeIgniter Hotel Admin Dashboard Bootstrap Template" />
-	<meta property="og:title" content="Travl - CodeIgniter Hotel Admin Dashboard Bootstrap Template" />
-	<meta property="og:description" content="Travl - CodeIgniter Hotel Admin Dashboard Bootstrap Template" />
-	<meta property="og:image" content="../social-image.html" />
+	<meta name="description" content="Ownlanding Admin" />
+	<meta property="og:title" content="Ownlanding Admin" />
+	<meta property="og:description" content="Ownlanding Admin" />
+	<meta property="og:image" content="../assets/images/faviconn.pngl" />
 	<meta name="format-detection" content="telephone=no">
 	
 	<!-- PAGE TITLE HERE -->
@@ -22,7 +21,7 @@
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	
-    <link rel="icon" type="image/png" sizes="16x16" href="public/assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="public/assets/images/faviconn.png">
 
 	
         <link href="public/assets/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet" type="text/css"/>		

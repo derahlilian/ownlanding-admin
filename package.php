@@ -6,6 +6,7 @@ $locations = $_SESSION["allLocations"];
 <!DOCTYPE html>
 <html lang="en">
     
+    
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="utf-8">
@@ -13,18 +14,19 @@ $locations = $_SESSION["allLocations"];
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
 	<meta name="robots" content="" />
-	<meta name="description" content="Travl - CodeIgniter Hotel Admin Dashboard Bootstrap Template" />
-	<meta property="og:title" content="Travl - CodeIgniter Hotel Admin Dashboard Bootstrap Template" />
-	<meta property="og:description" content="Travl - CodeIgniter Hotel Admin Dashboard Bootstrap Template" />
-	<meta property="og:image" content="../social-image.html" />
+	<meta name="description" content="Ownlanding Admin" />
+	<meta property="og:title" content="Ownlanding Admin" />
+	<meta property="og:description" content="Ownlanding Admin" />
+	<meta property="og:image" content="../assets/images/faviconn.pngl" />
 	<meta name="format-detection" content="telephone=no">
 	
-	
+	<!-- PAGE TITLE HERE -->
 	<title>Ownlanding Admin</title>
 
+    <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	
-    <link rel="icon" type="image/png" sizes="16x16" href="public/assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="public/assets/images/faviconn.png">
 
 	
         <link href="public/assets/vendor/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css"/>	

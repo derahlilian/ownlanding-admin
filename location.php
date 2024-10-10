@@ -6,27 +6,26 @@ $locations = $_SESSION["allStateLocations"];
 <html lang="en">
     
     
-<!-- Mirrored from travl.dexignlab.com/codeigniter/demo/table-datatable-basic by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2024 16:06:33 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
 	<meta name="robots" content="" />
-	<meta name="description" content="Travl - CodeIgniter Hotel Admin Dashboard Bootstrap Template" />
-	<meta property="og:title" content="Travl - CodeIgniter Hotel Admin Dashboard Bootstrap Template" />
-	<meta property="og:description" content="Travl - CodeIgniter Hotel Admin Dashboard Bootstrap Template" />
-	<meta property="og:image" content="../social-image.html" />
+	<meta name="description" content="Ownlanding Admin" />
+	<meta property="og:title" content="Ownlanding Admin" />
+	<meta property="og:description" content="Ownlanding Admin" />
+	<meta property="og:image" content="../assets/images/faviconn.png" />
 	<meta name="format-detection" content="telephone=no">
 	
 	<!-- PAGE TITLE HERE -->
-	<title>Travl - CodeIgniter Hotel Admin Dashboard Bootstrap Template</title>
+	<title>Ownlanding Admin</title>
 
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	
-    <link rel="icon" type="image/png" sizes="16x16" href="public/assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="public/assets/images/faviconn.png">
 
 	
         <link href="public/assets/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>	
@@ -606,7 +605,7 @@ $locations = $_SESSION["allStateLocations"];
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">State List</h4>
+                        <h4 class="card-title">Location List</h4>
                     </div>
                     
                     <div class="card-body">
@@ -615,7 +614,7 @@ $locations = $_SESSION["allStateLocations"];
                                 <thead>
                                     <tr>
                                         <th>S/N</th>
-                                        <th>State Name</th>
+                                        <th>Location</th>
                                         <th>Action</th>
                                         <th></th>
                                         

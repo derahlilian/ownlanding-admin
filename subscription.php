@@ -5,6 +5,7 @@ $subscriptions = $_SESSION["allSubscriptions"]
 <!DOCTYPE html>
 <html lang="en">
     
+    
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="utf-8">
@@ -12,18 +13,19 @@ $subscriptions = $_SESSION["allSubscriptions"]
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
 	<meta name="robots" content="" />
-	<meta name="description" content="Travl - CodeIgniter Hotel Admin Dashboard Bootstrap Template" />
-	<meta property="og:title" content="Travl - CodeIgniter Hotel Admin Dashboard Bootstrap Template" />
-	<meta property="og:description" content="Travl - CodeIgniter Hotel Admin Dashboard Bootstrap Template" />
-	<meta property="og:image" content="../social-image.html" />
+	<meta name="description" content="Ownlanding Admin" />
+	<meta property="og:title" content="Ownlanding Admin" />
+	<meta property="og:description" content="Ownlanding Admin" />
+	<meta property="og:image" content="../assets/images/faviconn.pngl" />
 	<meta name="format-detection" content="telephone=no">
 	
-	
+	<!-- PAGE TITLE HERE -->
 	<title>Ownlanding Admin</title>
 
+    <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	
-    <link rel="icon" type="image/png" sizes="16x16" href="public/assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="public/assets/images/faviconn.png">
 
 	
         <link href="public/assets/vendor/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css"/>	
@@ -637,99 +639,6 @@ include"sidebar.php"
 					</div>
 				</div> -->
 				
-				    <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Add Package</button>
-							<!-- Modal -->
-							<div class="modal fade" id="exampleModalLong">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title">Create New Package</h5>
-											<button type="button" class="btn-close" data-bs-dismiss="modal">
-											</button>
-										</div>
-										<div class="modal-body">
-											<div class="col-lg-12">
-												<div class="card">
-													<div class="card-header">
-														<h4 class="card-title">Please Fill All Field!</h4>
-													</div>
-													<div class="card-body">
-														<div class="basic-form">
-															<form class="form-valide-with-icon needs-validation" novalidate>
-																<div class="mb-3">
-																	<label class="text-label form-label" for="validationCustomUsername">Package Id</label>
-																	<div class="input-group">
-																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
-																		<input type="number" class="form-control" id="validationCustomUsername" placeholder="Enter a package code" required>
-																	</div>
-																</div>
-																<div class="mb-3">
-																	<label class="text-label form-label" for="validationCustomUsername">Package Size</label>
-																	<div class="input-group">
-																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
-																		<input type="text" class="form-control" id="validationCustomUsername" placeholder="Enter a package size" required>
-																	</div>
-																</div>
-																<div class="mb-3">
-																	<label class="text-label form-label" for="validationCustomUsername">Package Amount</label>
-																	<div class="input-group">
-																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
-																		<input type="number" class="form-control" id="validationCustomUsername" placeholder="Enter the package price" required>
-																	</div>
-																</div>
-																<div class="mb-3">
-																	<label class="text-label form-label" for="validationCustomUsername">Estate Name</label>
-																	<div class="input-group">
-																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
-																		<input type="number" class="form-control" id="validationCustomUsername" placeholder="Enter estate name" required>
-																	</div>
-																</div>
-																<div class="mb-3">
-																	<label class="text-label form-label" for="validationCustomUsername">Location</label>
-																	<div class="input-group">
-																	<button class="btn btn-secondary" type="button">Location</button>
-																	<select class="default-select form-control wide">
-																		<option selected>Choose...</option>
-																		<option value="1">Lagos</option>
-																		<option value="2">Abuja</option>
-																		<option value="3">Command</option>
-																	</select>
-																	</div>
-																</div>
-																
-																<div class="mb-3">
-																	<label class="text-label form-label" for="dlab-password">Color Code*</label>
-																	<div class="input-group transparent-append">
-																	<div class="example">
-																		<input type="text" class="complex-colorpicker form-control" value="#364e29">
-																	</div>
-																	</div>
-																</div>
-												
-																<div class="mb-3">
-																	<div class="form-check">
-																		<input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-																		<label class="form-check-label" for="invalidCheck2">
-																		I Agree to Create New Package
-																		</label>
-																	</div>
-																</div>
-																<button type="submit" class="btn me-2 btn-secondary">Submit</button>
-																<button type="submit" class="btn btn-light">cancel</button>
-															</form>
-														</div>
-													</div>
-												</div>
-											</div>
-					
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-											<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-										</div>
-									</div>
-								</div>
-							</div>
 			</div>
 		</div>
 		<div class="row mt-4">
