@@ -1,12 +1,5 @@
-<?php
-require_once "config/init.php";
-$user = $_SESSION["editUser"];
-$packages = $_SESSION['userPackages'];
-$Downlines = $_SESSION["userDownlines"];
-?>
 <!DOCTYPE html>
 <html lang="en">
-    
     
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
@@ -21,27 +14,42 @@ $Downlines = $_SESSION["userDownlines"];
 	<meta property="og:image" content="../social-image.html" />
 	<meta name="format-detection" content="telephone=no">
 	
+	
 	<title>Ownlanding Admin</title>
 
-    <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	
     <link rel="icon" type="image/png" sizes="16x16" href="public/assets/images/favicon.png">
 
 	
-        <link href="public/assets/vendor/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css"/>	
-		<link href="public/assets/vendor/nestable2/css/jquery.nestable.min.css" rel="stylesheet" type="text/css"/>	
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link href="public/assets/vendor/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css"/>	
+		<link href="public/assets/vendor/jquery-asColorPicker/css/asColorPicker.min.css" rel="stylesheet" type="text/css"/>	
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css"/>	
 
-	
-        <link href="public/assets/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>	
+        <link href="public/assets/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>	
 	
         <link href="public/assets/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet" type="text/css"/>		
 	
         <link href="public/assets/css/style.css" rel="stylesheet" type="text/css"/>		
+		  
+<Style>
+	.concierge-bx:hover .profile-img {
+    transform: scale(1.3);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+}
 
+
+.concierge-bx:hover .hover-text {
+        transform: scale(1.2) !important; 
+        color: #007bff !important; 
+
+.concierge-bx:hover {
+    background-color: #f8f9fa;
+}
+
+</Style>
 </head>
+
 <body>
 
 	<!--*******************
@@ -75,24 +83,22 @@ $Downlines = $_SESSION["userDownlines"];
         </div>
     </div>
 </div>
-<!--**********************************
-    Nav header end
-***********************************-->		<!--**********************************
-	Chat box start
-***********************************-->
+<!--**********************************Nav header end ***********************************-->		
+
+<!--**********************************Chat box start***********************************-->
 <div class="chatbox">
 	<div class="chatbox-close"></div>
 	<div class="custom-tab-1">
 		<ul class="nav nav-tabs">
-			<li class="nav-item">
+			<!-- <li class="nav-item">
 				<a class="nav-link" data-bs-toggle="tab" href="#notes">Notes</a>
-			</li>
+			</li> -->
 			<li class="nav-item">
 				<a class="nav-link" data-bs-toggle="tab" href="#alerts">Alerts</a>
 			</li>
-			<li class="nav-item">
+			<!-- <li class="nav-item">
 				<a class="nav-link active" data-bs-toggle="tab" href="#chat">Chat</a>
-			</li>
+			</li> -->
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane fade active show" id="chat" role="tabpanel">
@@ -599,448 +605,302 @@ include"sidebar.php"
 <div class="content-body">
 	<!-- row -->
 	<div class="container-fluid">
+		<div class="d-flex justify-content-between align-items-center flex-wrap">
+			<div class="card-action coin-tabs mb-2">
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" data-bs-toggle="tab" href="#AllGuest">All Payments</a>
+					</li>
+					<!-- <li class="nav-item">
+						<a class="nav-link" data-bs-toggle="tab" href="#Pending">Activated</a>
+					</li> -->
+					<!-- <li class="nav-item">
+						<a class="nav-link" data-bs-toggle="tab" href="#Booked">Booked</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="tab" href="#Canceled">Canceled</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-bs-toggle="tab" href="#Refund">Refund</a>
+					</li> -->
+				</ul>
+			</div>
+			<div class="d-flex align-items-center mb-2 flex-wrap"> 
+				<!-- <div class="guest-calendar">
+					<div id="reportrange" class="pull-right reportrange" style="width: 100%">
+						<span></span><b class="caret"></b>
+						<i class="fas fa-chevron-down ms-3"></i>
+					</div>
+				</div> -->
+				
+				    <!-- <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Add Package</button>
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModalLong">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">Create New Package</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal">
+											</button>
+										</div>
+										<div class="modal-body">
+											<div class="col-lg-12">
+												<div class="card">
+													<div class="card-header">
+														<h4 class="card-title">Please Fill All Field!</h4>
+													</div>
+													<div class="card-body">
+														<div class="basic-form">
+															<form class="form-valide-with-icon needs-validation" novalidate>
+																<div class="mb-3">
+																	<label class="text-label form-label" for="validationCustomUsername">Package Id</label>
+																	<div class="input-group">
+																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
+																		<input type="number" class="form-control" id="validationCustomUsername" placeholder="Enter a package code" required>
+																	</div>
+																</div>
+																<div class="mb-3">
+																	<label class="text-label form-label" for="validationCustomUsername">Package Size</label>
+																	<div class="input-group">
+																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
+																		<input type="text" class="form-control" id="validationCustomUsername" placeholder="Enter a package size" required>
+																	</div>
+																</div>
+																<div class="mb-3">
+																	<label class="text-label form-label" for="validationCustomUsername">Package Amount</label>
+																	<div class="input-group">
+																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
+																		<input type="number" class="form-control" id="validationCustomUsername" placeholder="Enter the package price" required>
+																	</div>
+																</div>
+																<div class="mb-3">
+																	<label class="text-label form-label" for="validationCustomUsername">Estate Name</label>
+																	<div class="input-group">
+																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
+																		<input type="number" class="form-control" id="validationCustomUsername" placeholder="Enter estate name" required>
+																	</div>
+																</div>
+																<div class="mb-3">
+																	<label class="text-label form-label" for="validationCustomUsername">Location</label>
+																	<div class="input-group">
+																	<button class="btn btn-secondary" type="button">Location</button>
+																	<select class="default-select form-control wide">
+																		<option selected>Choose...</option>
+																		<option value="1">Lagos</option>
+																		<option value="2">Abuja</option>
+																		<option value="3">Command</option>
+																	</select>
+																	</div>
+																</div>
+																
+																<div class="mb-3">
+																	<label class="text-label form-label" for="dlab-password">Color Code*</label>
+																	<div class="input-group transparent-append">
+																	<div class="example">
+																		<input type="text" class="complex-colorpicker form-control" value="#364e29">
+																	</div>
+																	</div>
+																</div>
+												
+																<div class="mb-3">
+																	<div class="form-check">
+																		<input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+																		<label class="form-check-label" for="invalidCheck2">
+																		I Agree to Create New Package
+																		</label>
+																	</div>
+																</div>
+																<button type="submit" class="btn me-2 btn-secondary">Submit</button>
+																<button type="submit" class="btn btn-light">cancel</button>
+															</form>
+														</div>
+													</div>
+												</div>
+											</div>
+					
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+											<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+										</div>
+									</div>
+								</div>
+							</div> 
+			</div>
+		</div>
 		<div class="row mt-4">
 			<div class="col-xl-12">
-				<div class="row">
-					<div class="col-xl-12">
-						<div class="card overflow-hidden">
-							<div class="row m-0">
-								<div class="col-xl-6 p-0">
-                                    <div class="card-body">
-                                        <div class="guest-profile">
-                                            <div class="d-flex">
-                                                <img src="public/assets/images/profile/pic1.jpg" alt="">
-                                                <div>
-                                                    <h2 class="font-w600"><?php echo $user["name"] ." ". $user["last_name"]?></h2>
-                                                    <span class="text-secondary">#ABJ-00005</span>
-                                                    <div class="call d-flex align-items-center">
-                                                        <a href="javascript:void(0);"><i class="fas fa-phone-alt text-secondary"></i></a>
-                                                        <button class="btn btn-secondary ms-3">
-                                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24.18" viewBox="0 0 24 24.18">
-                                                                <g id="_032-speech-bubble" data-name="032-speech-bubble" transform="translate(-1.63 0)">
-                                                                    <g id="Group_9" data-name="Group 9" transform="translate(1.63 0)">
-                                                                        <path id="Path_118" data-name="Path 118" d="M22.193,3.6A12,12,0,0,0,1.636,12.361a11.434,11.434,0,0,0,.82,4.015,11.885,11.885,0,0,0,1.7,2.969l-.99,2.347a1.778,1.778,0,0,0,1.951,2.46l4.581-.792A12.013,12.013,0,0,0,22.193,3.6ZM12.749,16.8H9.61a.9.9,0,1,1,0-1.81h3.139a.911.911,0,0,1,.9.9A.893.893,0,0,1,12.749,16.8Zm4.892-3.676H9.61a.911.911,0,0,1-.9-.9.893.893,0,0,1,.9-.9h8.031a.9.9,0,1,1,0,1.81Zm0-3.7H9.61a.9.9,0,1,1,0-1.81h8.031a.911.911,0,0,1,.9.9A.93.93,0,0,1,17.641,9.421Z" transform="translate(-1.63 0)" fill="#fff"/>
-                                                                    </g>
-                                                                </g>
-                                                            </svg>
-                                                            Send Message
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="dropdown dropend ms-auto">
-                                                    <a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                            <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                            <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                        </svg>
-
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="/ownlanding-admin/controllers/Administrator.php?editUser&userId=<?php echo $user["id"];?>">Edit</a>
-														<a class="dropdown-item" href="javascript:void(0);" onclick="confirmDelete()">Delete</a>
-
+				<div class="card">
+					<div class="card-body p-0">
+						<div class="tab-content">	
+							<div class="tab-pane active show" id="AllGuest">
+								<div class="table-responsive">
+									<table class="table card-table display mb-4 shadow-hover table-responsive-lg" id="guestTable-all4">
+										<thead>
+											<tr>
+												<th class="bg-none">
+													<div class="form-check style-1">
+														<input class="form-check-input" type="checkbox" value="" id="checkAll5">
 													</div>
-                                                    <form id="deleteForm" action="/ownlanding-admin/controllers/Administrator.php" method="POST" style="display: none;">
-                                                        <input type="hidden" name="userId" id="fileIdInput" value="<?php echo $user["id"];?>">
-                                                        <input type="hidden" name="deleteUser">
-                                                    </form>
-                                                </div>
-											</div>
-											<div class="d-flex">
-												<div class="mt-4 check-status">
-													<span class="d-block mb-2">Check In</span>	
-													<span class="font-w500 fs-16">October 30th, 2021 | 08:23 AM</span>
-												</div>
-												<div class="mt-4">
-													<!-- <span class="d-block mb-2">Check Out</span>	
-													<span class="font-w500 fs-16">November 2th, 2021</span> -->
-												</div>
-											</div>
-										</div>
+												</th>
+												<th>User</th>
+												<th>Channel</th>
+												<th>Amount</th>
+												<th>Reference</th>
+												<th>Status</th>
+												<th class="text-center">Date</th>
+												<th class="bg-none"></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													<div class="form-check style-1">
+														<input class="form-check-input" type="checkbox" value="">
+													</div>
+												</td>
+												<td>
+													<div class="concierge-bx d-flex align-items-center" style="cursor: pointer; transition: background-color 0.3s ease-in-out;">
+														<!-- <a href="user-details.php">
+															<img class="me-3 rounded profile-img" src="public/assets/images/avatar/2.jpg" alt="Guest Avatar" 
+																style="transition: transform 0.6s ease-in-out, box-shadow 0.3s ease-in-out;" />
+														</a> -->
+														<div>
+															<h5 class="fs-16 mb-0 text-nowrap">
+																<a class="text-black hover-text" href="javascript:void(0);" 
+																style="transition: transform 0.3s ease-in-out; color: inherit;">
+																#ABJ-00002
+																</a>
+															</h5>
+															<!-- <span class="text-primary fs-14">#ABJ-00002</span> -->
+														</div>
+													</div>
+												</td>
 
-                          <?php foreach ($packages as $package): ?>
-                              <div class="d-flex flex-wrap" style="background-color: <?php echo "#" . $package['color_code']; ?>;">
-                                  <div class="mt-4 check-status">
-                                      <span class="d-block mb-2">Package</span>
-                                      <h4 class="font-w500 fs-24"><?php echo $package["package_code"]; ?></h4>
-                                  </div>
-                                  <div class="mt-4 ms-3">
-                                      <span class="d-block mb-2 text-black">Price</span>
-                                      <span class="font-w500 fs-24 text-black"><?php echo $package["package_amount"]; ?><small class="fs-14 ms-2 text-secondary"></small></span>
-                                  </div>
-                              </div>
-                              <hr>
-                          <?php endforeach; ?>
-                      </div>
-								</div>
-								<div class="col-xl-6 p-0">
-								<div class="row">
-									<div class="cool-12">
-										<div class="card">
-											<!-- <div class="card-header">
-												<h4 class="card-title">User Downline</h4>
-											</div> -->
-											<div class="card-body">
-												<div class="row">
-													<!-- <div class="col-12">
-														<div class="card-content">
-															<div class="nestable">
-																<div class="dd" id="nestable">
-																	<ol class="dd-list">
-																		<li class="dd-item" data-id="1">
-																			<div class="dd-handle">Direct Downline</div>
-																		</li>
-																		<li class="dd-item" data-id="2">
-																			<div class="dd-handle">Direct Downline</div>
-																			<ol class="dd-list">
-																				<li class="dd-item" data-id="3">
-																					<div class="dd-handle">First Generation Downline</div>
-																				</li>
-																				<li class="dd-item" data-id="4">
-																					<div class="dd-handle">First Generation Downline</div>
-																				</li>
-																				<li class="dd-item" data-id="5">
-																					<div class="dd-handle">First Generation Downline</div>
-																					<ol class="dd-list">
-																						<li class="dd-item" data-id="6">
-																							<div class="dd-handle">Second Generation Downline</div>
-																						</li>
-																						<li class="dd-item" data-id="7">
-																							<div class="dd-handle">Second Gereation Downline</div>
-																						</li>
-																						<li class="dd-item" data-id="8">
-																							<div class="dd-handle">Second Generation Downline</div>
-																						</li>
-																					</ol>
-																				</li>
-																				<li class="dd-item" data-id="9">
-																					<div class="dd-handle">First Generation Downline</div>
-																				</li>
-																				<li class="dd-item" data-id="10">
-																					<div class="dd-handle">First Generation Downline</div>
-																				</li>
-																			</ol>
-																		</li>
-																	</ol>
-																</div>
-															</div>
+												<td class="text-nowrap">
+													<h5>Paystack</h5>
+												</td>
+												<td>
+													<div>
+														<h5 class="text-nowrap">200,000</h5>
+													</div>
+												</td>
+												<td>
+													<div>
+														<h5 class="text-nowrap">Ref1234567</h5>
+													</div>
+												</td>
+												<td>
+													<div class="request">
+														<a href="javascript:void(0);" class="btn btn-md text-primary">Failed</a>
+													</div>
+												</td>
+											
+												<td>
+													<div class="request">
+													
+														<h5 class="text-nowrap">Oct 2th, 2020</h5>
+														<span>9.46 AM</span>
+													</div>
+												</td>
+                                                <!-- <td>
+													<div class="request">
+														<a href="javascript:void(0);" class="btn btn-md text-primary">Deactivate</a>
+													</div>
+												</td> -->
+												<td>
+													<div class="dropdown dropend">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="javascript:void(0);">Edit</a>
+															<a class="dropdown-item" href="javascript:void(0);">Delete</a>
 														</div>
-													</div> -->
-													<!-- <div class="col-md-6">
-														<div class="card-content">
-															<div class="nestable">
-																<div class="dd" id="nestable2">
-																	<ol class="dd-list">
-																		<li class="dd-item" data-id="13">
-																			<div class="dd-handle">Item 13</div>
-																		</li>
-																		<li class="dd-item" data-id="13">
-																			<div class="dd-handle">Item 13</div>
-																		</li>
-																		<li class="dd-item" data-id="14">
-																			<div class="dd-handle">Item 14</div>
-																		</li>
-																		<li class="dd-item" data-id="15">
-																			<div class="dd-handle">Item 15</div>
-																			<ol class="dd-list">
-																				<li class="dd-item" data-id="16">
-																					<div class="dd-handle">Item 16</div>
-																				</li>
-																				<li class="dd-item" data-id="17">
-																					<div class="dd-handle">Item 17</div>
-																				</li>
-																				<li class="dd-item" data-id="18">
-																					<div class="dd-handle">Item 18</div>
-																				</li>
-																				<li class="dd-item" data-id="18">
-																					<div class="dd-handle">Item 19</div>
-																				</li>
-																				<li class="dd-item" data-id="18">
-																					<div class="dd-handle">Item 20</div>
-																				</li>
-																				<li class="dd-item" data-id="18">
-																					<div class="dd-handle">Item 21</div>
-																				</li>
-																			</ol>
-																		</li>
-																	</ol>
-																</div>
-															</div>
+													</div>
+												</td>
+											</tr>
+											<!-- <tr>
+												<td>
+													<div class="form-check style-1">
+														<input class="form-check-input" type="checkbox" value="">
+													</div>
+												</td>
+												<td>
+													<div class="concierge-bx d-flex align-items-center">
+														<img class="me-3 rounded" src="public/assets/images/avatar/2.jpg" alt="">
+														<div>
+															<h5 class="fs-16 mb-0 text-nowrap"><a class="text-black" href="javascript:void(0);">Chidera Lilian</a></h5>
+															<span class="text-primary fs-14">#ABJ-00006</span>
 														</div>
-													</div> -->
-												</div>
-											</div>
-										</div>
-									</div>
-        </div>
-									<div class="card-body">
-										<div class="guest-profile">
-											<div class="d-flex">
-												<!-- <div class="mt-4 check-status">
-													<span class="d-block mb-2">Check In</span>	
-													<span class="font-w500 fs-16">October 30th, 2021 | 08:23 AM</span>
-												</div> -->
-												<div class="mt-4">
-													<!-- <span class="d-block mb-2">Check Out</span>	
-													<span class="font-w500 fs-16">November 2th, 2021</span> -->
-												</div>
-											</div>
-										</div>
-										
-									</div>
-								</div>
-								<div class="col-lg-12">
-               
-            </div>
-								<!-- <div class="col-xl-6 p-0">
-									<div class="guest-carousel owl-carousel owl-carousel owl-loaded owl-drag owl-dot">
-										<div class="item">
-											<div class="rooms">
-												<img src="public/assets/images/gallery/hotel1.jpg" alt="">
-												<div class="booked">
-													<p class="fs-20 font-w500">BOOKED</p>
-												</div>
-												<div class="img-content">
-													<h4 class="fs-24 font-w600 text-white">Bed Room</h4>
-													<p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci</p>	
-												</div>
-											</div>
-										</div>
-										<div class="item">
-											<div class="rooms">
-												<img src="public/assets/images/gallery/hotel2.jpg" alt="">
-												<div class="img-content">
-													<h4 class="fs-24 font-w500 text-white">Bed Room</h4>
-													<p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci</p>	
-												</div>
-											</div>
-										</div>
-										<div class="item">
-											<div class="rooms">
-												<img src="public/assets/images/gallery/hotel3.jpg" alt="">
-												<div class="img-content">
-													<h4 class="fs-24 font-w500 text-white">Bed Room</h4>
-													<p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci</p>	
-												</div>
-											</div>
-										</div>
-									</div>
-								</div> -->
-							</div>
+													</div>
+												</td>
+												<td class="text-nowrap">
+													<span>derah@gmail.com</span>
+												</td>
+												<td>
+													<div>
+														<h5 class="text-nowrap">Nov 4th, 2020</h5>
+														<span>6.12 PM</span>
+													</div>
+												</td>
+												<td>
+													<div>
+														<h5 class="text-nowrap">09022248072</h5>
+													</div>
+												</td>
+												
+												<td class="request">
+													<a href="javascript:void(0);" class="btn  btn-sm">Edit</a>
+												</td>
+												
+												<td>
+													<div class="request">
+														<a href="javascript:void(0);" class="btn btn-md text-primary">Deactivate</a>
+													</div>
+												</td>
+												<td>
+													<div class="dropdown dropend">
+														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+															</svg>
+														</a>
+														<div class="dropdown-menu">
+															<a class="dropdown-item" href="javascript:void(0);">Edit</a>
+															<a class="dropdown-item" href="javascript:void(0);">Delete</a>
+														</div>
+													</div>
+												</td>
+											</tr> -->
+										</tbody>
+									</table>
+								</div>	
+							</div>	
+							
 						</div>
 					</div>
-					<!-- <div class="col-xl-12">
-						<div class="card">
-							<div class="card-header border-0">
-								<h4 class="fs-20">Purchase History</h4>
-								<div class="newest ms-3">
-									<select class="default-select">
-										<option>Newest</option>
-										<option>Oldest</option>
-									</select>
-								</div>	
-							</div>
-							<div class="card-body pt-0">
-								<div class="row align-items-center">
-									<div class="col-xl-4 col-sm-7">
-										<div class="purchase-history d-flex align-items-center">
-											<img src="public/assets/images/gallery/hotel1.jpg" alt="">
-											<div class="ms-3">
-												<h4 class="guest-text font-w500">Deluxe A-91234</h4>
-												<span class="fs-14 d-block mb-2 text-secondary">#000123456</span>
-												<span class="fs-16 text-nowrap">Oct 30th 2020 09:21 AM</span>
-											</div>
-										</div>
-									</div>
-									<div class="col-xl-2 col-sm-5 col-6">
-										<div class="ms-0 ms-sm-2">
-											<span class="d-block">Check In</span>
-											<span class="guest-text font-w500">Nov 2th, 2020</span>
-											<span class="fs-14 d-block">9.46 PM</span>
-										</div>
-									</div>
-									<div class="col-xl-2 col-sm-4 col-6">
-										<div>
-											<span class="d-block">Check Out</span>
-											<span class="guest-text font-w500">Nov 2th, 2020</span>
-											<span class="fs-14 d-block">9.46 PM</span>
-										</div>
-									</div>
-									<div class="col-xl-2 col-sm-4 col-6">
-										<div class="mt-sm-0 mt-3">
-											<span class="d-block mb-2 text-black">Price</span>	
-											<span class="font-w500 fs-24 text-black">$145<small class="fs-14 ms-2 text-secondary">/night</small></span>
-										</div>
-									</div>
-									<div class="col-xl-2 col-sm-4 col-6">
-										<div class="d-flex align-items-center mt-sm-0 mt-3">
-											<a href="javascript:void(0);" class="btn btn-secondary light">View Notes</a>
-											<div class="dropdown dropend ms-auto">
-												<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
-													<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-														<path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-														<path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-													</svg>
-												</a>
-												<div class="dropdown-menu">
-													<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-													<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row align-items-center mt-5">
-									<div class="col-xl-4 col-sm-7">
-										<div class="purchase-history d-flex align-items-center">
-											<img src="public/assets/images/gallery/hotel2.jpg" alt="">
-											<div class="ms-3">
-												<h4 class="guest-text font-w500">Deluxe A-91234</h4>
-												<span class="fs-14 d-block mb-2 text-secondary">#000123456</span>
-												<span class="fs-16 text-nowrap">Oct 30th 2020 09:21 AM</span>
-											</div>
-										</div>
-									</div>
-									<div class="col-xl-2 col-sm-5 col-6">
-										<div class="ms-2">
-											<span class="d-block">Check In</span>
-											<span class="guest-text font-w500">Nov 2th, 2020</span>
-											<span class="fs-14 d-block">9.46 PM</span>
-										</div>
-									</div>
-									<div class="col-xl-2 col-sm-4 col-6">
-										<div class="mt-sm-0 mt-2">
-											<span class="d-block">Check Out</span>
-											<span class="guest-text font-w500">Nov 2th, 2020</span>
-											<span class="fs-14 d-block">9.46 PM</span>
-										</div>
-									</div>
-									<div class="col-xl-2 col-sm-4 col-6">
-										<div class="mt-sm-0 mt-3">
-											<span class="d-block mb-2 text-black">Price</span>	
-											<span class="font-w500 fs-24 text-black">$145<small class="fs-14 ms-2 text-secondary">/night</small></span>
-										</div>
-									</div>
-									<div class="col-xl-2 col-sm-4 col-6">
-										<div class="d-flex align-items-center mt-sm-0 mt-3">
-											<a href="javascript:void(0);" class="btn btn-secondary light">View Notes</a>
-											<div class="dropdown dropend ms-auto">
-												<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
-													<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-														<path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-														<path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-													</svg>
-												</a>
-												<div class="dropdown-menu">
-													<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-													<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> -->
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-   									 <div class="card">
-											<div class="card-header">
-												<h4 class="card-title">User Downline</h4>
-											</div>
-											<div class="card-body">
-												<div class="row">
-												<div class="col-md-6">
-														<div class="card-content">
-															<div class="nestable">
-																<div class="dd" id="nestable2">
-																<ol class="dd-list">
-                                                                    <?php foreach ($Downlines as $key => $firstGen): ?>
-                                                                    <?php if ($firstGen["downline"]): ?>
-                                                                    <li class="dd-item" data-id="">
-                                                                        <div class="dd-handle"><?php echo $firstGen["name"] . " " . $firstGen["last_name"]?></div>
-                                                                        <ol class="dd-list">
-                                                                        <?php foreach ($firstGen["downline"] as $secondGen): ?>
-                                                                            <li class="dd-item" data-id="3">
-                                                                                <div class="dd-handle"><?php echo $secondGen["name"] . " " . $secondGen["last_name"]?></div>
-                                                                            </li>
-                                                                        <?php endforeach; ?>
-                                                                        </ol>
-                                                                    </li>
-                                                                    <?php else: ?>
-																		<li class="dd-item" data-id="">
-																			<div class="dd-handle"><?php echo $firstGen["name"] . " " . $firstGen["last_name"]?></div>
-																		</li>
-                                                                    <?php endif; ?>
-                                                                    <?php endforeach; ?>
-																	</ol>
-																</div>
-															</div>
-														</div>
-													</div>
-													<!-- <div class="col-md-6">
-														<div class="card-content">
-															<div class="nestable">
-																<div class="dd" id="nestable2">
-																	<ol class="dd-list">
-																		<li class="dd-item" data-id="13">
-																			<div class="dd-handle">Item 13</div>
-																		</li>
-																		<li class="dd-item" data-id="13">
-																			<div class="dd-handle">Item 13</div>
-																		</li>
-																		<li class="dd-item" data-id="14">
-																			<div class="dd-handle">Item 14</div>
-																		</li>
-																		<li class="dd-item" data-id="15">
-																			<div class="dd-handle">Item 15</div>
-																			<ol class="dd-list">
-																				<li class="dd-item" data-id="16">
-																					<div class="dd-handle">Item 16</div>
-																				</li>
-																				<li class="dd-item" data-id="17">
-																					<div class="dd-handle">Item 17</div>
-																				</li>
-																				<li class="dd-item" data-id="18">
-																					<div class="dd-handle">Item 18</div>
-																				</li>
-																				<li class="dd-item" data-id="18">
-																					<div class="dd-handle">Item 19</div>
-																				</li>
-																				<li class="dd-item" data-id="18">
-																					<div class="dd-handle">Item 20</div>
-																				</li>
-																				<li class="dd-item" data-id="18">
-																					<div class="dd-handle">Item 21</div>
-																				</li>
-																			</ol>
-																		</li>
-																	</ol>
-																</div>
-															</div>
-														</div>
-													</div> -->
-												</div>
-											</div>
-										</div>
 </div>
-
 
 <!--**********************************
 	Content body end
 ***********************************-->
- <!--**********************************Footer start***********************************-->
+        <!--**********************************
+    Footer start
+***********************************-->
 <div class="footer">
     <div class="copyright">
-        <p>Copyright © Designed &amp; Developed by <a href="https://jamaconcept.com/" target="_blank">Jamasoft Concept</a> 2024</p>
+        <p>Copyright © Designed &amp; Developed by <a href="https://jamaconcept.com/" target="_blank">Jamasoft</a> 2024</p>
     </div>
 </div>
 <!--**********************************
@@ -1052,83 +912,46 @@ include"sidebar.php"
 			<script src="public/assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 		
 
-	        <script src="public/assets/vendor/owl-carousel/owl.carousel.js"></script>
-            <script src="public/assets/vendor/bootstrap-datetimepicker/js/moment.js"></script>
-            <script src="public/assets/vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-			<script src="public/assets/vendor/nestable2/js/jquery.nestable.min.js"></script>
-            <script src="public/assets/js/plugins-init/nestable-init.js"></script>
-    	
-			<script src="public/assets/js/custom.min.js"></script>
-			<script src="public/assets/js/dlabnav-init.js"></script>
-			<script src="public/assets/js/demo.js"></script>
-			<script src="public/assets/js/styleSwitcher.js"></script>
+	        <script src="public/assets/vendor/moment/moment.min.js"></script>
+            <script src="public/assets/vendor/bootstrap-daterangepicker/daterangepicker.js"></script>
+            <script src="public/assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+            <script src="public/assets/js/plugins-init/datatables.init.js"></script>
+    	    <script src="public/assets/vendor/clockpicker/js/bootstrap-clockpicker.min.js"></script>
+            <script src="public/assets/vendor/jquery-asColor/jquery-asColor.min.js"></script>
+            <script src="public/assets/vendor/jquery-asGradient/jquery-asGradient.min.js"></script>
+            <script src="public/assets/vendor/jquery-asColorPicker/js/jquery-asColorPicker.min.js"></script>
+			<script src="public/assets/js/plugins-init/jquery-asColorPicker.init.js"></script>
+
 			<script src="public/assets/js/custom.min.js"></script>
 			<script src="public/assets/js/dlabnav-init.js"></script>
 			<script src="public/assets/js/demo.js"></script>
 			<script src="public/assets/js/styleSwitcher.js"></script>
 		<script>
-	function TravlCarousel()
-		{
+	$(function() {
 
-			/*  testimonial one function by = owl.carousel.js */
-			jQuery('.guest-carousel').owlCarousel({
-				loop:false,
-				margin:15,
-				nav:true,
-				autoplaySpeed: 3000,
-				navSpeed: 3000,
-				paginationSpeed: 3000,
-				slideSpeed: 3000,
-				smartSpeed: 3000,
-				autoplay: false,
-				animateOut: 'fadeOut',
-				dots:true,
-				navText: ['<i class="fas fa-arrow-left"></i>', '<i class="fas fa-arrow-right"></i>'],
-				responsive:{
-					0:{
-						items:1
-					},
-					
-					480:{
-						items:1
-					},			
-					
-					767:{
-						items:1
-					},
-					1750:{
-						items:1
-					},
-					1920:{
-						items:1
-					},
-				}
-			})
-		}
+		var start = moment().subtract(29, 'days');
+		var end = moment();
 
-		jQuery(window).on('load',function(){
-			setTimeout(function(){
-				TravlCarousel();
-			}, 1000); 
-		});
-</script>
-<script>
-    function confirmDelete() {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Submit the form to perform the delete action
-                document.getElementById('deleteForm').submit();
-            }
-        });
-    }
+		function cb(start, end) {
+			$('#reportrange span').html(start.format('D MMMM YYYY') + ' &nbsp - &nbsp ' + end.format('D MMMM YYYY'));
+}
+
+$('#reportrange').daterangepicker({
+	startDate: start,
+	endDate: end,
+	ranges: {
+		'Today': [moment(), moment()],
+		'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+		'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+		'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+		'This Month': [moment().startOf('month'), moment().endOf('month')],
+		'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+	}
+}, cb);
+
+cb(start, end);
+
+});
 </script>
 
 
@@ -1137,5 +960,4 @@ include"sidebar.php"
     ***********************************-->
 </body>
 
-<!-- Mirrored from travl.dexignlab.com/codeigniter/demo/guest-details by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2024 16:05:45 GMT -->
 </html>

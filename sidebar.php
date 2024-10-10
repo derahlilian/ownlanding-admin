@@ -28,8 +28,7 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="/ownlanding-admin/controllers/Administrator.php?listPackages">Package</a></li>
-                    <li><a href="uc-nestable.html">Subscription</a></li>
-                    <li><a href="uc-noui-slider.html">Noui Slider</a></li>
+                    <li><a href="subscription.php">Subscription</a></li>
                     <li><a href="uc-sweetalert.html">Sweet Alert</a></li>
                     <li><a href="uc-toastr.html">Toastr</a></li>
                     <li><a href="map-jqvmap.html">Jqv Map</a></li>
@@ -55,7 +54,7 @@
                     <span class="nav-text">Financial</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="app-profile.html">Payment</a></li>
+                    <li><a href="payment.php">Payment</a></li>
                     <li><a href="payout.php">Payouts</a></li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Transactions</a>
                         <ul aria-expanded="false">
