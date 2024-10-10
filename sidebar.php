@@ -36,7 +36,7 @@
                 </ul>
             </li>
             <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-045-map"></i>
+                    <i class="flaticon-086-star"></i>
                     <span class="nav-text">Master</span>
                 </a>
                 <ul aria-expanded="false">
