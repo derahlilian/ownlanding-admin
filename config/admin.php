@@ -219,6 +219,25 @@ class Admin extends Database {
         return $stmt->fetchAll(self::FETCH_ASSOC);
     }
 
+    function getAllSubscriptions(): false|array
+    {
+        $sql = "SELECT package_code, payments.amount, payments.reference, payments.status, payments.created_at FROM subscriptions
+        LEFT JOIN payments ON payment_reference = payments.id
+        LEFT JOIN packages ON package_id = packages.id
+        WHERE subscriptions.payment_reference IS NOT NULL";
+        $stmt = $this->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(self::FETCH_ASSOC);
+    }
+
+    function getAllPayments(): false|array
+    {
+        $sql = "SELECT channel, payments.created_at, reference, amount, status, name, last_name FROM payments JOIN users ON payments.user_id = users.id ORDER BY payments.created_at DESC";
+        $stmt = $this->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(self::FETCH_ASSOC);
+    }
+
     function getUserTransactions(int $user_id): false|array
     {
         $sql = "SELECT * FROM transactions LEFT JOIN payments ON transactions.payment_id = payments.id WHERE transactions.user_id = ?";

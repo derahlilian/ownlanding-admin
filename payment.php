@@ -1,3 +1,7 @@
+<?php
+require_once "config/init.php";
+$payments = $_SESSION["allPayments"];
+?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -633,7 +637,7 @@ include"sidebar.php"
 					</div>
 				</div> -->
 				
-				    <!-- <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Add Package</button>
+				    <!-- <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Add Package</button> -->
 							<!-- Modal -->
 							<div class="modal fade" id="exampleModalLong">
 								<div class="modal-dialog">
@@ -753,6 +757,7 @@ include"sidebar.php"
 											</tr>
 										</thead>
 										<tbody>
+                                        <?php foreach ($payments as $payment): ?>
 											<tr>
 												<td>
 													<div class="form-check style-1">
@@ -769,7 +774,7 @@ include"sidebar.php"
 															<h5 class="fs-16 mb-0 text-nowrap">
 																<a class="text-black hover-text" href="javascript:void(0);" 
 																style="transition: transform 0.3s ease-in-out; color: inherit;">
-																#ABJ-00002
+                                                                    <?php echo $payment["name"]. " " . $payment["last_name"];?>
 																</a>
 															</h5>
 															<!-- <span class="text-primary fs-14">#ABJ-00002</span> -->
@@ -778,29 +783,29 @@ include"sidebar.php"
 												</td>
 
 												<td class="text-nowrap">
-													<h5>Paystack</h5>
+													<h5><?php echo $payment["channel"]?></h5>
 												</td>
 												<td>
 													<div>
-														<h5 class="text-nowrap">200,000</h5>
+														<h5 class="text-nowrap"><?php echo $payment["amount"]?></h5>
 													</div>
 												</td>
 												<td>
 													<div>
-														<h5 class="text-nowrap">Ref1234567</h5>
+														<h5 class="text-nowrap"><?php echo $payment["reference"]?></h5>
 													</div>
 												</td>
 												<td>
 													<div class="request">
-														<a href="javascript:void(0);" class="btn btn-md text-primary">Failed</a>
+														<a href="javascript:void(0);" class="btn btn-md text-primary"><?php echo $payment["status"]?></a>
 													</div>
 												</td>
 											
 												<td>
 													<div class="request">
 													
-														<h5 class="text-nowrap">Oct 2th, 2020</h5>
-														<span>9.46 AM</span>
+														<h5 class="text-nowrap"><?php echo $payment["created_at"]?></h5>
+<!--														<span>9.46 AM</span>-->
 													</div>
 												</td>
                                                 <!-- <td>
@@ -824,61 +829,7 @@ include"sidebar.php"
 													</div>
 												</td>
 											</tr>
-											<!-- <tr>
-												<td>
-													<div class="form-check style-1">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													<div class="concierge-bx d-flex align-items-center">
-														<img class="me-3 rounded" src="public/assets/images/avatar/2.jpg" alt="">
-														<div>
-															<h5 class="fs-16 mb-0 text-nowrap"><a class="text-black" href="javascript:void(0);">Chidera Lilian</a></h5>
-															<span class="text-primary fs-14">#ABJ-00006</span>
-														</div>
-													</div>
-												</td>
-												<td class="text-nowrap">
-													<span>derah@gmail.com</span>
-												</td>
-												<td>
-													<div>
-														<h5 class="text-nowrap">Nov 4th, 2020</h5>
-														<span>6.12 PM</span>
-													</div>
-												</td>
-												<td>
-													<div>
-														<h5 class="text-nowrap">09022248072</h5>
-													</div>
-												</td>
-												
-												<td class="request">
-													<a href="javascript:void(0);" class="btn  btn-sm">Edit</a>
-												</td>
-												
-												<td>
-													<div class="request">
-														<a href="javascript:void(0);" class="btn btn-md text-primary">Deactivate</a>
-													</div>
-												</td>
-												<td>
-													<div class="dropdown dropend">
-														<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
-															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-																<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-																<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-															</svg>
-														</a>
-														<div class="dropdown-menu">
-															<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-															<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-														</div>
-													</div>
-												</td>
-											</tr> -->
+                                        <?php endforeach; ?>
 										</tbody>
 									</table>
 								</div>	

@@ -229,6 +229,27 @@ class Administrator extends Admin
     }
 
     /*
+    * Fetch All Subscriptions and render
+    */
+    function renderSubscriptionsView(): void
+    {
+        $subscriptions = $this->getAllSubscriptions();
+//        var_dump($subscriptions);
+        $_SESSION["allSubscriptions"] = $subscriptions;
+        header("location: ../subscription.php");
+    }
+
+    /*
+     * Fetch All Payments and render
+     */
+    function renderPaymentsView(): void
+    {
+        $payments = $this->getAllPayments();
+        $_SESSION["allPayments"] = $payments;
+        header("location: ../payment.php");
+    }
+
+    /*
      * Fix Nouns
      * Capitalize each word
      */
@@ -273,6 +294,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     elseif (isset($_GET['stateId'])) {
         $state_id = (int)$_GET["stateId"];
         $admin->renderLocationsView($state_id);
+    }
+    elseif (isset($_GET['listSubscriptions'])) {
+        $admin->renderSubscriptionsView();
+    }
+    elseif (isset($_GET['listPayments'])) {
+        $admin->renderPaymentsView();
     }
 }
 elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
