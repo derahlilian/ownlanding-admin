@@ -41,7 +41,7 @@
                     <span class="nav-text">Master</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="country.php">Country</a></li>
+                    <li><a href="/ownlanding-admin/controllers/Administrator.php?listCountries">Country</a></li>
                     <li><a href="state.php">State</a></li>
                     <li><a href="location.php">Location</a></li>
                     <li><a href="uc-sweetalert.html">Sweet Alert</a></li>

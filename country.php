@@ -1,3 +1,7 @@
+<?php
+require_once "config/init.php";
+$countries = $_SESSION["allCountries"];
+?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -607,6 +611,12 @@
                     
                     <div class="card-body">
                         <div class="table-responsive">
+                            <?php
+                            if (isset($_SESSION["createCountryError"])) {
+                                echo "<p>" . htmlspecialchars($_SESSION["createCountryError"]) . "</p>";
+                            }
+                            unset($_SESSION["createCountryError"]);
+                            ?>
                             <table id="example4" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
@@ -618,13 +628,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php $num = 1; foreach ($countries as $country): ?>
                                     <tr>
-                                        <td>01</td>
-                                        <td>Tiger Nixon</td>
+                                        <td><?php echo $num++?></td>
+                                        <td><?php echo $country["country_name"]?></td>
                                         <td>				
                                         <a href="javascript:void(0);" class="btn   btn-secondary">Edit</a>
                                         <a href="javascript:void(0);" class="btn   btn-secondary">Delete</a>
-                                        <a href="state.php" class="btn   btn-secondary">View State</a>
+                                        <a href="/ownlanding-admin/controllers/Administrator.php?countryId=<?php echo $country["id"]; ?>" class="btn   btn-secondary">View State</a>
                                         </td>
                                         <td>
                                             <div class="d-flex">
@@ -634,6 +645,7 @@
                                             </div>												
                                         </td>	
                                     </tr>
+                                <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -1321,7 +1333,7 @@
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<div class="modal-header">
-											<h5 class="modal-title">Create New Package</h5>
+											<h5 class="modal-title">Add Country</h5>
 											<button type="button" class="btn-close" data-bs-dismiss="modal">
 											</button>
 										</div>
@@ -1331,24 +1343,24 @@
 										
 													<div class="card-body">
 														<div class="basic-form">
-															<form class="form-valide-with-icon needs-validation" novalidate>
+															<form class="form-valide-with-icon needs-validation" action="/ownlanding-admin/controllers/Administrator.php" method="post">
 																<div class="mb-3">
 																	<label class="text-label form-label" for="validationCustomUsername">Country Name</label>
 																	<div class="input-group">
 																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
-																		<input type="number" class="form-control" id="validationCustomUsername" placeholder="Enter Country Name" required>
+																		<input type="text" name="country_name" class="form-control" id="validationCustomUsername" placeholder="Enter Country Name" required>
 																	</div>
 																</div>
 																<div class="mb-3">
 																	<label class="text-label form-label" for="validationCustomUsername">Country Code</label>
 																	<div class="input-group">
 																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
-																		<input type="text" class="form-control" id="validationCustomUsername" placeholder="Enter Country Code" required>
+																		<input type="text" name="country_code" class="form-control" id="validationCustomUsername" placeholder="Enter Country Code" required>
 																	</div>
 																</div>
 																
-																<button type="submit" class="btn me-2 btn-secondary">Create</button>
-																<button type="submit" class="btn btn-light">cancel</button>
+																<button type="submit" name="createCountry" class="btn me-2 btn-secondary">Create</button>
+																<button class="btn btn-light" data-bs-dismiss="modal">cancel</button>
 															</form>
 														</div>
 													</div>

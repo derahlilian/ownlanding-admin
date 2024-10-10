@@ -92,6 +92,39 @@ class Admin extends Database {
     }
 
     /*
+     * create New Country
+     */
+    function createNewCountry($country_name, $country_code): bool
+    {
+        $sql = "INSERT INTO `countries` (`country_name`, `country_code`) VALUES (?, ?)";
+        $stmt = $this->prepare($sql);
+        $stmt->execute([$country_name, $country_code]);
+        return $stmt->rowCount() === 1;
+    }
+
+    /*
+     * create New State
+     */
+    function createNewState($state_name, $county_id): bool
+    {
+        $sql = "INSERT INTO `states` (`state_name`, `country_id`) VALUES (?, ?)";
+        $stmt = $this->prepare($sql);
+        $stmt->execute([$state_name, $county_id]);
+        return $stmt->rowCount() === 1;
+    }
+
+    /*
+     * create New Location
+     */
+    function createNewLocation($location_name, $state_id): bool
+    {
+        $sql = "INSERT INTO `locations` (`location_name`, `state_id`) VALUES (?, ?)";
+        $stmt = $this->prepare($sql);
+        $stmt->execute([$location_name, $state_id]);
+        return $stmt->rowCount() === 1;
+    }
+
+    /*
      * Functions to fetch user subscribed packages
      *
      */
@@ -100,6 +133,67 @@ class Admin extends Database {
         $sql = "SELECT * FROM subscriptions LEFT JOIN packages on subscriptions.package_id = packages.id WHERE subscriptions.user_id = ?";
         $stmt = $this->prepare($sql);
         $stmt->execute([$user_id]);
+        return $stmt->fetchAll(self::FETCH_ASSOC);
+    }
+
+    /*
+     * Fetch Countries
+     */
+    function getCountries(): false|array
+    {
+        $sql = "SELECT id, country_name, country_code FROM countries";
+        $stmt = $this->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(self::FETCH_ASSOC);
+    }
+
+    /*
+     * Fetch Country By Name
+     */
+
+    function getCountryByName(string $country_name): false|array
+    {
+        $sql = "SELECT id, country_name FROM countries WHERE country_name = ?";
+        $stmt = $this->prepare($sql);
+        $stmt->execute([$country_name]);
+        return $stmt->fetch(self::FETCH_ASSOC);
+    }
+
+    function getStateByNameAndCountryId(string $state_name, string $country_id): false|array
+    {
+        $sql = "SELECT id, state_name FROM states WHERE country_id = ? AND state_name = ?";
+        $stmt = $this->prepare($sql);
+        $stmt->execute([$country_id, $state_name]);
+        return $stmt->fetchAll(self::FETCH_ASSOC);
+    }
+
+    function getLocationByNameAndStateId(string $location_name, string $state_id): false|array
+    {
+        $sql = "SELECT id, location_name FROM locations WHERE location_name = ? AND state_id = ?";
+        $stmt = $this->prepare($sql);
+        $stmt->execute([$location_name, $state_id]);
+        return $stmt->fetchAll(self::FETCH_ASSOC);
+    }
+
+    /*
+     * Fetch States By Country
+     */
+    function getStatesByCountryId(int $country_id): false|array
+    {
+        $sql = "SELECT id, state_name FROM states WHERE country_id = ?";
+        $stmt = $this->prepare($sql);
+        $stmt->execute([$country_id]);
+        return $stmt->fetchAll(self::FETCH_ASSOC);
+    }
+
+    /*
+     * Fetch Locations By State
+     */
+    function getLocationsByStateId(int $state_id): false|array
+    {
+        $sql = "SELECT id, location_name FROM locations WHERE state_id = ?";
+        $stmt = $this->prepare($sql);
+        $stmt->execute([$state_id]);
         return $stmt->fetchAll(self::FETCH_ASSOC);
     }
 

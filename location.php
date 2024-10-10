@@ -1,3 +1,7 @@
+<?php
+require_once "config/init.php";
+$locations = $_SESSION["allStateLocations"];
+?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -618,9 +622,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php $num = 1; foreach ($locations as $location):?>
                                     <tr>
-                                        <td>01</td>
-                                        <td>Tiger Nixon</td>
+                                        <td><?php echo $num++; ?></td>
+                                        <td><?php echo $location["location_name"]; ?></td>
                                         <td>				
                                         <a href="javascript:void(0);" class="btn   btn-secondary">Edit</a>
                                         <a href="javascript:void(0);" class="btn   btn-secondary">Delete</a>
@@ -634,6 +639,7 @@
                                             </div>												
                                         </td>	
                                     </tr>
+                                <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -1333,18 +1339,19 @@
 													</div>
 													<div class="card-body">
 														<div class="basic-form">
-															<form class="form-valide-with-icon needs-validation" novalidate>
+															<form class="form-valide-with-icon needs-validation" action="/ownlanding-admin/controllers/Administrator.php" method="post">
 																<div class="mb-3">
 																	<label class="text-label form-label" for="validationCustomUsername">Location Name</label>
 																	<div class="input-group">
 																		<span class="input-group-text"> <i class="fa fa-map"></i> </span>
-																		<input type="text" class="form-control" id="validationCustomUsername" placeholder="Enter Location Name" required>
+																		<input type="text" name="location_name" class="form-control" id="validationCustomUsername" placeholder="Enter Location Name" required>
+                                                                        <input type="hidden" name="state_id" value="<?php echo $locations[0]["state_id"]; ?>">
 																	</div>
 																</div>
 														
 																
-																<button type="submit" class="btn me-2 btn-secondary">Create</button>
-																<button type="submit" class="btn btn-light">cancel</button>
+																<button type="submit" name="createLocation" class="btn me-2 btn-secondary">Create</button>
+																<button class="btn btn-light" data-bs-dismiss="modal">cancel</button>
 															</form>
 														</div>
 													</div>

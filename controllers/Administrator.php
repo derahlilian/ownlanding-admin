@@ -13,6 +13,17 @@ class Administrator extends Admin
     }
 
     /*
+     * Fetch Content and render user details page
+     */
+    function renderUserDetailsView(int $user_id): void
+    {
+        $this->getUser($user_id);
+        $this->getUserPackages($user_id);
+        $this->getUserDownlines($user_id);
+        header("location: ../user-details.php");
+    }
+
+    /*
      * Fetch Customer Details and save in session object
      * @user_id: id of user
      */
@@ -70,6 +81,7 @@ class Administrator extends Admin
         if ($this->updateUser($user_id, $name, $last_name, $email)) {
             $_SESSION["userUpdateSuccess"] = true;
             $this->listUsers();
+            exit();
         }
     }
 
@@ -110,12 +122,70 @@ class Administrator extends Admin
         $package_exists = $this->getPackageByCode($data['package_code']);
         if ($package_exists) {
             $_SESSION["createPackageError"] = "Package already exists";
+            $this->listPackages();
+            exit();
         }
         if (!$this->createNewPackage($data)) {
             $_SESSION["createPackageError"] = "Error creating package, please try again";
         }
         $this->listPackages();
     }
+
+    /*
+     * Create New Country
+     */
+    function createCountry(string $country_name, string $county_code): void
+    {
+        $country_name = $this->capitalizeName($country_name);
+        $county_code = strtoupper($county_code);
+        $country_exists = $this->getCountryByName($country_name);
+        if ($country_exists) {
+            $_SESSION["createCountryError"] = "Country already exists";
+            $this->renderCountriesView();
+            exit();
+        }
+        if (!$this->createNewCountry($country_name, $county_code)) {
+            $_SESSION["createCountryError"] = "Error creating country, please try again";
+        }
+        $this->renderCountriesView();
+    }
+
+    /*
+     * Create New State
+     */
+    function createState(string $state_name, int $country_id): void
+    {
+        $state_name = $this->capitalizeName($state_name);
+        $state_exists = $this->getStateByNameAndCountryId($state_name, $country_id);
+        if ($state_exists) {
+            $_SESSION["createStateError"] = "State already exists";
+            $this->renderStatesView($country_id);
+            exit();
+        }
+        if (!$this->createNewState($state_name, $country_id)) {
+            $_SESSION["createStateError"] = "Error creating state, please try again";
+        }
+        $this->renderStatesView($country_id);
+    }
+
+    /*
+     * Create New Location
+     */
+    function createLocation(string $location_name, int $state_id): void
+    {
+        $location_name = $this->capitalizeName($location_name);
+        $location_exists = $this->getLocationByNameAndStateId($location_name, $state_id);
+        if ($location_exists) {
+            $_SESSION["createLocationError"] = "Location already exists";
+            $this->renderLocationsView($state_id);
+            exit();
+        }
+        if (!$this->createNewLocation($location_name, $state_id)) {
+            $_SESSION["createLocationError"] = "Error creating location, please try again";
+        }
+        $this->renderLocationsView($state_id);
+    }
+
 
     /*
      * Fetch All Locations
@@ -125,6 +195,48 @@ class Administrator extends Admin
         $Locations = $this->getLocations();
         $_SESSION["allLocations"] = $Locations;
     }
+
+    /*
+     * Fetch Countries and render
+     */
+    function renderCountriesView(): void
+    {
+        $countries = $this->getCountries();
+        $_SESSION["allCountries"] = $countries;
+        header("location: ../country.php");
+    }
+
+    /*
+     * Fetch States for a Country and render
+     */
+    function renderStatesView(int $country_id): void
+    {
+        $states = $this->getStatesByCountryId($country_id);
+        $states[0]["country_id"] = $country_id;
+        $_SESSION["allCountryStates"] = $states;
+        header("location: ../state.php");
+    }
+
+    /*
+    * Fetch Locations for a State and render
+    */
+    function renderLocationsView(int $state_id): void
+    {
+        $locations = $this->getLocationsByStateId($state_id);
+        $locations[0]["state_id"] = $state_id;
+        $_SESSION["allStateLocations"] = $locations;
+        header("location: ../location.php");
+    }
+
+    /*
+     * Fix Nouns
+     * Capitalize each word
+     */
+    function capitalizeName(string $name): string
+    {
+        return ucfirst(trim($name, ' \r\t\v\0\.\,"\"'));
+    }
+
 }
 
 
@@ -144,15 +256,23 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
     elseif (isset($_GET['userDetails'])) {
         $user_id = (int)($_GET["userId"]);
-        $admin->getUser($user_id);
-        $admin->getUserPackages($user_id);
-        $admin->getUserDownlines($user_id);
-        header("location: ../user-details.php");
+        $admin->renderUserDetailsView($user_id);
     }
     elseif (isset($_GET['editUser'])) {
         $user_id = (int)($_GET["userId"]);
         $admin->getUser($user_id);
         header("location: ../edit-user.php");
+    }
+    elseif (isset($_GET['listCountries'])) {
+        $admin->renderCountriesView();
+    }
+    elseif (isset($_GET['countryId'])) {
+        $country_id = (int)$_GET["countryId"];
+        $admin->renderStatesView($country_id);
+    }
+    elseif (isset($_GET['stateId'])) {
+        $state_id = (int)$_GET["stateId"];
+        $admin->renderLocationsView($state_id);
     }
 }
 elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -181,7 +301,19 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data["location_id"] = (int)$_POST['location_id'];
         $admin->createPackage($data);
     }
-    elseif (isset($_POST["deletePackage"])) {
-        return;
+    elseif (isset($_POST["createCountry"])) {
+        $country_name = $_POST['country_name'];
+        $country_code = $_POST['country_code'];
+        $admin->createCountry($country_name, $country_code);
+    }
+    elseif (isset($_POST["createState"])) {
+        $state_name = $_POST['state_name'];
+        $country_id = (int)$_POST['country_id'];
+        $admin->createState($state_name, $country_id);
+    }
+    elseif (isset($_POST["createLocation"])) {
+        $location_name = $_POST['location_name'];
+        $state_id = (int)$_POST['state_id'];
+        $admin->createLocation($location_name, $state_id);
     }
 }
