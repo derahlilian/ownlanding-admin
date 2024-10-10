@@ -6,14 +6,14 @@
                     <span class="nav-text">Ownlanding</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="index.php">Home</a></li>
+                    <li><a href="Login.php">Home</a></li>
                     <!-- <li><a href="index-2.html">Dashboard Dark</a></li> -->
                     <li><a href="/ownlanding-admin/controllers/Administrator.php?listUsers">All Users</a></li>
                     <li><a href="user-details.php">User Detail</a></li>
                     <!-- <li><a href="downlines.php">User Downlines</a></li> -->
-                    <li><a href="concierge-list.html">Concierge List</a></li>
+                    <!-- <li><a href="concierge-list.html">Concierge List</a></li>
                     <li><a href="room-list.html">Room List</a></li>
-                    <li><a href="reviews.html">Reviews</a></li>	
+                    <li><a href="reviews.html">Reviews</a></li>	 -->
                 </ul>
 
             </li>
@@ -36,17 +36,13 @@
                 </ul>
             </li>
             <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-045-heart"></i>
+                    <i class="flaticon-045-map"></i>
                     <span class="nav-text">Master</span>
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="country.php">Country</a></li>
                     <li><a href="state.php">State</a></li>
                     <li><a href="location.php">Location</a></li>
-                    <li><a href="uc-sweetalert.html">Sweet Alert</a></li>
-                    <li><a href="uc-toastr.html">Toastr</a></li>
-                    <li><a href="map-jqvmap.html">Jqv Map</a></li>
-                    <li><a href="uc-lightgallery.html">Light Gallery</a></li>
                 </ul>
             </li>
             <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
@@ -59,20 +55,10 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Transactions</a>
                         <ul aria-expanded="false">
                             <li><a href="email-compose.html">Compose</a></li>
-                            <li><a href="email-inbox.html">Inbox</a></li>
-                            <li><a href="email-read.html">Read</a></li>
+                            <!-- <li><a href="email-inbox.html">Inbox</a></li>
+                            <li><a href="email-read.html">Read</a></li> -->
                         </ul>
                     </li>
-                    <!-- <li><a href="app-profile.html">Profile</a></li>
-                    <li><a href="post-details.html">Post Details</a></li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
-                        <ul aria-expanded="false">
-                            <li><a href="email-compose.html">Compose</a></li>
-                            <li><a href="email-inbox.html">Inbox</a></li>
-                            <li><a href="email-read.html">Read</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="app-calender.html">Calendar</a></li> -->
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Shop</a>
                         <ul aria-expanded="false">
                             <!-- <li><a href="ecom-product-grid.html">Product Grid</a></li>
@@ -99,21 +85,7 @@
                             <li><a href="email-read.html">Read</a></li>
                         </ul>
                     </li>
-                    <li><a href="app-calender.html">Calendar</a></li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Shop</a>
-                        <ul aria-expanded="false">
-                            <li><a href="ecom-product-grid.html">Product Grid</a></li>
-                            <li><a href="ecom-product-list.html">Product List</a></li>
-                            <li><a href="ecom-product-detail.html">Product Details</a></li>
-                            <li><a href="ecom-product-order.html">Order</a></li>
-                            <li><a href="ecom-checkout.html">Checkout</a></li>
-                            <li><a href="ecom-invoice.html">Invoice</a></li>
-                            <li><a href="ecom-customers.html">Customers</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+            <!-- <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-041-graph"></i>
                     <span class="nav-text">Charts</span>
                 </a>
@@ -125,8 +97,8 @@
                     <li><a href="chart-sparkline.html">Sparkline</a></li>
                     <li><a href="chart-peity.html">Peity</a></li>
                 </ul>
-            </li>
-            <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+            </li> -->
+            <!-- <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-086-star"></i>
                     <span class="nav-text">Bootstrap</span>
                 </a>
@@ -209,7 +181,7 @@
                     <li><a href="page-lock-screen.html">Lock Screen</a></li>
                     <li><a href="page-empty.html">Empty Page</a></li>
                 </ul>
-            </li>
+            </li> -->
         </ul>
         <div class="dropdown header-profile2 ">
             <div class="header-info2 text-center">
