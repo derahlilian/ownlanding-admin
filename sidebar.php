@@ -17,7 +17,7 @@
                 </ul>
 
             </li>
-            <li><a href="sga.php" class="" aria-expanded="false">
+            <li><a href="/ownlanding-admin/controllers/Administrator.php?listSGA" class="" aria-expanded="false">
                     <i class="flaticon-013-checkmark"></i>
                     <span class="nav-text">SGA</span>
                 </a>
