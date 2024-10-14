@@ -105,6 +105,13 @@ class Administrator extends Admin
         header("location: ../package.php");
     }
 
+    function renderPackageSubscriptionsView(int $package_id): void
+    {
+        $subscriptions = $this->getSubscriptionsByPackageId($package_id);
+
+        $this->renderSubscriptionsView($subscriptions);
+    }
+
     /*
      * Fetch All Packages
      */
@@ -231,11 +238,15 @@ class Administrator extends Admin
     /*
     * Fetch All Subscriptions and render
     */
-    function renderSubscriptionsView(): void
+    function renderSubscriptionsView(array $packageSubscription = null): void
     {
-        $subscriptions = $this->getAllSubscriptions();
-//        var_dump($subscriptions);
-        $_SESSION["allSubscriptions"] = $subscriptions;
+        if ($packageSubscription === null) {
+            $subscriptions = $this->getAllSubscriptions();
+            $_SESSION["allSubscriptions"] = $subscriptions;
+        }
+        else {
+            $_SESSION["allSubscriptions"] = $packageSubscription;
+        }
         header("location: ../subscription.php");
     }
 
@@ -247,6 +258,13 @@ class Administrator extends Admin
         $payments = $this->getAllPayments();
         $_SESSION["allPayments"] = $payments;
         header("location: ../payment.php");
+    }
+
+    function renderSGAView(): void
+    {
+        $SGA = $this->getSGA();
+        $_SESSION["allSGA"] = $SGA;
+        header("location: ../sga.php");
     }
 
     /*
@@ -300,6 +318,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
     elseif (isset($_GET['listPayments'])) {
         $admin->renderPaymentsView();
+    }
+    elseif (isset($_GET['packageId'])) {
+        $package_id = (int)$_GET["packageId"];
+        $admin->renderPackageSubscriptionsView($package_id);
+    }
+    elseif (isset($_GET['listSGA'])) {
+        $admin->renderSGAView();
     }
 }
 elseif ($_SERVER["REQUEST_METHOD"] == "POST") {

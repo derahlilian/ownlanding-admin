@@ -66,7 +66,7 @@ class Admin extends Database {
      */
     function getPackages(): false|array
     {
-        $sql = "SELECT package_code, packages_size, package_amount, estate_name, color_code, packages.created_at, location_name FROM packages JOIN locations on packages.location_id = locations.id ORDER BY created_at DESC";
+        $sql = "SELECT packages.id, package_code, packages_size, package_amount, estate_name, color_code, packages.created_at, location_name FROM packages JOIN locations on packages.location_id = locations.id ORDER BY created_at DESC";
         $stmt = $this->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(self::FETCH_ASSOC);
@@ -130,7 +130,7 @@ class Admin extends Database {
      */
     function getPackagesByUserId(int $user_id): false|array
     {
-        $sql = "SELECT * FROM subscriptions LEFT JOIN packages on subscriptions.package_id = packages.id WHERE subscriptions.user_id = ?";
+        $sql = "SELECT package_code, package_amount, color_code FROM subscriptions LEFT JOIN packages on subscriptions.package_id = packages.id WHERE subscriptions.user_id = ?";
         $stmt = $this->prepare($sql);
         $stmt->execute([$user_id]);
         return $stmt->fetchAll(self::FETCH_ASSOC);
@@ -224,15 +224,36 @@ class Admin extends Database {
         $sql = "SELECT package_code, payments.amount, payments.reference, payments.status, payments.created_at FROM subscriptions
         LEFT JOIN payments ON payment_reference = payments.id
         LEFT JOIN packages ON package_id = packages.id
-        WHERE subscriptions.payment_reference IS NOT NULL";
+        ORDER BY payments.created_at DESC";
         $stmt = $this->prepare($sql);
         $stmt->execute();
+        return $stmt->fetchAll(self::FETCH_ASSOC);
+    }
+
+    function getSubscriptionsByPackageId(int $package_id): array
+    {
+        $sql = "SELECT package_code, payments.amount, payments.reference, payments.status, payments.created_at FROM subscriptions
+                LEFT JOIN payments ON payment_reference = payments.id
+                LEFT JOIN packages ON package_id = packages.id
+                WHERE package_id = ?";
+        $stmt = $this->prepare($sql);
+        $stmt->execute([$package_id]);
         return $stmt->fetchAll(self::FETCH_ASSOC);
     }
 
     function getAllPayments(): false|array
     {
         $sql = "SELECT channel, payments.created_at, reference, amount, status, name, last_name FROM payments JOIN users ON payments.user_id = users.id ORDER BY payments.created_at DESC";
+        $stmt = $this->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(self::FETCH_ASSOC);
+    }
+
+    function getSGA(): false|array
+    {
+        $sql = "SELECT name, last_name, sga_code, value, estate_name, status FROM grant_allocations
+                LEFT JOIN users ON grant_allocations.user_id = users.id
+                LEFT JOIN packages ON grant_allocations.package_id = packages.id";
         $stmt = $this->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(self::FETCH_ASSOC);
