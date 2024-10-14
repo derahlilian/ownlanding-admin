@@ -806,7 +806,7 @@ include"sidebar.php"
 											
 												<td>
 													<div class="request">
-														<a href="javascript:void(0);" class="btn btn-md text-secondary">View Subscription</a>
+														<a href="/ownlanding-admin/controllers/Administrator.php?packageId=<?php echo $package['id'];?>" class="btn btn-md text-secondary">View Subscription</a>
 													</div>
 												</td>
 												<td>
