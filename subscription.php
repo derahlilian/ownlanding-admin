@@ -691,23 +691,23 @@ include"sidebar.php"
 												</td>
 
 												<td class="text-nowrap">
-													<span><?php echo $subscription["amount"]; ?></span>
+													<span><?php echo $subscription["amount"] ?? "N/A"; ?></span>
 												</td>
 												
 												<td>
 													<div>
-														<h5 class="text-nowrap"><?php echo $subscription["reference"]; ?></h5>
+														<h5 class="text-nowrap"><?php echo $subscription["reference"] ?? "N/A"; ?></h5>
 													</div>
 												</td>
 												 <td>
 													<div class="request">
-														<a href="javascript:void(0);" class="btn btn-md text-primary"><?php echo $subscription["status"]; ?></a>
+														<a href="javascript:void(0);" class="btn btn-md text-primary"><?php echo $subscription["status"] ?? "N/A"; ?></a>
 													</div>
 												</td> 
 											
 												<td>
 													<div class="requst">
-														<h5 class="text-nowrap"><?php echo $subscription["created_at"]; ?></h5>
+														<h5 class="text-nowrap"><?php echo $subscription["created_at"] ?? "N/A"; ?></h5>
 														<span>9.46 AM</span>
 													</div>
 												</td>
