@@ -1,3 +1,7 @@
+<?php
+require_once "config/init.php";
+$states = $_SESSION["allCountryStates"];
+?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -606,6 +610,12 @@
                     
                     <div class="card-body">
                         <div class="table-responsive">
+                            <?php
+                            if (isset($_SESSION["createStateError"])) {
+                                echo "<p>" . htmlspecialchars($_SESSION["createStateError"]) . "</p>";
+                            }
+                            unset($_SESSION["createStateError"]);
+                            ?>
                             <table id="example4" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
@@ -617,13 +627,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php $num = 1; foreach ($states as $state): ?>
                                     <tr>
-                                        <td>01</td>
-                                        <td>Tiger Nixon</td>
+                                        <td><?php echo $num++?></td>
+                                        <td><?php echo $state["state_name"]?></td>
                                         <td>				
                                         <a href="javascript:void(0);" class="btn   btn-secondary">Edit</a>
                                         <a href="javascript:void(0);" class="btn   btn-secondary">Delete</a>
-                                        <a href="location.php" class="btn   btn-secondary">View Location</a>
+                                        <a href="/ownlanding-admin/controllers/Administrator.php?stateId=<?php echo $state["id"]; ?>" class="btn   btn-secondary">View Location</a>
                                         </td>
                                         <td>
                                             <div class="d-flex">
@@ -633,6 +644,7 @@
                                             </div>												
                                         </td>	
                                     </tr>
+                                <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -1332,24 +1344,17 @@
 													</div>
 													<div class="card-body">
 														<div class="basic-form">
-															<form class="form-valide-with-icon needs-validation" novalidate>
+															<form class="form-valide-with-icon needs-validation" action="/ownlanding-admin/controllers/Administrator.php" method="post">
 																<div class="mb-3">
 																	<label class="text-label form-label" for="validationCustomUsername">State</label>
 																	<div class="input-group">
 																		<span class="input-group-text"> <i class="fa fa-user"></i> </span>
-																		<input type="number" class="form-control" id="validationCustomUsername" placeholder="Enter a state" required>
+																		<input type="text" name="state_name" class="form-control" id="validationCustomUsername" placeholder="Enter a state" required>
+                                                                        <input type="hidden" name="country_id" value="<?php echo $states[0]["country_id"]; ?>">
 																	</div>
 																</div>
-																<!-- <div class="mb-3">
-																	<div class="form-check">
-																		<input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-																		<label class="form-check-label" for="invalidCheck2">
-																		I Agree to Create New Package
-																		</label>
-																	</div>
-																</div> -->
-																<button type="submit" class="btn me-2 btn-secondary">Create</button>
-																<button type="submit" class="btn btn-light">cancel</button>
+																<button type="submit" name="createState" class="btn me-2 btn-secondary">Create</button>
+																<button class="btn btn-light" data-bs-dismiss="modal">cancel</button>
 															</form>
 														</div>
 													</div>
