@@ -10,10 +10,6 @@
                     <!-- <li><a href="index-2.html">Dashboard Dark</a></li> -->
                     <li><a href="/ownlanding-admin/controllers/Administrator.php?listUsers">All Users</a></li>
                     <li><a href="user-details.php">User Detail</a></li>
-                    <!-- <li><a href="downlines.php">User Downlines</a></li> -->
-                    <!-- <li><a href="concierge-list.html">Concierge List</a></li>
-                    <li><a href="room-list.html">Room List</a></li>
-                    <li><a href="reviews.html">Reviews</a></li>	 -->
                 </ul>
 
             </li>
@@ -29,10 +25,6 @@
                 <ul aria-expanded="false">
                     <li><a href="/ownlanding-admin/controllers/Administrator.php?listPackages">Package</a></li>
                     <li><a href="subscription.php">Subscription</a></li>
-                    <li><a href="uc-sweetalert.html">Sweet Alert</a></li>
-                    <li><a href="uc-toastr.html">Toastr</a></li>
-                    <li><a href="map-jqvmap.html">Jqv Map</a></li>
-                    <li><a href="uc-lightgallery.html">Light Gallery</a></li>
                 </ul>
             </li>
             <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
@@ -52,27 +44,22 @@
                 <ul aria-expanded="false">
                     <li><a href="payment.php">Payment</a></li>
                     <li><a href="payout.php">Payouts</a></li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Transactions</a>
-                        <ul aria-expanded="false">
-                            <li><a href="email-compose.html">Compose</a></li>
-                            <!-- <li><a href="email-inbox.html">Inbox</a></li>
-                            <li><a href="email-read.html">Read</a></li> -->
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Shop</a>
+                    <li><a href="transaction.php">Transactions</a>
+
+                    <!-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Shop</a>
                         <ul aria-expanded="false">
                             <!-- <li><a href="ecom-product-grid.html">Product Grid</a></li>
                             <li><a href="ecom-product-list.html">Product List</a></li>
                             <li><a href="ecom-product-detail.html">Product Details</a></li> -->
-                            <li><a href="ecom-product-order.html">Order</a></li>
+                            <!-- <li><a href="ecom-product-order.html">Order</a></li>
                             <li><a href="ecom-invoice.html">Invoice</a></li>
                             <li><a href="ecom-customers.html">Customers</a></li>
                         </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                <i class="flaticon-050-info"></i>
+                    </li> --> 
+                <!-- </ul>
+            </li> -->
+            <!-- <li><a class="has-arrow " href="javascript:void()" aria-expanded="false"> -->
+                <!-- <i class="flaticon-050-info"></i>
                     <span class="nav-text">Apps</span>
                 </a>
                 <ul aria-expanded="false">
@@ -84,7 +71,7 @@
                             <li><a href="email-inbox.html">Inbox</a></li>
                             <li><a href="email-read.html">Read</a></li>
                         </ul>
-                    </li>
+                    </li> -->
             <!-- <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-041-graph"></i>
                     <span class="nav-text">Charts</span>
@@ -188,8 +175,8 @@
                 <img src="public/assets/images/profile/pic1.jpg" alt=""/>
                 <div class="sidebar-info">
                     <div>
-                        <h5 class="font-w500 mb-0">William Johanson</h5>
-                        <span class="fs-12">williamjohn@mail.com</span>
+                        <h5 class="font-w500 mb-0">Chidera Dera</h5>
+                        <span class="fs-12">Derah Derah</span>
                     </div>	
                 </div>
                 <div>

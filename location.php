@@ -623,7 +623,6 @@
                                         <td>				
                                         <a href="javascript:void(0);" class="btn   btn-secondary">Edit</a>
                                         <a href="javascript:void(0);" class="btn   btn-secondary">Delete</a>
-                                        <a href="javascript:void(0);" class="btn   btn-secondary">View State</a>
                                         </td>
                                         <td>
                                             <div class="d-flex">

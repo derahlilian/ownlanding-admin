@@ -1207,7 +1207,7 @@ include"sidebar.php"
 ***********************************-->
 <div class="footer">
     <div class="copyright">
-        <p>Copyright © Designed &amp; Developed by <a href="https://dexignlab.com/" target="_blank">DexignLab</a> 2024</p>
+        <p>Copyright © Designed &amp; Developed by <a href="https://Jamaconcept.com/" target="_blank">Jamasoft Concept Ltd</a> 2024</p>
     </div>
 </div>
 <!--**********************************
@@ -1262,5 +1262,4 @@ cb(start, end);
     ***********************************-->
 </body>
 
-<!-- Mirrored from travl.dexignlab.com/codeigniter/demo/guest-list by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2024 16:05:44 GMT -->
 </html>
