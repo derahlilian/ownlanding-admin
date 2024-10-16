@@ -1,3 +1,7 @@
+<?php
+include "config/init.php";
+$payouts = $_SESSION['allPayouts'];
+?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -609,40 +613,7 @@
 									</tr>
 								</thead>
 								<tbody id="customers">
-									<!-- <tr class="btn-reveal-trigger">
-										<td class="py-2">
-											<div class="form-check custom-checkbox mx-2">
-												<input type="checkbox" class="form-check-input" id="checkbox1">
-												<label class="form-check-label" for="checkbox1"></label>
-											</div>
-										</td>
-										<td class="py-3">
-											<a href="#">
-												<div class="media d-flex align-items-center">
-													<div class="avatar avatar-xl me-2">
-														<div class=""><img class="rounded-circle img-fluid"
-																src="public/assets/images/avatar/5.png" width="30" alt="" />
-														</div>
-													</div>
-													<div class="media-body">
-														<h5 class="mb-0 fs--1">Ricky Antony</h5>
-													</div>
-												</div>
-											</a>
-										</td>
-										<td class="py-2"><a
-												href="mailto:ricky@example.com">info@example.com</a></td>
-										<td class="py-2"> <a href="tel:2012001851">(201) 200-1851</a></td>
-										<td class="py-2 ps-5">2392 Main Avenue, Penasauka</td>
-										<td class="py-2">30/03/2018</td>
-										<td class="py-2 text-end">
-											<div class="dropdown"><button class="btn btn-primary tp-btn-light sharp" type="button" data-bs-toggle="dropdown"><span class="fs--1"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg></span></button>
-												<div class="dropdown-menu dropdown-menu-end border py-0">
-													<div class="py-2"><a class="dropdown-item"  href="#!">Edit</a><a class="dropdown-item text-danger" href="#!">Delete</a></div>
-												</div>
-											</div>
-										</td>
-									</tr> -->
+                                <?php foreach ($payouts as $payout) :?>
 									<tr class="btn-reveal-trigger">
 										<td class="py-2">
 											<div class="form-check custom-checkbox mx-2">
@@ -650,7 +621,7 @@
 												<label class="form-check-label" for="checkbox2"></label>
 											</div>
 										</td>
-										<td class="py-2">11/07/2017</td>
+										<td class="py-2"><?php echo $payout["created_at"]?></td>
 										<td class="py-3">
 											<a href="#">
 												<div class="media d-flex align-items-center">
@@ -659,80 +630,21 @@
 															src="public/assets/images/avatar/1.png" alt="" width="30" />
 													</div>
 													<div class="media-body">
-														<h5 class="mb-0 fs--1">Emma Watson</h5>
+														<h5 class="mb-0 fs--1"><?php echo $payout["name"] . $payout["last_name"]?></h5>
 													</div>
 												</div>
 											</a>
 										</td>
-										<td class="py-2"><a href="">amet consectetur adipisicing elit. At ipsum incidunt quae eligendi autem sequi!</a>
+										<td class="py-2"><a href=""><?php echo $payout[""]?></a>
 										</td>
-										<td class="py-2"> <a href=" ">$10,000</a></td>
+										<td class="py-2"> <a href=" "><?php echo $payout[""]?></a></td>
 										<td>
 													<div class="request">
-														<a href="javascript:void(0);" class="btn btn-md text-primary" style="background-color:#D8BFD8 !important;">Reversed</a>
+														<a href="javascript:void(0);" class="btn btn-md text-primary" style="background-color:#D8BFD8 !important;"><?php echo $payout["status"]?></a>
 													</div>
 										</td>
 									</tr>
-									<tr class="btn-reveal-trigger">
-										<td class="py-2">
-											<div class="form-check custom-checkbox mx-2">
-												<input type="checkbox" class="form-check-input" id="checkbox2">
-												<label class="form-check-label" for="checkbox2"></label>
-											</div>
-										</td>
-										<td class="py-2">11/07/2017</td>
-										<td class="py-3">
-											<a href="#">
-												<div class="media d-flex align-items-center">
-													<div class="avatar avatar-xl me-2">
-														<img class="rounded-circle img-fluid"
-															src="public/assets/images/avatar/1.png" alt="" width="30" />
-													</div>
-													<div class="media-body">
-														<h5 class="mb-0 fs--1">Emma Watson</h5>
-													</div>
-												</div>
-											</a>
-										</td>
-										<td class="py-2"><a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At ipsum incidunt quae eligendi autem sequi!</a>
-										</td>
-										<td class="py-2"> <a href=" ">$10,000</a></td>
-										<td>
-													<div class="request">
-														<a href="javascript:void(0);" class="btn btn-md text-primary" style="background-color:#D8BFD8 !important;">Refund</a>
-													</div>
-										</td>
-									</tr>
-									<tr class="btn-reveal-trigger">
-										<td class="py-2">
-											<div class="form-check custom-checkbox mx-2">
-												<input type="checkbox" class="form-check-input" id="checkbox2">
-												<label class="form-check-label" for="checkbox2"></label>
-											</div>
-										</td>
-										<td class="py-2">11/07/2017</td>
-										<td class="py-3">
-											<a href="#">
-												<div class="media d-flex align-items-center">
-													<div class="avatar avatar-xl me-2">
-														<img class="rounded-circle img-fluid"
-															src="public/assets/images/avatar/1.png" alt="" width="30" />
-													</div>
-													<div class="media-body">
-														<h5 class="mb-0 fs--1">Emma Watson</h5>
-													</div>
-												</div>
-											</a>
-										</td>
-										<td class="py-2"><a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At ipsum incidunt quae eligendi autem sequi!</a>
-										</td>
-										<td class="py-2"> <a href=" ">$10,000</a></td>
-										<td>
-													<div class="request">
-														<a href="javascript:void(0);" class="btn btn-md text-primary" style="background-color:#D8BFD8 !important;">Completed</a>
-													</div>
-										</td>
-									</tr>
+                                <?php endforeach;?>
 								</tbody>
 							</table>
 						</div>

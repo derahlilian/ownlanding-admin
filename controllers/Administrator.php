@@ -267,6 +267,13 @@ class Administrator extends Admin
         header("location: ../transaction.php");
     }
 
+    function renderPayoutsView(): void
+    {
+        $payouts = $this->getAllPayments();
+        $_SESSION['allPayouts'] = $payouts;
+        header("location: ../payout.php");
+    }
+
     function renderSGAView(): void
     {
         $SGA = $this->getSGA();
@@ -335,6 +342,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
     elseif (isset($_GET['listTransactions'])) {
         $admin->renderTransactionsView();
+    }
+    elseif (isset($_GET['listPayouts'])) {
+        $admin->renderPayoutsView();
     }
 }
 elseif ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -43,12 +43,12 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="/ownlanding-admin/controllers/Administrator.php?listPayments">Payment</a></li>
-                    <li><a href="payout.php">Payouts</a></li>
+                    <li><a href="/ownlanding-admin/controllers/Administrator.php?listPayouts">Payouts</a></li>
                     <li><a href="/ownlanding-admin/controllers/Administrator.php?listTransactions">Transactions</a>
 
                     <!-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Shop</a>
                         <ul aria-expanded="false">
-                            <!-- <li><a href="ecom-product-grid.html">Product Grid</a></li>
+                            <li><a href="ecom-product-grid.html">Product Grid</a></li>
                             <li><a href="ecom-product-list.html">Product List</a></li>
                             <li><a href="ecom-product-detail.html">Product Details</a></li> -->
                             <!-- <li><a href="ecom-product-order.html">Order</a></li>
