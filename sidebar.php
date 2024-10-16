@@ -13,7 +13,7 @@
                 </ul>
 
             </li>
-            <li><a href="sga.php" class="" aria-expanded="false">
+            <li><a href="/ownlanding-admin/controllers/Administrator.php?listSGA" class="" aria-expanded="false">
                     <i class="flaticon-013-checkmark"></i>
                     <span class="nav-text">SGA</span>
                 </a>
@@ -24,7 +24,7 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="/ownlanding-admin/controllers/Administrator.php?listPackages">Package</a></li>
-                    <li><a href="subscription.php">Subscription</a></li>
+                    <li><a href="/ownlanding-admin/controllers/Administrator.php?listSubscriptions">Subscription</a></li>
                 </ul>
             </li>
             <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
@@ -32,7 +32,7 @@
                     <span class="nav-text">Master</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="country.php">Country</a></li>
+                    <li><a href="/ownlanding-admin/controllers/Administrator.php?listCountries">Country</a></li>
                     <li><a href="state.php">State</a></li>
                     <li><a href="location.php">Location</a></li>
                 </ul>
@@ -42,7 +42,7 @@
                     <span class="nav-text">Financial</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="payment.php">Payment</a></li>
+                    <li><a href="/ownlanding-admin/controllers/Administrator.php?listPayments">Payment</a></li>
                     <li><a href="payout.php">Payouts</a></li>
                     <li><a href="transaction.php">Transactions</a>
 
