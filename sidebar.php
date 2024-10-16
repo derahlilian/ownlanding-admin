@@ -44,7 +44,7 @@
                 <ul aria-expanded="false">
                     <li><a href="/ownlanding-admin/controllers/Administrator.php?listPayments">Payment</a></li>
                     <li><a href="payout.php">Payouts</a></li>
-                    <li><a href="transaction.php">Transactions</a>
+                    <li><a href="/ownlanding-admin/controllers/Administrator.php?listTransactions">Transactions</a>
 
                     <!-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Shop</a>
                         <ul aria-expanded="false">

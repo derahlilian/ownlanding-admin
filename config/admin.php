@@ -259,6 +259,17 @@ class Admin extends Database {
         return $stmt->fetchAll(self::FETCH_ASSOC);
     }
 
+    function getAllTransactions(): false|array
+    {
+        $sql = "SELECT transactions.created_at, transactions.description, transactions.transaction_amount, payments.reference, transactions.type, transactions.status, users.name, users.last_name FROM transactions
+                LEFT JOIN users ON transactions.user_id = users.id
+                LEFT JOIN payments ON transactions.payment_id = payments.id
+                ORDER BY transactions.created_at DESC";
+        $stmt = $this->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(self::FETCH_ASSOC);
+    }
+
     function getUserTransactions(int $user_id): false|array
     {
         $sql = "SELECT * FROM transactions LEFT JOIN payments ON transactions.payment_id = payments.id WHERE transactions.user_id = ?";

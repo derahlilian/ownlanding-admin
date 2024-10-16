@@ -1,3 +1,9 @@
+<?php
+include "config/init.php";
+$transactions = $_SESSION['allTransactions'];
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -604,7 +610,7 @@
 										<th>Name</th>
 										<th>Description</th>
                                         <th>Amount</th>
-										<th>Payment Id</th>
+										<th>Payment Ref</th>
                                         <th>Type</th>
 										<th class="ps-5" style="min-width: 200px;">Status</th>
 										<th></th>
@@ -683,6 +689,7 @@
 										</td>
 									
 									</tr> -->
+                                    <?php foreach ($transactions as $transaction): ?>
 									<tr class="btn-reveal-trigger">
 										<td class="py-2">
 											<div class="form-check custom-checkbox mx-2">
@@ -690,7 +697,16 @@
 												<label class="form-check-label" for="checkbox2"></label>
 											</div>
 										</td>
-										<td class="py-2">11/07/2017</td>
+										<td class="py-2"><?php
+                                            try {
+                                                $dateString = (string)$transaction["created_at"];
+                                                $date = new DateTime($dateString);
+                                                $formattedDate = $date->format('j M, Y');
+                                                echo $formattedDate;
+                                            } catch (DateMalformedStringException $e) {
+                                                echo $transaction["created_at"];
+                                            }
+                                            ?></td>
 										<td class="py-3">
 											<a href="#">
 												<div class="media d-flex align-items-center">
@@ -699,32 +715,29 @@
 															src="public/assets/images/avatar/1.png" alt="" width="30" />
 													</div>
 													<div class="media-body">
-														<h5 class="mb-0 fs--1">Emma Watson</h5>
+														<h5 class="mb-0 fs--1"><?php echo $transaction["name"] . " " . $transaction["last_name"]; ?></h5>
 													</div>
 												</div>
 											</a>
 										</td>
-										<td class="py-2"><a href="">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At ipsum incidunt quae eligendi autem sequi!</a>
+										<td class="py-2"><a href=""><?php echo $transaction["description"]; ?></a>
 										</td>
-										<td class="py-2"> <a href=" ">$10,000</a></td>
-                                        <td class="py-2"> <a href=" ">$10,000</a></td>
+										<td class="py-2"> <a href=" "><?php echo $transaction["transaction_amount"]; ?></a></td>
+                                        <td class="py-2"> <a href=" "><?php echo $transaction["reference"]; ?></a></td>
 
 										<td class="request">
-                                        <div class="btn-group" role="group">
-                                            <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown">Success</button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="javascript:void()">Credit</a>
-                                                <a class="dropdown-item" href="javascript:void()">Debit</a>
+                                            <div class="request">
+                                                <a href="javascript:void(0);" class="btn btn-md text-primary" style="background-color:#D8BFD8 !important;"><?php echo $transaction["type"]; ?></a>
                                             </div>
-                                        </div>
 										</td>
                                         <td>
 													<div class="request">
-														<a href="javascript:void(0);" class="btn btn-md text-primary" style="background-color:#D8BFD8 !important;">Completed</a>
+														<a href="javascript:void(0);" class="btn btn-md text-primary" style="background-color:#D8BFD8 !important;"><?php echo $transaction["status"]; ?></a>
 													</div>
 										</td>
 									</tr>
-									<tr class="btn-reveal-trigger">
+                                    <?php endforeach; ?>
+									<!--<tr class="btn-reveal-trigger">
 										<td class="py-2">
 											<div class="form-check custom-checkbox mx-2">
 												<input type="checkbox" class="form-check-input" id="checkbox2">
@@ -760,7 +773,7 @@
 														<a href="javascript:void(0);" class="btn btn-md text-primary" style="background-color:#D8BFD8 !important;">Completed</a>
 													</div>
 										</td>
-									</tr>
+									</tr>-->
 								</tbody>
 							</table>
 						</div>
