@@ -8,17 +8,17 @@ class Database extends PDO
             $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         } catch (PDOException $e) {
-            echo "No connection";
+            echo "No connection".$e->getMessage();
         }
     }
 
     protected function DB(): array
     {
          return array(
-            "host" => "localhost",
-            "user" => "root",
-            "pass" => "",
-            "dbname" => "forge"
+            "host" => DB_SERVER,
+            "user" => DB_USER,
+            "pass" => DB_PASS,
+            "dbname" => DB_NAME
         );
     }
 

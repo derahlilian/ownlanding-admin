@@ -1,6 +1,12 @@
 <?php
 
-class Admin extends Database {
+class Administration {
+    private $db;
+    public function __construct()
+    {
+        global $dbClass;
+        $this->db = $dbClass;
+    }
 
     /*
      * Functions to edit, user profile, activate and deactivate user account
@@ -15,17 +21,17 @@ class Admin extends Database {
     function getAllUsers(): false|array
     {
         $sql = "SELECT * FROM users ORDER BY created_at DESC";
-        $stmt = $this->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll(self::FETCH_ASSOC);
+        return $stmt->fetchAll($this->db::FETCH_ASSOC);
     }
 
     function getUserById(int $user_id): false|array
     {
         $sql = "SELECT * FROM `users` WHERE `id` = ?";
-        $stmt = $this->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $stmt->execute([$user_id]);
-        return $stmt->fetch(self::FETCH_ASSOC);
+        return $stmt->fetch($this->db::FETCH_ASSOC);
     }
 
     function updateUser(int $user_id, string $name, string $last_name, string $email): bool
@@ -131,9 +137,9 @@ class Admin extends Database {
     function getPackagesByUserId(int $user_id): false|array
     {
         $sql = "SELECT package_code, package_amount, color_code FROM subscriptions LEFT JOIN packages on subscriptions.package_id = packages.id WHERE subscriptions.user_id = ?";
-        $stmt = $this->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $stmt->execute([$user_id]);
-        return $stmt->fetchAll(self::FETCH_ASSOC);
+        return $stmt->fetchAll($this->db::FETCH_ASSOC);
     }
 
     /*
@@ -214,9 +220,9 @@ class Admin extends Database {
     function getDownlineByUserId(int $user_id): false|array
     {
         $sql = "SELECT id, name, last_name FROM users WHERE referred_by = ?";
-        $stmt = $this->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $stmt->execute([$user_id]);
-        return $stmt->fetchAll(self::FETCH_ASSOC);
+        return $stmt->fetchAll($this->db::FETCH_ASSOC);
     }
 
     function getAllSubscriptions(): false|array

@@ -1,3 +1,18 @@
+<?php
+require_once (__DIR__."/init.php");
+//die(json_encode($_POST));
+if(isset($_POST['email'])){
+    $email = $_POST['email'] ?? "";
+    $password = $_POST['password'] ?? "";
+    $doLogin = $authClass->login($email,$password);
+//    die(json_encode($doLogin));
+    if($doLogin['flag']){
+        header("Location: ./dashboard");
+    }
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -36,37 +51,34 @@
                         <div class="row no-gutters">
                             <div class="col-xl-12">
                                 <div class="auth-form">
+                                    <?php
+                                    if(@$doLogin['message']){
+                                        ?>
+                                        <div class="alert alert-danger text-center">
+                                            <?= $doLogin['message'] ?>
+                                        </div>
+                                        <?php
+                                    }
+                                    ?>
 									<div class="text-center mb-3">
-										<a href="index.html"><img src="public/assets/images/ownlogo.png" width="100%" height="60%" alt=""></a>
+										<a href="#"><img src="public/assets/images/ownlogo.png" width="100%" height="60%" alt=""></a>
 									</div>
-                                    <!-- <h4 class="text-center mb-4">Dear Admin, Sign in your account</h4> -->
-                                    <form action="https://travl.dexignlab.com/codeigniter/demo/index">
+                                    <form method="post" action="./login">
                                         <div class="mb-3">
                                             <label class="mb-1"><strong>Email</strong></label>
-                                            <input type="email" class="form-control" value="admin@ownlanding.com">
+                                            <input type="email" name="email" class="form-control" value="admin@ownlanding.com">
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-1"><strong>Password</strong></label>
-                                            <input type="password" class="form-control" value="Password">
+                                            <input name="password" type="password" class="form-control" value="Password">
                                         </div>
                                         <div class="row d-flex justify-content-between mt-4 mb-2">
-                                            <!-- <div class="mb-3">
-                                               <div class="form-check custom-checkbox ms-1">
-													<input type="checkbox" class="form-check-input" id="basic_checkbox_1">
-													<label class="form-check-label" for="basic_checkbox_1">Remember my preference</label>
-												</div>
-                                            </div> -->
-                                            <!-- <div class="mb-3">
-                                                <a href="page-forgot-password.html">Forgot Password?</a>
-                                            </div> -->
+
                                         </div>
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary btn-block" style="background-color:#800080; border:#fff;">Sign Me In</button>
                                         </div>
                                     </form>
-                                    <!-- <div class="new-account mt-3">
-                                        <p>Don't have an account? <a class="text-primary" href="page-register.html">Sign up</a></p>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -86,6 +98,4 @@
 <script src="public/assets/js/dlabnav-init.js"></script>
 <script src="public/assets/js/styleSwitcher.js"></script>
 </body>
-
-<!-- Mirrored from travl.dexignlab.com/codeigniter/demo/page-login by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 30 Sep 2024 16:05:41 GMT -->
 </html>
