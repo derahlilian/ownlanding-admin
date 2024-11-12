@@ -260,9 +260,9 @@ class Administration {
         $sql = "SELECT name, last_name, sga_code, value, estate_name, status FROM grant_allocations
                 LEFT JOIN users ON grant_allocations.user_id = users.id
                 LEFT JOIN packages ON grant_allocations.package_id = packages.id";
-        $stmt = $this->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll(self::FETCH_ASSOC);
+        return $stmt->fetchAll($this->db::FETCH_ASSOC);
     }
 
     function getAllTransactions(): false|array
