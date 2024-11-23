@@ -1,5 +1,9 @@
 <?php
 require_once __DIR__."/../init.php";
+if(!isset($_SESSION['admin_id'])){
+    header("Location: ./login.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +53,10 @@ require_once __DIR__."/../init.php";
             .concierge-bx:hover {
                 background-color: #f8f9fa;
             }
-
+        }
+        .text-right{
+            text-align:right
+        }
     </Style>
 </head>
 

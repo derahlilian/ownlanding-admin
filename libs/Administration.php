@@ -70,12 +70,12 @@ class Administration {
     /*
      * Fetch All Packages
      */
-    function getPackages(): false|array
+    function getPackages($locationId): false|array
     {
-        $sql = "SELECT packages.id, package_code, packages_size, package_amount, estate_name, color_code, packages.created_at, location_name FROM packages JOIN locations on packages.location_id = locations.id ORDER BY created_at DESC";
-        $stmt = $this->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(self::FETCH_ASSOC);
+        $sql = "SELECT packages.id, package_code, packages_size, package_amount, estate_name, color_code, packages.created_at, location_name, (select count(id) from subscriptions where package_id = packages.id) as subscr, (select count(id) from subscriptions where package_id = packages.id and status = 'active') as paid  FROM packages  left JOIN locations on packages.location_id = locations.id WHERE location_id = ? ORDER BY created_at DESC";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$locationId]);
+        return $stmt->fetchAll($this->db::FETCH_ASSOC);
     }
 
     function getPackageByCode(string $package_code): false|array
@@ -193,24 +193,13 @@ class Administration {
     }
 
     /*
-     * Fetch Locations By State
-     */
-    function getLocationsByStateId(int $state_id): false|array
-    {
-        $sql = "SELECT id, location_name FROM locations WHERE state_id = ?";
-        $stmt = $this->prepare($sql);
-        $stmt->execute([$state_id]);
-        return $stmt->fetchAll(self::FETCH_ASSOC);
-    }
-
-    /*
      * Fetch All Locations
      */
-    public function getLocations(): array|false
+    public function getLocations($id): array|false
     {
-        $sql = "SELECT id, location_name FROM locations";
+        $sql = "SELECT id, location_name FROM locations where state_id = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([$id]);
         return $stmt->fetchAll($this->db::FETCH_ASSOC);
     }
 
@@ -238,13 +227,16 @@ class Administration {
 
     function getSubscriptionsByPackageId(int $package_id): array
     {
-        $sql = "SELECT package_code, payments.amount, payments.reference, payments.status, payments.created_at FROM subscriptions
+        $sql = "SELECT 
+                    subscriptions.id, package_code, sga_code, color_code, payments.amount, payments.reference, payments.status payment_status, subscriptions.status sub_status, payments.created_at
+                FROM subscriptions
                 LEFT JOIN payments ON payment_reference = payments.id
                 LEFT JOIN packages ON package_id = packages.id
-                WHERE package_id = ?";
-        $stmt = $this->prepare($sql);
+                LEFT JOIN grant_allocations ON grant_allocations.package_id =  packages.id
+                WHERE subscriptions.package_id = ?";
+        $stmt = $this->db->prepare($sql);
         $stmt->execute([$package_id]);
-        return $stmt->fetchAll(self::FETCH_ASSOC);
+        return $stmt->fetchAll($this->db::FETCH_ASSOC);
     }
 
     function getAllPayments(): false|array

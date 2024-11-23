@@ -1,6 +1,7 @@
 <?php
-$id = $_GET['stateId'] ?? 0;
-$locations = $adminCl->getLocations($id);
+$id = $_GET['subscriptionId'] ?? 0;
+$locations = $adminCl->getSubscriptionsByPackageId($id);
+//print json_encode($locations);
 ?>
 <!--**********************************
     Content body start
@@ -12,12 +13,12 @@ $locations = $adminCl->getLocations($id);
             <div class="col-12">
                 <div class="zcard">
                     <div class="card-header">
-                        <h4 class="card-title">Location List</h4>
+                        <h4 class="card-title">Packages List</h4>
                     </div>
 
                     <div class="card-body">
                         <div class="text-right" style="width:100%">
-                            <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Add Location</button>
+                            <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Add Package</button>
                         </div>
 
                         <div class="table-responsive">
@@ -25,7 +26,11 @@ $locations = $adminCl->getLocations($id);
                                 <thead>
                                 <tr>
                                     <th>S/N</th>
-                                    <th>Location</th>
+                                    <th>Package Code</th>
+                                    <th>SGA Code</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th>User</th>
                                     <th>Action</th>
 
                                 </tr>
@@ -33,12 +38,27 @@ $locations = $adminCl->getLocations($id);
                                 <tbody>
                                 <?php $num = 1; foreach ($locations as $location):?>
                                     <tr>
-                                        <td><?php echo $num++; ?></td>
-                                        <td><?php echo $location["location_name"]; ?></td>
+                                        <td>
+                                            <?php echo $num++; ?>
+                                        </td>
+                                        <td style="color:white;background-color: #<?= $location['color_code'] ?> !important">
+                                            <?php echo strtoupper($location["package_code"]); ?>
+                                        </td>
+                                        <td>
+                                            <?= $location['sga_code'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $location['amount'] ? 'N'.number_format($location['amount']) : '0.00'?>
+                                        </td>
+                                        <td>
+                                           <?= strtoupper($location['sub_status']) ?>
+                                        </td>
+                                        <td>
+
+                                        </td>
                                         <td class="text-right">
-<!--                                            <a href="javascript:void(0);" class="btn   btn-secondary">Edit</a>-->
-<!--                                            <a href="javascript:void(0);" class="btn   btn-secondary">Delete</a>-->
-                                            <a href="./properties.php?locationId=<?= $location['id'] ?>" class="btn   btn-secondary">View Properties</a>
+                                            <a href="./downloadsga.php?id=<?= $location['id'] ?>" class="btn   btn-secondary">Download SGA</a>
+                                            <a href="#" class="btn   btn-secondary">Edit</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
