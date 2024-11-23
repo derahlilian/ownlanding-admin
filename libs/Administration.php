@@ -103,7 +103,7 @@ class Administration {
     function createNewCountry($country_name, $country_code): bool
     {
         $sql = "INSERT INTO `countries` (`country_name`, `country_code`) VALUES (?, ?)";
-        $stmt = $this->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $stmt->execute([$country_name, $country_code]);
         return $stmt->rowCount() === 1;
     }
@@ -148,9 +148,9 @@ class Administration {
     function getCountries(): false|array
     {
         $sql = "SELECT id, country_name, country_code FROM countries";
-        $stmt = $this->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll(self::FETCH_ASSOC);
+        return $stmt->fetchAll($this->db::FETCH_ASSOC);
     }
 
     /*
@@ -187,9 +187,9 @@ class Administration {
     function getStatesByCountryId(int $country_id): false|array
     {
         $sql = "SELECT id, state_name FROM states WHERE country_id = ?";
-        $stmt = $this->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $stmt->execute([$country_id]);
-        return $stmt->fetchAll(self::FETCH_ASSOC);
+        return $stmt->fetchAll($this->db::FETCH_ASSOC);
     }
 
     /*
@@ -209,9 +209,9 @@ class Administration {
     public function getLocations(): array|false
     {
         $sql = "SELECT id, location_name FROM locations";
-        $stmt = $this->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll(self::FETCH_ASSOC);
+        return $stmt->fetchAll($this->db::FETCH_ASSOC);
     }
 
     /*
@@ -257,7 +257,7 @@ class Administration {
 
     function getSGA(): false|array
     {
-        $sql = "SELECT name, last_name, sga_code, value, estate_name, status FROM grant_allocations
+        $sql = "SELECT name, last_name, sga_code, value, estate_name, status,phone_number phone FROM grant_allocations
                 LEFT JOIN users ON grant_allocations.user_id = users.id
                 LEFT JOIN packages ON grant_allocations.package_id = packages.id";
         $stmt = $this->db->prepare($sql);

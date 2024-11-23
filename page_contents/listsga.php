@@ -26,13 +26,12 @@ $sgalist = $adminCl->getSGA();
                                 <td>
                                     <div>
                                         <h5 class="text-nowrap"><?php echo $sga["name"] . " " . $sga["last_name"]; ?></h5>
-                                        <span>0902248072</span>
+                                        <span><?= $sga['phone'] ?></span>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
-                                        <h5 class="text-nowrap"><?php echo $sga["value"]; ?></h5>
-                                        <span>Naira</span>
+                                        <h5 class="text-nowrap">N<?php echo $sga["value"]; ?></h5>
                                     </div>
                                 </td>
                                 <td>
@@ -42,7 +41,7 @@ $sgalist = $adminCl->getSGA();
                                 </td>
                                 <td class="request">
                                     <!-- Trigger Button for "Manage Documents" -->
-                                    <button type="button" class="btn btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#documentModal">View</button>
+                                    <button type="button" class="btn btn-sm mb-2" xdata-bs-toggle="modal" xdata-bs-target="#documentModal">Download</button>
 
                                     <!-- Manage Documents Modal -->
                                     <div class="modal fade" id="documentModal" tabindex="-1" role="dialog" aria-labelledby="documentModalLabel" aria-hidden="true">
@@ -57,12 +56,7 @@ $sgalist = $adminCl->getSGA();
                                                 <!-- Modal Body -->
                                                 <div class="modal-body">
                                                     <form id="documentForm">
-                                                        <!-- Document Upload Section -->
-                                                        <!-- <div class="mb-3">
-                                                            <label for="fileUpload" class="form-label">Upload Documents</label>
-                                                            <input class="form-control" type="file" id="fileUpload" multiple>
-                                                            <div class="form-text">You can upload multiple documents at once.</div>
-                                                        </div> -->
+
 
                                                         <!-- Uploaded Documents Section -->
                                                         <div class="uploaded-documents">
@@ -101,7 +95,7 @@ $sgalist = $adminCl->getSGA();
 
                                 <td>
                                     <div class="request">
-                                        <a href="javascript:void(0);" class="btn btn-md text-primary"><?php echo $sga["status"]; ?></a>
+                                        <a href="javascript:void(0);" class="btn btn-md text-primary"> <span class="text-primary fs-14"><?= $sga["status"] == 'loc_confirmed' ? 'GRANTED' : $sga["status"] ?></span></a>
                                     </div>
                                 </td>
                                 <!-- <td>
