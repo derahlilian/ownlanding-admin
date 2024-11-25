@@ -2,7 +2,7 @@
     <div class="dlabnav-scroll">
         <ul class="metismenu" id="menu">
             <li>
-                <a class="has-arrow " href="./" aria-expanded="false">
+                <a class="has-arrow " href="./dashboard" aria-expanded="false">
                     <i class="flaticon-025-dashboard"></i>
                     <span class="nav-text">Dashboard</span>
                 </a>
@@ -22,8 +22,8 @@
                     <span class="nav-text">Packages</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="/ownlanding-admin/controllers/Administrator.php?listPackages">Package</a></li>
-                    <li><a href="/ownlanding-admin/controllers/Administrator.php?listSubscriptions">Subscription</a></li>
+                    <li><a href="./package">Package</a></li>
+                    <li><a href="./viewsubscriptions">Subscription</a></li>
                 </ul>
             </li>
             <li><a class="" href="./countries.php" aria-expanded="false">
@@ -36,11 +36,9 @@
                     <span class="nav-text">Financial</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="/ownlanding-admin/controllers/Administrator.php?listPayments">Payment</a></li>
-                    <li><a href="/ownlanding-admin/controllers/Administrator.php?listPayouts">Payouts</a></li>
-                    <li><a href="/ownlanding-admin/controllers/Administrator.php?listTransactions">Transactions</a>
-
-
+                    <li><a href="./payment">Payment</a></li>
+                    <li><a href="./transaction">Transactions</a>
+                    <li><a href="./payout">Payouts</a></li>
         </ul>
 
         <div class="copyright">
