@@ -1,0 +1,12 @@
+# Enable the RewriteEngine
+RewriteEngine On
+
+# Remove .php extension
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^/]+)/?$ $1.php [L]
+
+# Remove .html extension
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^/]+)/?$ $1.html [L]
+
+Allow from all
