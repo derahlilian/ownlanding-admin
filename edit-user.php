@@ -137,11 +137,8 @@ include"sidebar.php"
                                     <label class="text-label form-label" for="dlab-password">Email</label>
                                     <div class="input-group transparent-append">
                                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                                        <input type="password" class="form-control" id="dlab-password" value="<?php echo $user["email"] ?>" disabled>
-                                        <span class="input-group-text show-pass">
-                                            <i class="fa fa-eye-slash"></i>
-                                            <i class="fa fa-eye"></i>
-                                        </span>
+                                        <input type="email" class="form-control" id="dlab-password" value="<?php echo $user["email"] ?>" disabled>
+                                    
 
                                     </div>
                                 </div>
@@ -160,7 +157,7 @@ include"sidebar.php"
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
                                         <label class="form-check-label" for="invalidCheck2">
-                                            I agree to change this details
+                                            I agree to change this details. where?
                                         </label>
                                     </div>
                                 </div>
