@@ -6,13 +6,71 @@ $countries = $adminCl->getCountries();
    Content body start
 ***********************************-->
 <div class="container">
-    <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Add Country</button>
-
     <div class="container-fluid">
-        <div class="row">
 
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+            <div class="card-action coin-tabs mb-2">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#">Country List</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="d-flex align-items-center mb-2 flex-wrap">
+                <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Add Country</button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalLong">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Add Country</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="col-lg-12">
+                                    <div class="card">
+
+                                        <div class="card-body">
+                                            <div class="basic-form">
+                                                <form class="form-valide-with-icon needs-validation"  method="post">
+                                                    <div class="mb-3">
+                                                        <label class="text-label form-label" for="validationCustomUsername">Country Name</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                                            <input type="text" name="country_name" class="form-control" id="validationCustomUsername" placeholder="Enter Country Name" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="text-label form-label" for="validationCustomUsername">Country Code</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                                            <input type="text" name="country_code" class="form-control" id="validationCustomUsername" placeholder="Enter Country Code" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <button type="submit" name="createCountry" class="btn me-2 btn-secondary">Create</button>
+                                                    <button class="btn btn-light" data-bs-dismiss="modal">cancel</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button> -->
+                                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
             <div class="col-12">
-                <div class="xcard">
+                <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Country List</h4>
                     </div>
@@ -55,56 +113,9 @@ $countries = $adminCl->getCountries();
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalLong">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add Country</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-lg-12">
-                        <div class="card">
 
-                            <div class="card-body">
-                                <div class="basic-form">
-                                    <form class="form-valide-with-icon needs-validation"  method="post">
-                                        <div class="mb-3">
-                                            <label class="text-label form-label" for="validationCustomUsername">Country Name</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                                                <input type="text" name="country_name" class="form-control" id="validationCustomUsername" placeholder="Enter Country Name" required>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="text-label form-label" for="validationCustomUsername">Country Code</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                                                <input type="text" name="country_code" class="form-control" id="validationCustomUsername" placeholder="Enter Country Code" required>
-                                            </div>
-                                        </div>
-
-                                        <button type="submit" name="createCountry" class="btn me-2 btn-secondary">Create</button>
-                                        <button class="btn btn-light" data-bs-dismiss="modal">cancel</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button> -->
-                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <!--**********************************
     Content body end
