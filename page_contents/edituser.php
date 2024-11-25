@@ -1,14 +1,20 @@
 <?php
 $id = $_GET['id'] ?? 0;
 $user = $adminCl->getUserById($id);
-if(isset($_POST['first'])){
-    $first = $_POST['first'] ?? "";
-    $last = $_POST['last'] ?? "";
-    $email = $_POST['email'] ?? "";
-    $phone = $_POST['phone'] ?? "";
-    $address = $_POST['address'] ?? "";
+if(isset($_POST['editUserSubmit'])){
+    $fields = [
+        'name' => $_POST['first'] !== $user['name'] ?  $_POST['first'] : null,
+        'last_name' => $_POST['last'] !== $user['last_name'] ?  $_POST['last'] : null,
+        'email' => $_POST['email'] !== $user['email'] ?  $_POST['email'] : null,
+        'phone_number' => $_POST['phone'] !== $user['phone_number'] ?  $_POST['phone'] : null,
+        'address' => $_POST['address'] !== $user['address'] ?  $_POST['address'] : null,
+    ];
+
 //    print json_encode($_POST);
-//    $adminCl->updateUser($id,$first,$last,$email);
+    $updateStatus = $adminCl->updateUser($id, $fields);
+    if ($updateStatus) {
+        echo "<script>window.location.reload()</script>";
+    }
 }
 ?>
 <div class="card-header">
@@ -55,7 +61,7 @@ if(isset($_POST['first'])){
                 <label class="text-label form-label" for="dlab-password">Address</label>
                 <div class="input-group transparent-append">
                     <span class="input-group-text"> <i class="fa fa-location-arrow"></i> </span>
-                    <input type="text" class="form-control" id="dlab-password" value="<?php echo $user["address"] ?>" >
+                    <input name="address" type="text" class="form-control" id="dlab-password" value="<?php echo $user["address"] ?>" >
                 </div>
             </div>
 
