@@ -9,9 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "<script>window.location.href = $refresh </script>";
         }
     }
-
-    $id = $_POST['countryid'];
-    if (isset($_POST['deleteCountryButton'])) {
+    elseif (isset($_POST['deleteCountryButton'])) {
+        $id = $_POST['countryid'];
         if ($adminCl->deleteCountryById($id)) {
             echo "<script>window.location.href = $refresh </script>";
         }
