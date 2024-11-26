@@ -1,6 +1,6 @@
 <?php
-if ($_GET["subscriptionId"]) {
-    $id = $_GET["subscriptionId"];
+if ($_GET["packageId"]) {
+    $id = $_GET["packageId"];
     $subscriptions = $adminCl->getSubscriptionsByPackageId($id);
 }
 else {
@@ -50,10 +50,6 @@ else {
                                             </td>
                                             <td>
                                                 <div class="concierge-bx d-flex align-items-center" style="cursor: pointer; transition: background-color 0.3s ease-in-out;">
-                                                    <!-- <a href="user-details.php">
-                                                        <img class="me-3 rounded profile-img" src="public/assets/images/avatar/2.jpg" alt="Guest Avatar"
-                                                            style="transition: transform 0.6s ease-in-out, box-shadow 0.3s ease-in-out;" />
-                                                    </a> -->
                                                     <div>
                                                         <h5 class="fs-16 mb-0 text-nowrap">
                                                             <a class="text-black hover-text" href="javascript:void(0);"
@@ -61,7 +57,6 @@ else {
                                                                 <?php echo $subscription["package_code"]; ?>
                                                             </a>
                                                         </h5>
-                                                        <!-- <span class="text-primary fs-14">#ABJ-00002</span> -->
                                                     </div>
                                                 </div>
                                             </td>
@@ -77,14 +72,13 @@ else {
                                             </td>
                                             <td>
                                                 <div class="request">
-                                                    <a href="javascript:void(0);" class="btn btn-md text-primary"><?php echo $subscription["status"] ?? "N/A"; ?></a>
+                                                    <a href="javascript:void(0);" class="btn btn-md text-primary"><?php echo $subscription["sub_status"] ?? "N/A"; ?></a>
                                                 </div>
                                             </td>
 
                                             <td>
-                                                <div class="requst">
+                                                <div class="request">
                                                     <h5 class="text-nowrap"><?php echo $subscription["created_at"] ?? "N/A"; ?></h5>
-                                                    <span>9.46 AM</span>
                                                 </div>
                                             </td>
                                             <td>
