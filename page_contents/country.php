@@ -9,15 +9,10 @@ $countries = $adminCl->getCountries();
 ***********************************-->
 <div class="container">
     <div class="container-fluid">
-
         <div class="d-flex justify-content-between align-items-center flex-wrap">
-            <div class="card-action coin-tabs mb-2">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-bs-toggle="tab" href="#">Country List</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="card-header">
+                        <h4 class="card-title">Country List</h4>
+                    </div>
             <div class="d-flex align-items-center mb-2 flex-wrap">
                 <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Add Country</button>
                 <!-- Modal -->
@@ -67,10 +62,6 @@ $countries = $adminCl->getCountries();
         <div class="row mt-4">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Country List</h4>
-                    </div>
-
                     <div class="card-body">
                         <div class="table-responsive">
 
@@ -80,7 +71,8 @@ $countries = $adminCl->getCountries();
                                     <th>S/N</th>
                                     <th>Country </th>
                                     <th>Action</th>
-                                    <th></th>
+                                    <th>Action</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -90,7 +82,12 @@ $countries = $adminCl->getCountries();
                                         <td><?php echo $country["country_name"]?></td>
                                         <td>
                                             <a href="state.php?countryid=<?php echo $country["id"]; ?>" class="btn   btn-secondary">View States</a>
-                                            <a  class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#countryEditModal" data-countryname="<?php echo $country["country_name"]; ?>" data-countryid="<?php echo $country["id"]; ?>" data-countrycode="<?php echo $country["country_code"]; ?>">Edit</a>
+                                 
+                                            
+                                        </td>
+                                        
+                                        <td>
+                                        <a  class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#countryEditModal" data-countryname="<?php echo $country["country_name"]; ?>" data-countryid="<?php echo $country["id"]; ?>" data-countrycode="<?php echo $country["country_code"]; ?>">Edit</a>
                                             <!-- Edit country Modal Start -->
                                              <div class="modal fade" id="countryEditModal">
                                                  <div class="modal-dialog">
@@ -133,48 +130,41 @@ $countries = $adminCl->getCountries();
                                                 </div>
                                             </div>
                                             <!-- Edit country Modal End -->
-
-
-                                            <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#countryDeleteModal" data-countryname="<?php echo $country["country_name"]; ?>" data-countryid="<?php echo $country["id"]; ?>">Delete</a>
-                                            <!-- Delete country Modal Start -->
-                                            <div class="modal fade" id="countryDeleteModal">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Delete Country</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal">
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="col-lg-12">
-                                                                <div class="card">
-                                                                    <div class="card-body">
-                                                                        <div class="basic-form">
-                                                                            <form class="form-valide-with-icon needs-validation"  method="post">
-                                                                                <div class="mb-3">
-                                                                                    <h6>Are you sure you want to delete <span id="delete_countryname"></span> ?</h6>
-                                                                                    <input type="hidden" name="countryid" id="delete_countryid">
-                                                                                </div>
-                                                                                <button type="submit" name="deleteCountryButton" class="btn me-2 btn-danger">Yes, Delete</button>
-                                                                                <button class="btn btn-secondary" data-bs-dismiss="modal">No, cancel</button>
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Delete country Modal End -->
                                         </td>
                                         <td>
-                                            <div class="d-flex">
-                                                <a href="#" class=><i class=""></i></a>
-                                                <a href="#" class=""><i class=""></i></a>
-                                                <a href="#" class=" "><i class=""></i></a>
-                                            </div>
+                                        <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#countryDeleteModal" data-countryname="<?php echo $country["country_name"]; ?>" data-countryid="<?php echo $country["id"]; ?>">Delete</a>
+                                                <!-- Delete country Modal Start -->
+                                                    <div class="modal fade" id="countryDeleteModal">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Delete Country</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="card">
+                                                                            <div class="card-body">
+                                                                                <div class="basic-form">
+                                                                                    <form class="form-valide-with-icon needs-validation"  method="post">
+                                                                                        <div class="mb-3">
+                                                                                            <h6>Are you sure you want to delete <span id="delete_countryname"></span> ?</h6>
+                                                                                            <input type="hidden" name="countryid" id="delete_countryid">
+                                                                                        </div>
+                                                                                        <button type="submit" name="deleteCountryButton" class="btn me-2 btn-danger">Yes, Delete</button>
+                                                                                        <button class="btn btn-secondary" data-bs-dismiss="modal">No, cancel</button>
+                                                                                    </form>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <!-- Delete country Modal End -->
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

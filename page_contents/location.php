@@ -6,13 +6,9 @@ $locations = $adminCl->getLocations($id);
 <div class="container">
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center flex-wrap">
-            <div class="card-action coin-tabs mb-2">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-bs-toggle="tab" href="#AllGuest">Location List</a>
-                    </li>
-                </ul>
-            </div>
+                <div class="card-header">
+                        <h4 class="card-title">Location List</h4>
+                    </div>
             <div class="d-flex align-items-center mb-2 flex-wrap">
                 <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Add Location</button>
                 <!-- Modal -->
@@ -71,6 +67,8 @@ $locations = $adminCl->getLocations($id);
                                     <th>S/N</th>
                                     <th>Location</th>
                                     <th>Action</th>
+                                    <th>Action</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -80,7 +78,9 @@ $locations = $adminCl->getLocations($id);
                                         <td><?php echo $location["location_name"]; ?></td>
                                         <td>
                                             <a href="./properties.php?locationId=<?= $location['id'] ?>" class="btn btn-secondary">View Properties</a>
-                                            <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#locationEditModal" data-location_name="<?php echo $location["location_name"]; ?>" data-locationid="<?php echo $location["id"]; ?>">Edit</a>
+                                        </td>
+                                        <td>
+                                        <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#locationEditModal" data-location_name="<?php echo $location["location_name"]; ?>" data-locationid="<?php echo $location["id"]; ?>">Edit</a>
                                             <!-- Edit Location Modal Start -->
                                             <div class="modal fade" id="locationEditModal">
                                                 <div class="modal-dialog">
@@ -118,7 +118,9 @@ $locations = $adminCl->getLocations($id);
                                                 </div>
                                             </div>
                                             <!-- Edit Location Modal End -->
-                                            <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#locationDeleteModal" data-location_name="<?php echo $location["location_name"]; ?>" data-locationid="<?php echo $location["id"]; ?>">Delete</a>
+                                        </td>
+                                        <td>
+                                        <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#locationDeleteModal" data-location_name="<?php echo $location["location_name"]; ?>" data-locationid="<?php echo $location["id"]; ?>">Delete</a>
                                             <!-- Delete Location Modal Start -->
                                             <div class="modal fade" id="locationDeleteModal">
                                                 <div class="modal-dialog">

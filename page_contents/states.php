@@ -5,13 +5,9 @@ $states = $adminCl->getStatesByCountryId($id);
 <div class="container">
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center flex-wrap">
-            <div class="card-action coin-tabs mb-2">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-bs-toggle="tab" href="#">All States</a>
-                    </li>
-                </ul>
-            </div>
+            <div class="card-header">
+                        <h4 class="card-title">State List</h4>
+                    </div>
             <div class="d-flex align-items-center mb-2 flex-wrap">
                 <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalLong">Add State</button>
                 <!-- Modal -->
@@ -65,6 +61,8 @@ $states = $adminCl->getStatesByCountryId($id);
                                     <th>S/N</th>
                                     <th>State</th>
                                     <th>Action</th>
+                                    <th>Action</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -74,7 +72,10 @@ $states = $adminCl->getStatesByCountryId($id);
                                         <td><?php echo $state["state_name"]?></td>
                                         <td>
                                             <a href="./locations.php?stateId=<?php echo $state["id"]; ?>" class="btn   btn-secondary">View Location</a>
-                                            <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#stateEditModal" data-statename="<?php echo $state["state_name"]; ?>" data-stateid="<?php echo $state["id"]; ?>">Edit</a>
+                                    
+                                        </td>
+                                        <td>
+                                        <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#stateEditModal" data-statename="<?php echo $state["state_name"]; ?>" data-stateid="<?php echo $state["id"]; ?>">Edit</a>
                                             <!-- Edit State Modal Start -->
                                             <div class="modal fade" id="stateEditModal">
                                                 <div class="modal-dialog">
@@ -113,13 +114,15 @@ $states = $adminCl->getStatesByCountryId($id);
                                                 </div>
                                             </div>
                                             <!-- Edit State Modal End -->
-                                            <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#stateDeleteModal" data-statename="<?php echo $state["state_name"]; ?>" data-stateid="<?php echo $state["id"]; ?>">Delete</a>
+                                        </td>
+                                        <td>
+                                        <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#stateDeleteModal" data-statename="<?php echo $state["state_name"]; ?>" data-stateid="<?php echo $state["id"]; ?>">Delete</a>
                                             <!-- Delete state Modal Start -->
                                             <div class="modal fade" id="stateDeleteModal">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title">Edit State</h5>
+                                                            <h5 class="modal-title">Delete State</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal">
                                                             </button>
                                                         </div>
