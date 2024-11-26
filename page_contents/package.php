@@ -28,7 +28,7 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="basic-form">
-                                                <form class="form-valide-with-icon needs-validation" method="post" action="/ownlanding-admin/controllers/Administrator.php">
+                                                <form class="form-valide-with-icon needs-validation" method="post"">
                                                     <div class="mb-3">
                                                         <label class="text-label form-label" for="validationCustomUsername">Package Code</label>
                                                         <div class="input-group">
@@ -87,7 +87,7 @@
                                                             </label>
                                                         </div>
                                                     </div>
-                                                    <button type="submit" name="createPackage" class="btn me-2 btn-secondary">Submit</button>
+                                                    <button type="submit" name="createPackageButton" class="btn me-2 btn-secondary">Submit</button>
                                                     <button class="btn btn-light" data-bs-dismiss="modal">cancel</button>
                                                 </form>
                                             </div>
@@ -175,7 +175,7 @@
 											
 												<td>
 													<div class="request">
-														<a href="/ownlanding-admin/controllers/Administrator.php?packageId=<?php echo $package['id'];?>" class="btn btn-md text-secondary">View Subscription</a>
+														<a href="./viewsubscriptions.php?packageId=<?php echo $package['id'];?>" class="btn btn-md text-secondary">View Subscription</a>
 													</div>
 												</td>
 												<td>
