@@ -67,10 +67,6 @@ $countries = $adminCl->getCountries();
         <div class="row mt-4">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Country List</h4>
-                    </div>
-
                     <div class="card-body">
                         <div class="table-responsive">
 
@@ -198,7 +194,6 @@ $countries = $adminCl->getCountries();
         const button = event.relatedTarget;
         const countryid = button.getAttribute('data-countryid');
         const countryname = button.getAttribute('data-countryname');
-        alert(countryname);
 
         document.getElementById('delete_countryid').value = countryid;
         document.getElementById('delete_countryname').textContent = countryname;
