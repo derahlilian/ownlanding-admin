@@ -1,7 +1,5 @@
 <?php
-//$id = $_GET['locationId'] ?? 0;
-$locations = $adminCl->getPackages($_GET['locationId'] ?? 0);
-//print json_encode($locations);
+$packages = $adminCl->getPackagesByLocationId($_GET['locationId'] ?? 0);
 ?>
 <!--**********************************
     Content body start
@@ -83,23 +81,23 @@ $locations = $adminCl->getPackages($_GET['locationId'] ?? 0);
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php $num = 1; foreach ($locations as $location):?>
+                                <?php $num = 1; foreach ($packages as $package):?>
                                     <tr>
                                         <td><?php echo $num++; ?></td>
-                                        <td style="color:white;background-color: #<?= $location['color_code'] ?> !important">
+                                        <td style="color:white;background-color: <?= '#' . $package['color_code'] ?> !important">
                                             <div>
-                                                <?php echo strtoupper($location["package_code"]); ?>
-                                                <br> N<?= number_format($location['package_amount']) ?>
+                                                <?php echo strtoupper($package["package_code"]); ?>
+                                                <br> N<?= number_format($package['package_amount']) ?>
                                             </div></td>
                                         <td>
-                                            <?= $location['estate_name'] ?> <br>
-                                            <?= $location['packages_size'] ?> SQM
+                                            <?= $package['estate_name'] ?> <br>
+                                            <?= $package['packages_size'] ?> SQM
                                         </td>
                                         <td>
-                                            <?= $location['subscr'] ?>: Subscription, <?= $location['paid'] ?>: Paid
+                                            <?= $package['subscr'] ?>: Subscription, <?= $package['paid'] ?>: Paid
                                         </td>
                                         <td class="text-right">
-                                            <a href="./viewsubscriptions.php?subscriptionId=<?= $location['id'] ?>" class="btn   btn-secondary">View Subscriptions</a>
+                                            <a href="./viewsubscriptions.php?packageId=<?= $package['id'] ?>" class="btn   btn-secondary">View Subscriptions</a>
                                             <a href="#" class="btn   btn-secondary">Edit</a>
                                         </td>
                                     </tr>
