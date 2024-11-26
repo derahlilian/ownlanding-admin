@@ -54,10 +54,6 @@ class Administration {
             return false;
         }
 
-        error_log(var_export($statement, true));
-        exit();
-
-
         $sql = "UPDATE `users` SET " . implode(", ", $statement) . " WHERE `id` = ?";
         $values[] = $user_id;
         $stmt = $this->db->prepare($sql);
@@ -121,9 +117,10 @@ class Administration {
      */
     public function createNewPackage(array $data): bool
     {
-        $sql = "INSERT INTO packages (package_code, packages_size, package_amount, estate_name, color_code, location_id) VALUES (?, ?, ?, ?, ?, ?)";
+        $created_at = $updated_at = date("Y-m-d H:i:s");
+        $sql = "INSERT INTO packages (package_code, packages_size, package_amount, estate_name, color_code, location_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute([$data["package_code"], $data["packages_size"], $data["package_amount"], $data["estate_name"], $data["color_code"], $data["location_id"]]);
+        $stmt->execute([$data["package_code"], $data["packages_size"], $data["package_amount"], $data["estate_name"], $data["color_code"], $data["location_id"], $created_at, $updated_at]);
         return $stmt->rowCount() === 1;
     }
 
@@ -132,20 +129,22 @@ class Administration {
      */
     function createNewCountry($country_name, $country_code): bool
     {
-        $sql = "INSERT INTO `countries` (`country_name`, `country_code`) VALUES (?, ?)";
+        $created_at = $updated_at = date("Y-m-d H:i:s");
+        $sql = "INSERT INTO `countries` (`country_name`, `country_code`, `created_at`, `updated_at`) VALUES (?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute([$country_name, $country_code]);
+        $stmt->execute([$country_name, $country_code, $created_at, $updated_at]);
         return $stmt->rowCount() === 1;
     }
 
     /*
      * create New State
      */
-    function createNewState($state_name, $county_id): bool
+    function createNewState($state_name, $country_id): bool
     {
-        $sql = "INSERT INTO `states` (`state_name`, `country_id`) VALUES (?, ?)";
+        $created_at = $updated_at = date("Y-m-d H:i:s");
+        $sql = "INSERT INTO `states` (`state_name`, `country_id`, `created_at`, `updated_at`) VALUES (?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute([$state_name, $county_id]);
+        $stmt->execute([$state_name, $country_id, $created_at, $updated_at]);
         return $stmt->rowCount() === 1;
     }
 
@@ -154,9 +153,10 @@ class Administration {
      */
     function createNewLocation($location_name, $state_id): bool
     {
-        $sql = "INSERT INTO `locations` (`location_name`, `state_id`) VALUES (?, ?)";
+        $created_at = $updated_at = date("Y-m-d H:i:s");
+        $sql = "INSERT INTO `locations` (`location_name`, `state_id`, `created_at`, `updated_at`) VALUES (?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute([$location_name, $state_id]);
+        $stmt->execute([$location_name, $state_id, $created_at, $updated_at]);
         return $stmt->rowCount() === 1;
     }
 
@@ -219,7 +219,9 @@ class Administration {
         $sql = "SELECT id, state_name FROM states WHERE country_id = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$country_id]);
-        return $stmt->fetchAll($this->db::FETCH_ASSOC);
+        $states = $stmt->fetchAll($this->db::FETCH_ASSOC);
+        $states[0]["country_id"] = $country_id;
+        return $states;
     }
 
     /*
@@ -241,7 +243,9 @@ class Administration {
         $sql = "SELECT id, location_name FROM locations where state_id = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$id]);
-        return $stmt->fetchAll($this->db::FETCH_ASSOC);
+        $locations = $stmt->fetchAll($this->db::FETCH_ASSOC);
+        $locations[0]["state_id"] = $id;
+        return $locations;
     }
 
     /*
@@ -319,6 +323,57 @@ class Administration {
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$user_id]);
         return $stmt->fetchAll($this->db::FETCH_ASSOC);
+    }
+
+    public function deleteCountryById(int $id): bool
+    {
+        $sql = "DELETE FROM countries WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt->rowCount() === 1;
+    }
+
+    public function updateCountryById(int $id, string $name, string $code): bool
+    {
+        $updated_at = date("Y-m-d H:i:s");
+        $sql = "UPDATE countries SET country_name = ?, country_code = ?, updated_at = ? WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$name, $code, $updated_at, $id]);
+        return $stmt->rowCount() === 1;
+    }
+
+    public function updateState(int $state_id, string $state_name): bool
+    {
+        $updated_at = date("Y-m-d H:i:s");
+        $sql = "UPDATE states SET state_name = ?, updated_at = ? WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$state_name, $updated_at, $state_id]);
+        return $stmt->rowCount() === 1;
+    }
+
+    public function deleteStateById(int $state_id): bool
+    {
+        $sql = "DELETE FROM states WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$state_id]);
+        return $stmt->rowCount() === 1;
+    }
+
+    public function updateLocation(int $location_id, string $location_name): bool
+    {
+        $updated_at = date("Y-m-d H:i:s");
+        $sql = "UPDATE locations SET location_name = ?, updated_at = ? WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$location_name, $updated_at, $location_id]);
+        return $stmt->rowCount() === 1;
+    }
+
+    public function deleteLocation(int $location_id): bool
+    {
+        $sql = "DELETE FROM locations WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$location_id]);
+        return $stmt->rowCount() === 1;
     }
 
 }

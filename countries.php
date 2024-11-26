@@ -1,19 +1,30 @@
 <?php
 require_once "init.php";
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $refresh = 'countries.php';
+    if(isset($_POST['createCountryButton'])){
+        $sv = $adminCl->createNewCountry($_POST['country_name'] ?? "" , $_POST['country_code']);
+        if($sv){
+            echo "<script>window.location.href = $refresh </script>";
+        }
+    }
 
-if(isset($_POST['country_name'])){
-    $sv = $adminCl->createNewCountry($_POST['country_name'] ?? "" , $_POST['country_code']);
-    if($sv){
-        ?>
-        <script>
-            alert('Country Created');
-            window.location.href = 'countries.php';
-        </script>
-        <?php
+    $id = $_POST['countryid'];
+    if (isset($_POST['deleteCountryButton'])) {
+        if ($adminCl->deleteCountryById($id)) {
+            echo "<script>window.location.href = $refresh </script>";
+        }
+    }
+    else if (isset($_POST['editCountryButton'])) {
+        $name = $_POST['country_name'];
+        $code = $_POST['country_code'];
+        if ($adminCl->updateCountryById($id, $name, $code)){
+            echo "<script>window.location.href = $refresh </script>";
+        }
     }
 }
 
-$title = "List SGA";
+$title = "List Countries";
 $pageFile = "country.php";
 require "components/dashboard_template.php";
