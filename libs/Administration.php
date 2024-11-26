@@ -96,7 +96,7 @@ class Administration {
         $stmt->execute();
         return $stmt->fetchAll($this->db::FETCH_ASSOC);
     }
-    function getPackages($locationId): false|array
+    function getPackagesByLocationId($locationId): false|array
     {
         $sql = "SELECT packages.id, package_code, packages_size, package_amount, estate_name, color_code, packages.created_at, location_name, (select count(id) from subscriptions where package_id = packages.id) as subscr, (select count(id) from subscriptions where package_id = packages.id and status = 'active') as paid  FROM packages  left JOIN locations on packages.location_id = locations.id WHERE location_id = ? ORDER BY created_at DESC";
         $stmt = $this->db->prepare($sql);
@@ -117,6 +117,10 @@ class Administration {
      */
     public function createNewPackage(array $data): bool
     {
+        $package_exists = $this->getPackageByCode($data['package_code']);
+        if ($package_exists) {
+            return false; // package exists
+        }
         $created_at = $updated_at = date("Y-m-d H:i:s");
         $sql = "INSERT INTO packages (package_code, packages_size, package_amount, estate_name, color_code, location_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
