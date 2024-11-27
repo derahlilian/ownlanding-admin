@@ -45,7 +45,6 @@ $packages = $adminCl->getPackagesByLocationId($_GET['locationId'] ?? 0);
                                         </td>
                                         <td class="text-right">
                                             <a href="./viewsubscriptions.php?packageId=<?= $package['id'] ?>" class="btn   btn-secondary">View Subscriptions</a>
-                                            <a href="#" class="btn   btn-secondary">Edit</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
