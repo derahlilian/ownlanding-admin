@@ -73,7 +73,6 @@
                                                     <div class="mb-3">
                                                         <label class="text-label form-label" for="dlab-password">Color Code*</label>
                                                             <input type="color" name="color_code" class="complex-colorpicker form-control" value="#364e29">
-                                                        
                                                     </div>
                                                     <div class="mb-3">
                                                         <div class="form-check">
@@ -172,90 +171,84 @@
 													
 												</td>
 												<td>
-												<button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#editPackage">Edit Package</button>
+												<button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#editPackageModal" data-packageId="<?= $package['id']?>" data-packageCode="<?= $package['package_code']?>" data-packageSize="<?= $package['packages_size']?>" data-packageAmount="<?= $package['package_amount']?>" data-estateName="<?= $package['estate_name']?>" data-colorCode="<?= '#'.$package['color_code']?>">Edit Package</button>
 																	<!-- Modal -->
-																	<div class="modal fade" id="editPackage">
-																		<div class="modal-dialog">
-																			<div class="modal-content">
-																				<div class="modal-header">
-																					<h5 class="modal-title">Edit Package Details</h5>
-																					<button type="button" class="btn-close" data-bs-dismiss="modal">
-																					</button>
-																				</div>
-																				<div class="modal-body">
-																					<div class="col-lg-12">
-																						<div class="card">
-																							<div class="card-header">
-																								<h4 class="card-title">Please Fill All Field!</h4>
-																							</div>
-																							<div class="card-body">
-																								<div class="basic-form">
-																									<form class="form-valide-with-icon needs-validation" method="post" action="/ownlanding-admin/controllers/Administrator.php">
-																										<div class="mb-3">
-																											<label class="text-label form-label" for="validationCustomUsername">Package Code</label>
-																											<div class="input-group">
-																												<span class="input-group-text"> <i class="fa fa-user"></i> </span>
-																												<input type="text" class="form-control" id="validationCustomUsername" name="package_code" placeholder="fetch previous package code" required>
-																											</div>
-																										</div>
-																										<div class="mb-3">
-																											<label class="text-label form-label" for="validationCustomUsername">Package Size</label>
-																											<div class="input-group">
-																												<span class="input-group-text"> <i class="fa fa-user"></i> </span>
-																												<input type="text" class="form-control" id="validationCustomUsername" name="package_size" placeholder="Get previous package size" required>
-																											</div>
-																										</div>
-																										<div class="mb-3">
-																											<label class="text-label form-label" for="validationCustomUsername">Package Amount</label>
-																											<div class="input-group">
-																												<span class="input-group-text"> <i class="fa fa-user"></i> </span>
-																												<input type="number" class="form-control" id="validationCustomUsername" name="package_amount" placeholder="fetch package price" required>
-																											</div>
-																										</div>
-																										<div class="mb-3">
-																											<label class="text-label form-label" for="validationCustomUsername">Estate Name</label>
-																											<div class="input-group">
-																												<span class="input-group-text"> <i class="fa fa-user"></i> </span>
-																												<input type="text" class="form-control" id="validationCustomUsername" name="estate_name" placeholder="fetch estate name" required>
-																											</div>
-																										</div>
-																										<div class="mb-3">
-																											<label class="text-label form-label" for="validationCustomUsername">Location</label>
-																											<div class="input-group">
-																											<button class="btn btn-secondary" type="button">Location</button>
-																											<select name="location_id" class="default-select form-control wide">
-																												<option value="" selected>Choose preferred</option>
-																												<option value="france">france</option>
-																											</select>
-																											</div>
-																										</div>
-																										<div class="mb-3">
-																											<div class="form-check">
-																												<input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-																												<label class="form-check-label" for="invalidCheck2">
-																												I Agree to Changes Made To This Package.
-																												</label>
-																											</div>
-																										</div>
-																										<button type="submit" name="createPackage" class="btn me-2 btn-secondary">Submit</button>
-																										<button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-																									</form>
-																								</div>
-																							</div>
-																						</div>
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
+                                                    <div class="modal fade" id="editPackageModal">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Edit Package Details</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="card">
+                                                                            <div class="card-header">
+                                                                                <h4 class="card-title">Please Fill All Field!</h4>
+                                                                            </div>
+                                                                            <div class="card-body">
+                                                                                <div class="basic-form">
+                                                                                    <form class="form-valide-with-icon needs-validation" method="post">
+                                                                                        <div class="mb-3">
+                                                                                            <label class="text-label form-label" for="edit-packageCode">Package Code</label>
+                                                                                            <div class="input-group">
+                                                                                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                                                                                <input type="text" class="form-control" id="edit-packageCode" name="package_code" placeholder="fetch previous package code" required>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label class="text-label form-label" for="edit-packageSize">Package Size</label>
+                                                                                            <div class="input-group">
+                                                                                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                                                                                <input type="text" class="form-control" id="edit-packageSize" name="package_size" placeholder="Get previous package size" required>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label class="text-label form-label" for="edit-packageAmount">Package Amount</label>
+                                                                                            <div class="input-group">
+                                                                                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                                                                                <input type="number" class="form-control" id="edit-packageAmount" name="package_amount" placeholder="fetch package price" required>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label class="text-label form-label" for="edit-estateName">Estate Name</label>
+                                                                                            <div class="input-group">
+                                                                                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                                                                                <input type="text" class="form-control" id="edit-estateName" name="estate_name" placeholder="fetch estate name" required>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="mb-3">
+                                                                                            <label class="text-label form-label" for="edit-colorCode">Color Code</label>
+                                                                                            <input type="color" name="color_code" id="edit-colorCode" class="complex-colorpicker form-control">
+                                                                                        </div>
+                                                                                        <div class="mb-3">
+                                                                                            <div class="form-check">
+                                                                                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                                                                                                <label class="form-check-label" for="invalidCheck2">
+                                                                                                I Agree to Changes Made To This Package.
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <input type="hidden" name="package_id" id="edit-packageId">
+                                                                                        <button type="submit" name="editPackageButton" class="btn me-2 btn-secondary">Submit</button>
+                                                                                        <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                                                                    </form>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 												</td>
 											</tr>
                                         <?php endforeach; ?>
 										</tbody>
 									</table>
 								</div>	
-							</div>	
-							
+							</div>
 						</div>
 					</div>
 				</div>
@@ -263,3 +256,16 @@
 		</div>
 	</div>
 </div>
+
+
+<script>
+    document.getElementById('editPackageModal').addEventListener('show.bs.modal', function (event){
+        const button = event.relatedTarget;
+        document.getElementById('edit-packageId').value = button.getAttribute('data-packageId');
+        document.getElementById('edit-packageCode').value = button.getAttribute('data-packageCode');
+        document.getElementById('edit-packageAmount').value = button.getAttribute('data-packageAmount');
+        document.getElementById('edit-packageSize').value = button.getAttribute('data-packageSize');
+        document.getElementById('edit-estateName').value = button.getAttribute('data-estateName');
+        document.getElementById('edit-colorCode').value = button.getAttribute('data-colorCode');
+    });
+</script>

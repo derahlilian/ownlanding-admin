@@ -380,5 +380,13 @@ class Administration {
         return $stmt->rowCount() === 1;
     }
 
+    public function updatePackage(array $data): bool
+    {
+        $updated_at = date("Y-m-d H:i:s");
+        $sqq = "UPDATE packages SET package_code = ?, packages_size = ?, package_amount = ?, estate_name = ?, color_code = ?, updated_at = ? WHERE id = ?";
+        $stmt = $this->db->prepare($sqq);
+        $stmt->execute([$data["package_code"], $data["packages_size"], $data["package_amount"], $data["estate_name"], $data["color_code"], $updated_at, $data["id"]]);
+        return $stmt->rowCount() === 1;
+    }
 }
 
