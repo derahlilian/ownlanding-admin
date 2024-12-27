@@ -84,7 +84,7 @@ if(!isset($_SESSION['admin_id'])){
 Nav header start
 ***********************************-->
     <div class="nav-header">
-        <a href="index.html" class="brand-logo">
+        <a href="./" class="brand-logo">
             <img src="public/assets/images/ownlogo.png" alt="" width="343" height="66.359" style="object-fit: contain;" />
         </a>
         <div class="nav-control">

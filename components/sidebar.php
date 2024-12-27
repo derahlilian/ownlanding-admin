@@ -36,10 +36,10 @@
                     <span class="nav-text">Financial</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="./payment">Payment</a></li>
-                    <li><a href="./transaction">Transactions</a>
-                    <li><a href="./payout">Payouts</a></li>
-        </ul>
+                    <li><a href="./transaction">Users Transactions</a>
+                    <li><a href="./payout">Admin Payouts</a></li>
+                    <li><a href="./payment">All Payment Logs</a></li>
+                </ul>
 
         <div class="copyright">
             <p class="text-center"><strong>Ownlanding</strong> © 2024 All Rights Reserved</p>

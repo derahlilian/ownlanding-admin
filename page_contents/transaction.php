@@ -16,39 +16,25 @@
                         <table class="table table-sm mb-0 table-striped">
                             <thead>
                             <tr>
-                                <th class=" pe-3">
-                                    <div class="form-check custom-checkbox mx-2">
-                                        <input type="checkbox" class="form-check-input" id="checkAll">
-                                        <label class="form-check-label" for="checkAll"></label>
-                                    </div>
-                                </th>
                                 <th>Date</th>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Amount</th>
-                                <th>Payment Ref</th>
-                                <th>Type</th>
                                 <th class="ps-5" style="min-width: 200px;">Status</th>
-                                <th></th>
                             </tr>
                             </thead>
                             <tbody id="customers">
                             <?php foreach ($adminCl->getAllTransactions() as $transaction): ?>
                                 <tr class="btn-reveal-trigger">
                                     <td class="py-2">
-                                        <div class="form-check custom-checkbox mx-2">
-                                            <input type="checkbox" class="form-check-input" id="checkbox2">
-                                            <label class="form-check-label" for="checkbox2"></label>
-                                        </div>
-                                    </td>
-                                    <td class="py-2"><?php
+                                        <?php
                                         try {
                                             $dateString = (string)$transaction["created_at"];
                                             $date = new DateTime($dateString);
                                             $formattedDate = $date->format('j M, Y');
                                             echo $formattedDate;
-                                        } catch (DateMalformedStringException $e) {
-                                            echo $transaction["created_at"];
+                                        } catch (Exception $e) {
+                                            echo $e->getMessage();
                                         }
                                         ?></td>
                                     <td class="py-3">
@@ -64,21 +50,21 @@
                                             </div>
                                         </a>
                                     </td>
-                                    <td class="py-2"><a href=""><?php echo $transaction["description"]; ?></a>
+                                    <td class="py-2">
+                                        <span style="display:<?= $transaction['reference'] ? 'block' : 'none' ?>" class="badge badge-primary">
+                                            Ref: <?php echo $transaction["reference"]; ?>
+                                        </span>
+                                         <br>
+                                        <a href=""><?php echo $transaction["description"]; ?></a>
                                     </td>
-                                    <td class="py-2"> <a href=" "><?php echo $transaction["transaction_amount"]; ?></a></td>
-                                    <td class="py-2"> <a href=" "><?php echo $transaction["reference"]; ?></a></td>
-
-                                    <td class="request">
-                                        <div class="request">
-                                            <a href="javascript:void(0);" class="btn btn-md text-primary" style="background-color:#D8BFD8 !important;"><?php echo $transaction["type"]; ?></a>
-                                        </div>
-                                    </td>
+                                    <td class="py-2"> <a href=" ">NGN <?php echo $transaction["transaction_amount"]; ?></a></td>
                                     <td>
-                                        <div class="request">
-                                            <a href="javascript:void(0);" class="btn btn-md text-primary" style="background-color:#D8BFD8 !important;"><?php echo $transaction["status"]; ?></a>
-                                        </div>
+                                        <span class="badge <?= $transaction['status'] == 'pending' ? 'badge-danger' : 'badge-success' ?>">
+                                             <?php echo $transaction["status"]; ?>
+                                        </span>
+
                                     </td>
+
                                 </tr>
                             <?php endforeach; ?>
                             </tbody>
@@ -86,7 +72,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

@@ -311,7 +311,7 @@ class Administration {
     function getAllTransactions($payout = false): false|array
     {
         !$payout ? $line = "WHERE transactions.type = ? AND transactions.status != ?" : $line = "WHERE transactions.type != ? AND transactions.status = ?";
-        $sql = "SELECT transactions.created_at, transactions.description, transactions.transaction_amount, payments.reference, transactions.type, transactions.status, users.name, users.last_name FROM transactions
+        $sql = "SELECT payments.status pstatus, payments.id, transactions.created_at, payments.meta_info, transactions.description, transactions.transaction_amount, payments.reference, transactions.type, transactions.status, users.name, users.last_name FROM transactions
                 LEFT JOIN users ON transactions.user_id = users.id
                 LEFT JOIN payments ON transactions.payment_id = payments.id
                 $line
@@ -386,6 +386,15 @@ class Administration {
         $sqq = "UPDATE packages SET package_code = ?, packages_size = ?, package_amount = ?, estate_name = ?, color_code = ?, updated_at = ? WHERE id = ?";
         $stmt = $this->db->prepare($sqq);
         $stmt->execute([$data["package_code"], $data["packages_size"], $data["package_amount"], $data["estate_name"], $data["color_code"], $updated_at, $data["id"]]);
+        return $stmt->rowCount() === 1;
+    }
+
+    public function verifyTransaction($tx_id,$tx_ref):bool{
+        $sqq = "UPDATE payments SET status = 'verified', reference = ? WHERE id = ? AND channel = 'BANK' ";
+//        print $sqq;
+//        print "$tx_id $tx_ref";
+        $stmt = $this->db->prepare($sqq);
+        $stmt->execute([$tx_ref,$tx_id]);
         return $stmt->rowCount() === 1;
     }
 }
